@@ -1,5 +1,10 @@
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.UUID;
+
+import clientes.Aluno;
+import clientes.File;
 
 public class Programa {
     public static void main(String[] args) {
@@ -110,7 +115,7 @@ public class Programa {
             });
             switch (option) {
                 case 1:
-                    // Programa.gerenciarAlunos();
+                    Programa.gerenciarAlunos(sc);
                     break;
                 case 2:
                     // Programa.gerenciarProfessores();
@@ -121,6 +126,74 @@ public class Programa {
                     break;
             }
         }
+    }
+
+    private static void gerenciarAlunos(Scanner sc) {
+        for (int i = 0; i < 1; i++) {
+            int option = Programa.optionPainel(sc, new String[] {
+                    "[1] - Cadastrar Alunos",
+                    "[2] - Atualizar Alunos",
+                    "[3] - Excluir aluno"
+            });
+            switch (option) {
+                case 1:
+                    Programa.cadastrarAluno(sc);
+                    break;
+                case 2:
+                    Programa.atualizarAluno();
+                    break;
+                case 3:
+                    Programa.excluirAluno();
+                    break;
+                default:
+                    System.out.println("\nDigite uma opção válida!\n");
+                    break;
+            }
+        }
+    }
+
+    private static void excluirAluno() {
+
+    }
+
+    private static void atualizarAluno() {
+
+    }
+
+    private static void cadastrarAluno(Scanner sc) {
+        String nome;
+        String genero;
+        String ra;
+        String senha = "";
+        String turno;
+        String curso;
+
+        System.out.print("Digite o nome do aluno: ");
+        nome = sc.next();
+        System.out.print("Digite o gênero do aluno: ");
+        genero = sc.next();
+        ra = UUID.randomUUID().toString();
+        System.out.print("Escolha um turno para o aluno: ");
+        turno = sc.next();
+        System.out.print("Escolha um curso para o aluno: ");
+        curso = sc.next();
+
+        for (int i = 0; i < 1; i++) {
+            System.out.print("Digite uma senha: ");
+            senha = sc.next();
+            System.out.print("Digite a senha novamente: ");
+            String senhaRepetida = sc.next();
+            if (!senha.equals(senhaRepetida)) {
+                Programa.limparTela();
+                System.out.println("As senhas não coincidem");
+                i--;
+            }
+        }
+
+        Aluno aluno = new Aluno(nome, genero, ra, senha, turno, curso);
+        File file = new File(aluno, "./database/alunos.txt");
+        file.saveOnFile();
+        System.out.println("Aluno cadastrado com sucesso!");
     }
 
     // verifica se a opção escolhida é válida e retorna a opção
