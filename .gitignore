@@ -1,3 +1,3 @@
-./database/alunos.txt
-./database/professores.txt
+./database/alunos.ser
+./database/professores.ser
 ./.vscode
