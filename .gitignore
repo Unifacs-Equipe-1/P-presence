@@ -1,3 +1,4 @@
-./database/alunos.ser
-./database/professores.ser
-./.vscode
+.vscode
+database/alunos.ser
+database/professores.ser
+
