@@ -1,10 +1,11 @@
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.UUID;
 
 import clientes.Aluno;
-import clientes.File;
+import clientes.Database;
 
 public class Programa {
     public static void main(String[] args) {
@@ -95,7 +96,7 @@ public class Programa {
                     // Programa.gerarCodigo();
                     break;
                 case 3:
-                    // Programa.verAlunos();
+                    Programa.verAlunos();
                     break;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
@@ -104,6 +105,18 @@ public class Programa {
             }
         }
 
+    }
+
+    private static void verAlunos() {
+        Database db = new Database(null, "./database/alunos.ser");
+        try {
+            ArrayList<Object> alunos = db.readOnFile();
+            for (Object aluno : alunos) {
+                System.out.println(((Aluno) aluno).getNome());
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     // apresenta o painel do administrador
@@ -167,7 +180,7 @@ public class Programa {
         String senha = "";
         String turno;
         String curso;
-
+        sc.useDelimiter("\\n");
         System.out.print("Digite o nome do aluno: ");
         nome = sc.next();
         System.out.print("Digite o gênero do aluno: ");
@@ -191,9 +204,10 @@ public class Programa {
         }
 
         Aluno aluno = new Aluno(nome, genero, ra, senha, turno, curso);
-        File file = new File(aluno, "./database/alunos.txt");
-        file.saveOnFile();
+        Database db = new Database(aluno, "./database/alunos.ser");
+        db.saveOnFile();
         System.out.println("Aluno cadastrado com sucesso!");
+        sc.reset();
     }
 
     // verifica se a opção escolhida é válida e retorna a opção

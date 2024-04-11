@@ -1,6 +1,8 @@
 package clientes;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
     private String nome = "";
     private String ra = "";
     private String senha = "";
@@ -15,7 +17,7 @@ public abstract class Pessoa {
         this.curso = curso;
     }
 
-    protected final String getNome() {
+    public final String getNome() {
         return nome;
     }
 
