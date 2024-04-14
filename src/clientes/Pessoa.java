@@ -21,6 +21,10 @@ public abstract class Pessoa implements Serializable {
         return nome;
     }
 
+    public final void setNome(String nome) {
+        this.nome = nome;
+    }
+
     protected final String getRa() {
         return ra;
     }
@@ -33,8 +37,15 @@ public abstract class Pessoa implements Serializable {
         return turno;
     }
 
+    public final void setTurno(String turno) {
+        this.turno = turno;
+    }
+
     protected final String getCurso() {
         return curso;
     }
 
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
 }

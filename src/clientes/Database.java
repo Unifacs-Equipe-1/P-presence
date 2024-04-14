@@ -1,53 +1,53 @@
 package clientes;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Database {
-    private Object pessoa;
-    private String caminho;
+    private ArrayList<Aluno> alunos = new ArrayList<>();
+    private ArrayList<Professor> professores = new ArrayList<>();
 
-    public Database(Object pessoa, String caminho) {
-        this.pessoa = pessoa;
-        this.caminho = caminho;
-    }
-
-    public void saveOnFile() {
-
-        try {
-            ArrayList<Object> cadastros = new ArrayList<Object>();
-            cadastros = this.readOnFile();
-            FileOutputStream save = new FileOutputStream(this.caminho);
-            ObjectOutputStream stream = new ObjectOutputStream(save);
-            cadastros.add(this.pessoa);
-            stream.writeObject(cadastros);
-            stream.flush();
-            stream.close();
-            save.close();
-        } catch (IOException e) {
-            System.out.println("Ocorreu um erro ao descarregar os dados ou arquivo não encontrado");
-        } finally {
-            System.out.println("Objeto salvo com sucesso!");
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public ArrayList<Object> readOnFile() {
-        ArrayList<Object> cadastros = new ArrayList<Object>();
-        try {
-            FileInputStream read = new FileInputStream(this.caminho);
-            ObjectInputStream stream = new ObjectInputStream(read);
-            if (read.available() > 0) {
-                cadastros = (ArrayList<Object>) stream.readObject();
+    public Database(ArrayList<Aluno> alunosStart, ArrayList<Professor> professoresStart) {
+        if (alunosStart != null && professoresStart != null) {
+            for (Aluno aluno : alunosStart) {
+                alunos.add(aluno);
             }
-            read.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            for (Professor professor : professoresStart) {
+                professores.add(professor);
+            }
         }
-        return cadastros;
+    }
+
+    public ArrayList<Aluno> getAlunos() {
+        return this.alunos;
+    }
+
+    public ArrayList<Professor> getProfessores() {
+        return this.professores;
+    }
+
+    public void cadastrarAluno(Aluno aluno) {
+        alunos.add(aluno);
+    }
+
+    public Aluno getAluno(String name) {
+        for (Aluno a : this.alunos) {
+            if (a.getNome().equals(name)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public void atualizarAluno(Aluno aluno) {
+        for (Aluno a : this.alunos) {
+            if (a.getRa().equals(aluno.getRa())) {
+                this.alunos.set(this.alunos.indexOf(a), aluno);
+                break;
+            }
+        }
+    }
+
+    public void excluirAluno(Aluno aluno) {
+        alunos.remove(aluno);
     }
 }

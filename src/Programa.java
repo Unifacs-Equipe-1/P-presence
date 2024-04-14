@@ -1,18 +1,23 @@
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.UUID;
 
 import clientes.Aluno;
 import clientes.Database;
+import extras.Util;
 
 public class Programa {
     public static void main(String[] args) {
+        String administrador = "admin";
+        String senhaAdministrador = "admin";
+
+        Database db = new Database(null, null);
+
         Scanner sc = new Scanner(System.in);
         for (int index = 0; index < 1; index++) {
             // Apresenta as opções na tela e retorna a opção escolhida
-            int option = Programa.optionPainel(sc, new String[] {
+            int option = Util.optionPainel(sc, new String[] {
                     "[1]- Fazer login como aluno",
                     "[2]- Fazer login como professor",
                     "[3]- Fazer login como administrador"
@@ -33,15 +38,24 @@ public class Programa {
                      */
 
                     // após login
-                    Programa.loginProfessor(sc);
+                    Programa.loginProfessor(sc, db);
                     break;
                 case 3:
                     /*
                      * Aqui deve ser implementado o método responsável por logar o administrador
                      */
-
-                    // após login
-                    Programa.loginAdmin(sc);
+                    System.out.print("Informe o usuário para login:\t");
+                    String user = sc.next();
+                    System.out.print("Informe a senha para login:\t");
+                    String senha = sc.next();
+                    if (administrador.equals(user) && senhaAdministrador.equals(senha)) {
+                        // após login
+                        Util.limparTela();
+                        Programa.loginAdmin(sc, db);
+                    } else {
+                        System.out.println("Usuário ou senha incorretos!");
+                        index--;
+                    }
                     break;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
@@ -55,7 +69,7 @@ public class Programa {
     // apresenta painel de aluno
     private static void loginAluno(Scanner sc) {
         for (int i = 0; i < 1; i++) {
-            int option = Programa.optionPainel(sc, new String[] {
+            int option = Util.optionPainel(sc, new String[] {
                     "[1]- Mostrar sala disponível",
                     "[2]- Entrar na sala e marcar presença",
                     "[3]- Ver meus dados"
@@ -80,9 +94,9 @@ public class Programa {
     }
 
     // apresenta painel do professor
-    private static void loginProfessor(Scanner sc) {
+    private static void loginProfessor(Scanner sc, Database db) {
         for (int i = 0; i < 1; i++) {
-            int option = Programa.optionPainel(sc, new String[] {
+            int option = Util.optionPainel(sc, new String[] {
                     "[1]- Configurar sala",
                     "[2]- Gerar código da sala",
                     "[3]- Ver todos os alunos"
@@ -96,7 +110,7 @@ public class Programa {
                     // Programa.gerarCodigo();
                     break;
                 case 3:
-                    Programa.verAlunos();
+                    Programa.verAlunos(db);
                     break;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
@@ -107,28 +121,23 @@ public class Programa {
 
     }
 
-    private static void verAlunos() {
-        Database db = new Database(null, "./database/alunos.ser");
-        try {
-            ArrayList<Object> alunos = db.readOnFile();
-            for (Object aluno : alunos) {
-                System.out.println(((Aluno) aluno).getNome());
-            }
-        } catch (Exception e) {
-            System.err.println(e);
+    private static void verAlunos(Database db) {
+        ArrayList<Aluno> alunos = db.getAlunos();
+        for (Aluno aluno : alunos) {
+            System.out.println(aluno.getNome());
         }
     }
 
     // apresenta o painel do administrador
-    private static void loginAdmin(Scanner sc) {
+    private static void loginAdmin(Scanner sc, Database db) {
         for (int i = 0; i < 1; i++) {
-            int option = Programa.optionPainel(sc, new String[] {
+            int option = Util.optionPainel(sc, new String[] {
                     "[1]- Gerenciar alunos",
                     "[2]- Gerenciar professores"
             });
             switch (option) {
                 case 1:
-                    Programa.gerenciarAlunos(sc);
+                    Programa.gerenciarAlunos(sc, db);
                     break;
                 case 2:
                     // Programa.gerenciarProfessores();
@@ -141,22 +150,22 @@ public class Programa {
         }
     }
 
-    private static void gerenciarAlunos(Scanner sc) {
+    private static void gerenciarAlunos(Scanner sc, Database db) {
         for (int i = 0; i < 1; i++) {
-            int option = Programa.optionPainel(sc, new String[] {
+            int option = Util.optionPainel(sc, new String[] {
                     "[1] - Cadastrar Alunos",
                     "[2] - Atualizar Alunos",
                     "[3] - Excluir aluno"
             });
             switch (option) {
                 case 1:
-                    Programa.cadastrarAluno(sc);
+                    Programa.cadastrarAluno(sc, db);
                     break;
                 case 2:
-                    Programa.atualizarAluno();
+                    Programa.atualizarAluno(sc, db);
                     break;
                 case 3:
-                    Programa.excluirAluno();
+                    Programa.excluirAluno(sc, db);
                     break;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
@@ -165,15 +174,50 @@ public class Programa {
         }
     }
 
-    private static void excluirAluno() {
-
+    private static void excluirAluno(Scanner sc, Database db) {
+        System.out.println("Digite o nome do aluno que deseja excluir:\t");
+        sc.useDelimiter("\\n");
+        String nomeAluno = sc.next();
+        Aluno aluno = db.getAluno(nomeAluno);
+        db.excluirAluno(aluno);
+        System.out.println("Aluno excluído com sucesso!");
+        sc.reset();
     }
 
-    private static void atualizarAluno() {
+    private static void atualizarAluno(Scanner sc, Database db) {
+        System.out.print("Digite o aluno que deseja modificar:\t");
+        String nomeAluno = sc.next();
+        Aluno aluno = db.getAluno(nomeAluno);
+        System.out.println("O que deseja modificar?");
+        int option = Util.optionPainel(sc, new String[] {
+                "[1] - Turno",
+                "[2] - Curso"
+        });
+        int acc = 0;
+        while (acc < 1) {
+            switch (option) {
+                case 1:
+                    System.out.print("Digite o novo turno:\t");
+                    String turno = sc.next();
+                    aluno.setTurno(turno);
+                    db.atualizarAluno(aluno);
+                    break;
+                case 2:
+                    System.out.print("Digite o novo curso:\t");
+                    String curso = sc.next();
+                    aluno.setCurso(curso);
+                    db.atualizarAluno(aluno);
+                    break;
+                default:
+                    System.out.println("Essa opção não existe!");
+                    acc--;
+                    break;
+            }
 
+        }
     }
 
-    private static void cadastrarAluno(Scanner sc) {
+    private static void cadastrarAluno(Scanner sc, Database db) {
         String nome;
         String genero;
         String ra;
@@ -197,40 +241,15 @@ public class Programa {
             System.out.print("Digite a senha novamente: ");
             String senhaRepetida = sc.next();
             if (!senha.equals(senhaRepetida)) {
-                Programa.limparTela();
+                Util.limparTela();
                 System.out.println("As senhas não coincidem");
                 i--;
             }
         }
 
         Aluno aluno = new Aluno(nome, genero, ra, senha, turno, curso);
-        Database db = new Database(aluno, "./database/alunos.ser");
-        db.saveOnFile();
+        db.cadastrarAluno(aluno);
         System.out.println("Aluno cadastrado com sucesso!");
         sc.reset();
-    }
-
-    // verifica se a opção escolhida é válida e retorna a opção
-    private static int optionPainel(Scanner sc, String[] options) {
-        System.out.println("Selecione uma das opções:\n");
-        for (String value : options) {
-            System.out.println(value);
-        }
-        System.out.print("\nInsira aqui: ");
-        int option = -1;
-        try {
-            option = sc.nextInt();
-        } catch (InputMismatchException e) {
-            sc.nextLine();
-        }
-        Programa.limparTela();
-        return option;
-    }
-
-    // limpa o console
-    private static void limparTela() {
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("\n");
-        }
     }
 }
