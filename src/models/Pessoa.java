@@ -29,7 +29,7 @@ public abstract class Pessoa implements Serializable {
         return ra;
     }
 
-    protected final String getSenha() {
+    public final String getSenha() {
         return senha;
     }
 

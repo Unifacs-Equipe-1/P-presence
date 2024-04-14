@@ -53,7 +53,7 @@ public class Programa {
                                         /*
                                          * Aqui deve ser implementado o método responsável por logar o aluno
                                          */
-                                        AlunoController.loginAluno(sc);
+                                        AlunoController.loginAluno(sc, db);
                                         break;
                                 case 2:
                                         /*
