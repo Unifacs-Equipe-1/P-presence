@@ -3,9 +3,9 @@ package controllers.logins.professor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import clientes.Aluno;
-import clientes.Database;
 import extras.Util;
+import models.Aluno;
+import models.Database;
 
 public class ProfessorController {
 

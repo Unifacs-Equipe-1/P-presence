@@ -3,9 +3,9 @@ package controllers.logins.admin.gerenciar;
 import java.util.Scanner;
 import java.util.UUID;
 
-import clientes.Aluno;
-import clientes.Database;
 import extras.Util;
+import models.Aluno;
+import models.Database;
 
 public class GerenciarAlunosController {
     public static void gerenciarAlunos(Scanner sc, Database db) {

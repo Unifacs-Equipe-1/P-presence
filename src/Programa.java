@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
 
-import clientes.Aluno;
-import clientes.Database;
-import clientes.Professor;
 import controllers.logins.admin.AdministradorController;
 import controllers.logins.aluno.AlunoController;
 import controllers.logins.professor.ProfessorController;
 import extras.Util;
+import models.Aluno;
+import models.Database;
+import models.Professor;
 
 public class Programa {
     public static void main(String[] args) {

@@ -1,9 +1,10 @@
 package controllers.logins.admin;
 
 import java.util.Scanner;
-import clientes.Database;
+
 import controllers.logins.admin.gerenciar.GerenciarAlunosController;
 import extras.Util;
+import models.Database;
 
 public class AdministradorController {
     public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {

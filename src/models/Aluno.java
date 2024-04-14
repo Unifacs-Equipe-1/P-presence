@@ -1,6 +1,6 @@
-package clientes;
+package models;
 
-public class Aluno extends clientes.Pessoa {
+public class Aluno extends models.Pessoa {
 
     private String genero;
     private String uc;
