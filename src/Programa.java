@@ -32,7 +32,8 @@ public class Programa {
 
                 ArrayList<Professor> professoresStart = new ArrayList<Professor>();
                 professoresStart.add(
-                                new Professor("Eliane", UUID.randomUUID().toString(), "manhã", "Ciência da Computação",
+                                new Professor("Eliane", UUID.randomUUID().toString(), "profeliane", "manhã",
+                                                "Ciência da Computação",
                                                 "Programas e soluções computacionais"));
 
                 Database db = new Database(alunosStart, professoresStart);

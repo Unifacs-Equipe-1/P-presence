@@ -21,4 +21,8 @@ public class Aluno extends models.Pessoa {
     public String getUc() {
         return uc;
     }
+
+    public void setUc(String uc) {
+        this.uc = uc;
+    }
 }

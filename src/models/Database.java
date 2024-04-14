@@ -52,4 +52,22 @@ public class Database {
     public void excluirAluno(Aluno aluno) {
         alunos.remove(aluno);
     }
+
+    public Professor getProfessor(String name) {
+        for (Professor p : this.professores) {
+            if (p.getNome().equals(name)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void atualizarProfessor(Professor professor) {
+        for (Professor p : this.professores) {
+            if (p.getRa().equals(professor.getRa())) {
+                this.professores.set(this.professores.indexOf(p), professor);
+                break;
+            }
+        }
+    }
 }
