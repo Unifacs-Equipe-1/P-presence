@@ -1,10 +1,12 @@
 package controllers.logins.aluno;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import extras.Util;
 import models.Aluno;
 import models.Database;
+import models.Professor;
 
 public class AlunoController {
     public static void loginAluno(Scanner sc, Database db) {
@@ -40,7 +42,7 @@ public class AlunoController {
                     AlunoController.informarDadosDaSala(sc, aluno);
                     break;
                 case 2:
-                    // AlunoController.marcarPresenca();
+                    AlunoController.marcarPresenca(sc, db, aluno);
                     break;
                 case 3:
                     AlunoController.mostrarDadosAluno(sc, db, aluno);
@@ -53,6 +55,35 @@ public class AlunoController {
                     break;
             }
         }
+    }
+
+    private static void marcarPresenca(Scanner sc, Database db, Aluno aluno) {
+        if (aluno.getSala() == 0) {
+            System.out.println("Você não possui aulas para marcar presença");
+            System.out.println("Pressione enter para voltar...");
+            sc.useDelimiter("\\n");
+            sc.next();
+            sc.reset();
+            return;
+        }
+        System.out.print("Informe o código da sala para marcar presença:\t");
+        String codigoSala = sc.next();
+        ArrayList<Professor> professores = db.getProfessores();
+        for (Professor p : professores) {
+            if (aluno.getUc().equals(p.getUc())) {
+                if (p.getCodigoSala().equals(codigoSala)) {
+                    aluno.setPresente(true);
+                    System.out.println("Você marcou presença na aula!");
+                } else {
+                    System.out.println("Código para marcar presença incorreto!");
+                }
+                break;
+            }
+        }
+        System.out.println("Pressione enter para voltar...");
+        sc.useDelimiter("\\n");
+        sc.next();
+        sc.reset();
     }
 
     private static void informarDadosDaSala(Scanner sc, Aluno aluno) {

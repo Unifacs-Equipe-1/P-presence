@@ -99,7 +99,12 @@ public class ProfessorController {
     private static void verAlunos(Scanner sc, Database db) {
         ArrayList<Aluno> alunos = db.getAlunos();
         for (Aluno aluno : alunos) {
-            System.out.println(aluno.getNome());
+            System.out.printf("O nome do aluno é: %s\t", aluno.getNome());
+            if (aluno.getPresente() != null) {
+                System.out.printf("Presença na aula: %s%n", aluno.getPresente() ? "Sim" : "Não");
+            } else {
+                System.out.println("Presença na aula: Ainda não foi configurado uma sala");
+            }
         }
         System.out.print("\nPressione enter para prosseguir...");
         sc.useDelimiter("\\n");
