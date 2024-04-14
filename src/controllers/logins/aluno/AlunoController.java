@@ -37,7 +37,7 @@ public class AlunoController {
             });
             switch (option) {
                 case 1:
-                    // AlunoController.informarDadosDaSala();
+                    AlunoController.informarDadosDaSala(sc, aluno);
                     break;
                 case 2:
                     // AlunoController.marcarPresenca();
@@ -53,6 +53,19 @@ public class AlunoController {
                     break;
             }
         }
+    }
+
+    private static void informarDadosDaSala(Scanner sc, Aluno aluno) {
+        if (aluno.getSala() != 0) {
+            System.out.printf("Você tem uma aula: %s - Sala %d%n", aluno.getUc(), aluno.getSala());
+        } else {
+            System.out.println("Você ainda não possui aulas disponíveis, tente novamente mais tarde!");
+        }
+
+        System.out.println("Pressione enter para voltar...");
+        sc.useDelimiter("\\n");
+        sc.next();
+        sc.reset();
     }
 
     private static void mostrarDadosAluno(Scanner sc, Database db, Aluno aluno) {

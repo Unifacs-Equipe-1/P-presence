@@ -4,6 +4,7 @@ public class Aluno extends models.Pessoa {
 
     private String genero;
     private String uc;
+    private int sala;
 
     public Aluno(String nome, String genero, String ra, String senha, String turno, String curso) {
         super(nome, ra, senha, turno, curso);
@@ -24,5 +25,13 @@ public class Aluno extends models.Pessoa {
 
     public void setUc(String uc) {
         this.uc = uc;
+    }
+
+    public int getSala() {
+        return this.sala;
+    }
+
+    public void setSala(int sala) {
+        this.sala = sala;
     }
 }

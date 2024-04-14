@@ -71,10 +71,6 @@ public class ProfessorController {
 
     private static void configurarSala(Scanner sc, Database db, Professor professor) {
         ArrayList<Aluno> alunos = db.getAlunos();
-        for (Aluno aluno : alunos) {
-            aluno.setUc(professor.getUc());
-            db.atualizarAluno(aluno);
-        }
         for (int index = 0; index < 1; index++) {
             try {
                 System.out.print("Informe a sala que deseja usar:\t");
@@ -87,6 +83,12 @@ public class ProfessorController {
                 index--;
             }
         }
+        for (Aluno aluno : alunos) {
+            aluno.setUc(professor.getUc());
+            aluno.setSala(professor.getSala());
+            db.atualizarAluno(aluno);
+        }
+
         System.out.println("Sala criada!");
         System.out.println("Pressione enter para voltar a página anterior...");
         sc.useDelimiter("\\n");
