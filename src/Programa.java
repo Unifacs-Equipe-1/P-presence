@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import clientes.Aluno;
 import clientes.Database;
+import clientes.Professor;
 import extras.Util;
 
 public class Programa {
@@ -12,7 +13,25 @@ public class Programa {
         String administrador = "admin";
         String senhaAdministrador = "admin";
 
-        Database db = new Database(null, null);
+        ArrayList<Aluno> alunosStart = new ArrayList<Aluno>();
+        alunosStart.add(new Aluno("erick gomes", "masculino", UUID.randomUUID().toString(), "abc", "manhã",
+                "Ciência da Computação"));
+        alunosStart.add(new Aluno("marcilio", "masculino", UUID.randomUUID().toString(), "123", "manhã",
+                "Ciência da Computação"));
+        alunosStart.add(new Aluno("rodson", "masculino", UUID.randomUUID().toString(), "teste", "manhã",
+                "Ciência da Computação"));
+        alunosStart.add(new Aluno("arthur", "masculino", UUID.randomUUID().toString(), "789", "manhã",
+                "Ciência da Computação"));
+        alunosStart.add(new Aluno("marcus", "masculino", UUID.randomUUID().toString(), "senha", "manhã",
+                "Ciência da Computação"));
+        alunosStart.add(new Aluno("marcela", "feminino", UUID.randomUUID().toString(), "password", "manhã",
+                "Ciência da Computação"));
+
+        ArrayList<Professor> professoresStart = new ArrayList<Professor>();
+        professoresStart.add(new Professor("Eliane", UUID.randomUUID().toString(), "manhã", "Ciência da Computação",
+                "Programas e soluções computacionais"));
+
+        Database db = new Database(alunosStart, professoresStart);
 
         Scanner sc = new Scanner(System.in);
         for (int index = 0; index < 1; index++) {

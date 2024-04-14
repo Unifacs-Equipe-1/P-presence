@@ -3,14 +3,16 @@ package clientes;
 import java.util.ArrayList;
 
 public class Database {
-    private ArrayList<Aluno> alunos = new ArrayList<>();
-    private ArrayList<Professor> professores = new ArrayList<>();
+    private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+    private ArrayList<Professor> professores = new ArrayList<Professor>();
 
     public Database(ArrayList<Aluno> alunosStart, ArrayList<Professor> professoresStart) {
-        if (alunosStart != null && professoresStart != null) {
+        if (alunosStart != null) {
             for (Aluno aluno : alunosStart) {
                 alunos.add(aluno);
             }
+        }
+        if (professoresStart != null) {
             for (Professor professor : professoresStart) {
                 professores.add(professor);
             }
