@@ -6,11 +6,12 @@ import extras.Util;
 
 public class AlunoController {
     public static void loginAluno(Scanner sc) {
-        for (int i = 0; i < 1; i++) {
+        while (true) {
             int option = Util.optionPainel(sc, new String[] {
                     "[1]- Mostrar sala disponível",
                     "[2]- Entrar na sala e marcar presença",
-                    "[3]- Ver meus dados"
+                    "[3]- Ver meus dados",
+                    "[4]- Sair da conta"
             });
             switch (option) {
                 case 1:
@@ -22,9 +23,11 @@ public class AlunoController {
                 case 3:
                     // Programa.mostrarDadosAluno();
                     break;
+                case 4:
+                    System.out.println("Saindo da conta de aluno...");
+                    return;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
-                    i--;
                     break;
             }
         }

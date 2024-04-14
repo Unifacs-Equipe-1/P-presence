@@ -8,7 +8,8 @@ import models.Database;
 
 public class AdministradorController {
     public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {
-        for (int i = 0; i < 1; i++) {
+        while (true) {
+            Util.limparTela();
             System.out.print("Informe o usuário para login:\t");
             String user = sc.next();
             System.out.print("Informe a senha para login:\t");
@@ -16,13 +17,23 @@ public class AdministradorController {
             if (!administrador.equals(user) || !senhaAdministrador.equals(senha)) {
                 Util.limparTela();
                 System.out.println("Usuário ou senha incorretos!");
-                i--;
-                continue;
+                System.out.println("Deseja tentar novamente? [0]Não/[1]Sim - Padrão: Não");
+                int prosseguir = sc.nextInt();
+                switch (prosseguir) {
+                    case 1:
+                        continue;
+                    case 0:
+                    default:
+                        System.out.println("Retornando a página inicial");
+                        return;
+
+                }
             }
             Util.limparTela();
             int option = Util.optionPainel(sc, new String[] {
                     "[1]- Gerenciar alunos",
-                    "[2]- Gerenciar professores"
+                    "[2]- Gerenciar professores",
+                    "[3]- Sair da conta"
             });
             switch (option) {
                 case 1:
@@ -31,9 +42,11 @@ public class AdministradorController {
                 case 2:
                     // Programa.gerenciarProfessores();
                     break;
+                case 3:
+                    System.out.println("Voltando a página inicial");
+                    return;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
-                    i--;
                     break;
             }
         }

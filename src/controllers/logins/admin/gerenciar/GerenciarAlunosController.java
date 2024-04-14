@@ -9,11 +9,12 @@ import models.Database;
 
 public class GerenciarAlunosController {
     public static void gerenciarAlunos(Scanner sc, Database db) {
-        for (int i = 0; i < 1; i++) {
+        while (true) {
             int option = Util.optionPainel(sc, new String[] {
                     "[1] - Cadastrar Alunos",
                     "[2] - Atualizar Alunos",
-                    "[3] - Excluir aluno"
+                    "[3] - Excluir aluno",
+                    "[4] - Voltar a página anterior"
             });
             switch (option) {
                 case 1:
@@ -25,6 +26,9 @@ public class GerenciarAlunosController {
                 case 3:
                     GerenciarAlunosController.excluirAluno(sc, db);
                     break;
+                case 4:
+                    System.out.println("Voltando a página anterior!");
+                    return;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
                     break;

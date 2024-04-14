@@ -10,11 +10,13 @@ import models.Database;
 public class ProfessorController {
 
     public static void loginProfessor(Scanner sc, Database db) {
-        for (int i = 0; i < 1; i++) {
+        while (true) {
+            Util.limparTela();
             int option = Util.optionPainel(sc, new String[] {
                     "[1]- Configurar sala",
                     "[2]- Gerar código da sala",
-                    "[3]- Ver todos os alunos"
+                    "[3]- Ver todos os alunos",
+                    "[4]- Sair da conta"
             });
 
             switch (option) {
@@ -25,21 +27,27 @@ public class ProfessorController {
                     // Programa.gerarCodigo();
                     break;
                 case 3:
-                    ProfessorController.verAlunos(db);
+                    ProfessorController.verAlunos(sc, db);
                     break;
+                case 4:
+                    System.out.println("Saindo da conta de professor...");
+                    return;
                 default:
                     System.out.println("\nDigite uma opção válida!\n");
-                    i--;
                     break;
             }
         }
     }
 
-    private static void verAlunos(Database db) {
+    private static void verAlunos(Scanner sc, Database db) {
         ArrayList<Aluno> alunos = db.getAlunos();
         for (Aluno aluno : alunos) {
             System.out.println(aluno.getNome());
         }
+        System.out.print("\nPressione enter para prosseguir...");
+        sc.useDelimiter("\\n");
+        sc.next();
+        sc.reset();
     }
 
 }
