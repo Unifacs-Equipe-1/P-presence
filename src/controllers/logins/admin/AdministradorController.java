@@ -17,8 +17,11 @@ public class AdministradorController {
             if (!administrador.equals(user) || !senhaAdministrador.equals(senha)) {
                 Util.limparTela();
                 System.out.println("Usuário ou senha incorretos!");
-                System.out.println("Deseja tentar novamente? [0]Não/[1]Sim - Padrão: Não");
-                int prosseguir = sc.nextInt();
+                System.out.println("Deseja tentar novamente?");
+                int prosseguir = Util.optionPainel(sc, new String[] {
+                        "[0]- Não (default)",
+                        "[1]- Sim"
+                });
                 switch (prosseguir) {
                     case 1:
                         continue;
