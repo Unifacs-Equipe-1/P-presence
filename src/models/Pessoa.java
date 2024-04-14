@@ -33,7 +33,7 @@ public abstract class Pessoa implements Serializable {
         return senha;
     }
 
-    protected final String getTurno() {
+    public final String getTurno() {
         return turno;
     }
 
@@ -41,7 +41,7 @@ public abstract class Pessoa implements Serializable {
         this.turno = turno;
     }
 
-    protected final String getCurso() {
+    public final String getCurso() {
         return curso;
     }
 

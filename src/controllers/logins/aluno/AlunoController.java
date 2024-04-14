@@ -43,7 +43,7 @@ public class AlunoController {
                     // AlunoController.marcarPresenca();
                     break;
                 case 3:
-                    // AlunoController.mostrarDadosAluno();
+                    AlunoController.mostrarDadosAluno(sc, db, aluno);
                     break;
                 case 4:
                     System.out.println("Saindo da conta de aluno...");
@@ -53,5 +53,17 @@ public class AlunoController {
                     break;
             }
         }
+    }
+
+    private static void mostrarDadosAluno(Scanner sc, Database db, Aluno aluno) {
+        System.out.printf("O nome do aluno: %s%n", aluno.getNome());
+        System.out.printf("O gênero do aluno: %s%n", aluno.getGenero());
+        System.out.printf("O curso do aluno: %s%n", aluno.getCurso());
+        System.out.printf("O turno do aluno: %s%n", aluno.getTurno());
+        System.out.printf("A UC do aluno: %s%n%n", aluno.getUc() != null ? aluno.getUc() : "Ainda não possui");
+        System.out.println("Pressione enter para voltar...");
+        sc.useDelimiter("\\n");
+        sc.next();
+        sc.reset();
     }
 }
