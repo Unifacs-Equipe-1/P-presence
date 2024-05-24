@@ -17,17 +17,17 @@ public class Programa {
                 String senhaAdministrador = "admin";
 
                 ArrayList<Aluno> alunosStart = new ArrayList<Aluno>();
-                alunosStart.add(new Aluno("erick gomes", "masculino", UUID.randomUUID().toString(), "abc", "manhã",
+                alunosStart.add(new Aluno("Erick", "Masculino", UUID.randomUUID().toString(), "abc", "manhã",
                                 "Ciência da Computação"));
-                alunosStart.add(new Aluno("marcilio", "masculino", UUID.randomUUID().toString(), "123", "manhã",
+                alunosStart.add(new Aluno("Marcilio", "masculino", UUID.randomUUID().toString(), "123", "manhã",
                                 "Ciência da Computação"));
-                alunosStart.add(new Aluno("rodson", "masculino", UUID.randomUUID().toString(), "teste", "manhã",
+                alunosStart.add(new Aluno("Rodson", "masculino", UUID.randomUUID().toString(), "teste", "manhã",
                                 "Ciência da Computação"));
-                alunosStart.add(new Aluno("arthur", "masculino", UUID.randomUUID().toString(), "789", "manhã",
+                alunosStart.add(new Aluno("Arthur", "masculino", UUID.randomUUID().toString(), "789", "manhã",
                                 "Ciência da Computação"));
-                alunosStart.add(new Aluno("marcus", "masculino", UUID.randomUUID().toString(), "senha", "manhã",
+                alunosStart.add(new Aluno("Marcus", "masculino", UUID.randomUUID().toString(), "senha", "manhã",
                                 "Ciência da Computação"));
-                alunosStart.add(new Aluno("marcela", "feminino", UUID.randomUUID().toString(), "password", "manhã",
+                alunosStart.add(new Aluno("Marcela", "feminino", UUID.randomUUID().toString(), "password", "manhã",
                                 "Ciência da Computação"));
 
                 ArrayList<Professor> professoresStart = new ArrayList<Professor>();

@@ -14,7 +14,7 @@ public class ProfessorController {
     public static void loginProfessor(Scanner sc, Database db) {
         while (true) {
             Util.limparTela();
-            sc.useDelimiter("\\n");
+            sc.useDelimiter("\\r\\n");
             System.out.print("Informe o nome para login:\t");
             String user = sc.next();
             System.out.print("Informe a senha para login:\t");
@@ -64,7 +64,7 @@ public class ProfessorController {
         db.atualizarProfessor(professor);
         System.out.printf("Informe esse código para os alunos marcarem presença: %s%n", professor.getCodigoSala());
         System.out.println("Pressione enter para voltar a página anterior...");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         sc.next();
         sc.reset();
     }
@@ -91,7 +91,7 @@ public class ProfessorController {
 
         System.out.println("Sala criada!");
         System.out.println("Pressione enter para voltar a página anterior...");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         sc.next();
         sc.reset();
     }
@@ -99,7 +99,8 @@ public class ProfessorController {
     private static void verAlunos(Scanner sc, Database db) {
         ArrayList<Aluno> alunos = db.getAlunos();
         for (Aluno aluno : alunos) {
-            System.out.printf("O nome do aluno é: %s\t", aluno.getNome());
+            System.out.printf("Aluno: %s\t | Curso: %s\t | Turno: %s\t |  ", aluno.getNome(), aluno.getCurso(),
+                    aluno.getTurno());
             if (aluno.getPresente() != null) {
                 System.out.printf("Presença na aula: %s%n", aluno.getPresente() ? "Sim" : "Não");
             } else {
@@ -107,7 +108,7 @@ public class ProfessorController {
             }
         }
         System.out.print("\nPressione enter para prosseguir...");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         sc.next();
         sc.reset();
     }

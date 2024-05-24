@@ -9,10 +9,12 @@ import models.Database;
 import models.Professor;
 
 public class AlunoController {
+    private String session;
+
     public static void loginAluno(Scanner sc, Database db) {
         while (true) {
             Util.limparTela();
-            sc.useDelimiter("\\n");
+            sc.useDelimiter("\\r\\n");
             System.out.print("Informe o nome para login:\t");
             String user = sc.next();
             System.out.print("Informe a senha para login:\t");
@@ -61,7 +63,7 @@ public class AlunoController {
         if (aluno.getSala() == 0) {
             System.out.println("Você não possui aulas para marcar presença");
             System.out.println("Pressione enter para voltar...");
-            sc.useDelimiter("\\n");
+            sc.useDelimiter("\\r\\n");
             sc.next();
             sc.reset();
             return;
@@ -81,7 +83,7 @@ public class AlunoController {
             }
         }
         System.out.println("Pressione enter para voltar...");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         sc.next();
         sc.reset();
     }
@@ -94,7 +96,7 @@ public class AlunoController {
         }
 
         System.out.println("Pressione enter para voltar...");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         sc.next();
         sc.reset();
     }
@@ -106,7 +108,7 @@ public class AlunoController {
         System.out.printf("O turno do aluno: %s%n", aluno.getTurno());
         System.out.printf("A UC do aluno: %s%n%n", aluno.getUc() != null ? aluno.getUc() : "Ainda não possui");
         System.out.println("Pressione enter para voltar...");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         sc.next();
         sc.reset();
     }

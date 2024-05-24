@@ -43,7 +43,7 @@ public class GerenciarAlunosController {
         String senha = "";
         String turno;
         String curso;
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         System.out.print("Digite o nome do aluno: ");
         nome = sc.next();
         System.out.print("Digite o gênero do aluno: ");
@@ -107,7 +107,7 @@ public class GerenciarAlunosController {
 
     private static void excluirAluno(Scanner sc, Database db) {
         System.out.println("Digite o nome do aluno que deseja excluir:\t");
-        sc.useDelimiter("\\n");
+        sc.useDelimiter("\\r\\n");
         String nomeAluno = sc.next();
         Aluno aluno = db.getAluno(nomeAluno);
         db.excluirAluno(aluno);
