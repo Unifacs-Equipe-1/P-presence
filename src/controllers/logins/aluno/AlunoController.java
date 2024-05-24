@@ -9,7 +9,6 @@ import models.Database;
 import models.Professor;
 
 public class AlunoController {
-    private String session;
 
     public static void loginAluno(Scanner sc, Database db) {
         while (true) {

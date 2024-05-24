@@ -1,10 +1,14 @@
 package controllers.logins.admin;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import controllers.logins.admin.gerenciar.GerenciarAlunosController;
+import controllers.logins.admin.gerenciar.GerenciarProfessoresController;
 import extras.Util;
+import models.Aluno;
 import models.Database;
+import models.Professor;
 
 public class AdministradorController {
     public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {
@@ -36,7 +40,7 @@ public class AdministradorController {
             int option = Util.optionPainel(sc, new String[] {
                     "[1]- Gerenciar alunos",
                     "[2]- Gerenciar professores",
-                    "[3]- Sair da conta"
+                    "[3]- Sair da conta",
             });
             switch (option) {
                 case 1:
@@ -44,6 +48,7 @@ public class AdministradorController {
                     break;
                 case 2:
                     // Programa.gerenciarProfessores();
+                    GerenciarProfessoresController.gerenciarProfessores(sc, db);
                     break;
                 case 3:
                     System.out.println("Voltando a página inicial");
@@ -54,4 +59,5 @@ public class AdministradorController {
             }
         }
     }
+
 }

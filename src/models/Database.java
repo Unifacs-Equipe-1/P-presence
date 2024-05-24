@@ -31,6 +31,10 @@ public class Database {
         alunos.add(aluno);
     }
 
+    public void cadastrarProfessor(Professor professor) {
+        professores.add(professor);
+    }
+
     public Aluno getAluno(String name) {
         for (Aluno a : this.alunos) {
             if (a.getNome().equals(name)) {
@@ -69,5 +73,9 @@ public class Database {
                 break;
             }
         }
+    }
+
+    public void excluirProfessor(Professor professor) {
+        professores.remove(professor);
     }
 }
