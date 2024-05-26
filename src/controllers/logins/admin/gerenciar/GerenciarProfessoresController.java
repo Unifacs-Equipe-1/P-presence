@@ -62,7 +62,7 @@ public class GerenciarProfessoresController {
 			System.out.print("Digite uma senha: ");
 			senha = sc.nextLine();
 			System.out.print("Digite a senha novamente: ");
-			String senhaRepetida = sc.next();
+			String senhaRepetida = sc.nextLine();
 			if (!senha.equals(senhaRepetida)) {
 				Util.limparTela();
 				System.out.println("As senhas não coincidem");
