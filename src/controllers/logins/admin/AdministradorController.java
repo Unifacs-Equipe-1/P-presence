@@ -13,6 +13,9 @@ import models.Professor;
 public class AdministradorController {
     public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {
         while (true) {
+
+            // Metodo de login ADM
+
             Util.limparTela();
             System.out.print("Informe o usuário para login:\t");
             String user = sc.next();
@@ -36,8 +39,17 @@ public class AdministradorController {
 
                 }
             }
+
             Util.limparTela();
+
             int option = Util.optionPainel(sc, new String[] {
+
+                    /*
+                     * Opções de ações para o ADM
+                     * 1 - Vai para gerenciamento de Aluno (GerenciarAlunoController)
+                     * 2 - Vai para gerenciamento de Prof (GerenciarProfessorController)
+                     * 3- Sair
+                     */
                     "[1]- Gerenciar alunos",
                     "[2]- Gerenciar professores",
                     "[3]- Sair da conta",

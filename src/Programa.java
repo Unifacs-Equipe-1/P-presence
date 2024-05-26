@@ -17,7 +17,10 @@ public class Programa {
                 String senhaAdministrador = "admin";
 
                 ArrayList<Aluno> alunosStart = new ArrayList<Aluno>();
-                alunosStart.add(new Aluno("Erick", "Masculino", UUID.randomUUID().toString(), "abc", "manhã",
+
+                // Informações referente aos dados dos alunos
+
+                alunosStart.add(new Aluno("Erick", "masculino", UUID.randomUUID().toString(), "abc", "manhã",
                                 "Ciência da Computação"));
                 alunosStart.add(new Aluno("Marcilio", "masculino", UUID.randomUUID().toString(), "123", "manhã",
                                 "Ciência da Computação"));
@@ -41,38 +44,48 @@ public class Programa {
                 Scanner sc = new Scanner(System.in);
                 while (true) {
                         Util.limparTela();
+
                         // Apresenta as opções na tela e retorna a opção escolhida
+
                         int option = Util.optionPainel(sc, new String[] {
                                         "[1]- Fazer login como aluno",
                                         "[2]- Fazer login como professor",
                                         "[3]- Fazer login como administrador",
                                         "[4]- Sair do programa"
                         });
-                        // abre um novo painel com base na opção escolhida
+
+                        // Abre um novo painel com base na opção escolhida
+
                         switch (option) {
                                 case 1:
                                         /*
-                                         * Aqui deve ser implementado o método responsável por logar o aluno
+                                         * Método responsável por logar o aluno
                                          */
                                         AlunoController.loginAluno(sc, db);
                                         break;
                                 case 2:
                                         /*
-                                         * Aqui deve ser implementado o método responsável por logar o professor
+                                         * Método responsável por logar o professor
                                          */
                                         ProfessorController.loginProfessor(sc, db);
                                         break;
                                 case 3:
                                         /*
-                                         * Aqui deve ser implementado o método responsável por logar o administrador
+                                         * Método responsável por logar o administrador
                                          */
                                         AdministradorController.loginAdmin(sc, db, administrador, senhaAdministrador);
                                         break;
                                 case 4:
+                                        /*
+                                         * Uma pequena mensagem para simbolizar que finalizou o programa
+                                         */
                                         System.out.println("Volte sempre!");
                                         sc.close();
                                         return;
                                 default:
+                                        /*
+                                         * O metodo caso o usuário utilize outro valor
+                                         */
                                         System.out.println("\nDigite uma opção válida!\n");
                                         break;
                         }

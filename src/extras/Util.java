@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Util {
-    // verifica se a opção escolhida é válida e retorna a opção
+    // Verifica se a opção escolhida é válida e retorna a opção
     public static int optionPainel(Scanner sc, String[] options) {
         System.out.println("Selecione uma das opções:\n");
         for (String value : options) {

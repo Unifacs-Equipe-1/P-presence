@@ -10,6 +10,13 @@ import models.Database;
 public class GerenciarAlunosController {
     public static void gerenciarAlunos(Scanner sc, Database db) {
         while (true) {
+            /*
+             * Opção do Administrador de gerenciamento dos alunos
+             * 1- Cadastro de alunos = Linha 51
+             * 2- Atualização aluno = Linha 87
+             * 3- Exclusão de aluno = Linha 127
+             * 4- Voltar = Voltar
+             */
             int option = Util.optionPainel(sc, new String[] {
                     "[1] - Cadastrar Alunos",
                     "[2] - Atualizar Alunos",
@@ -37,6 +44,9 @@ public class GerenciarAlunosController {
     }
 
     private static void cadastrarAluno(Scanner sc, Database db) {
+
+        // Metodo para imput dos dados do Aluno a ser cadastrado
+
         String nome;
         String genero;
         String ra;
@@ -73,6 +83,9 @@ public class GerenciarAlunosController {
     }
 
     private static void atualizarAluno(Scanner sc, Database db) {
+
+        // Metodo de atualização das informações de um aluno
+
         System.out.print("Digite o aluno que deseja modificar:\t");
         String nomeAluno = sc.next();
         Aluno aluno = db.getAluno(nomeAluno);
@@ -106,6 +119,9 @@ public class GerenciarAlunosController {
     }
 
     private static void excluirAluno(Scanner sc, Database db) {
+
+        // Metodo para exclusão de aluno
+
         System.out.println("Digite o nome do aluno que deseja excluir:\t");
         sc.useDelimiter("\\r\\n");
         String nomeAluno = sc.next();

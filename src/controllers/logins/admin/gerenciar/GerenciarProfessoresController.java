@@ -11,6 +11,14 @@ import models.Professor;
 public class GerenciarProfessoresController {
   public static void gerenciarProfessores(Scanner sc, Database db) {
     while (true) {
+      /*
+       * Opção do Administrador para o gerenciamento dos professores
+       * 1 - Cadastro de um novo Professor = Linha
+       * 2 - Atualização de dados de um professor = Linha
+       * 3 - Exclusão de um professor = Linha
+       * 4 - Lista dos professores = Linha
+       * 5 - Voltar = Voltar
+       */
       int option = Util.optionPainel(sc, new String[] {
           "[1] - Cadastrar Professores",
           "[2] - Atualizar Professores",
@@ -18,6 +26,7 @@ public class GerenciarProfessoresController {
           "[4] - Ver Professores",
           "[5] - Voltar a página anterior"
       });
+
       switch (option) {
         case 1:
           GerenciarProfessoresController.cadastrarProfessor(sc, db);
@@ -41,6 +50,9 @@ public class GerenciarProfessoresController {
   }
 
   private static void cadastrarProfessor(Scanner sc, Database db) {
+
+    // Metodo de cadastro do professor
+
     String nome;
     String ra;
     String senha = "";
@@ -77,6 +89,9 @@ public class GerenciarProfessoresController {
   }
 
   private static void atualizarProfessor(Scanner sc, Database db) {
+
+    // Metodo de atualização de professor
+
     System.out.print("Digite o professor que deseja modificar:\t");
     String nomeProfessor = sc.next();
     Professor professor = db.getProfessor(nomeProfessor);
@@ -110,6 +125,9 @@ public class GerenciarProfessoresController {
   }
 
   private static void excluirProfessor(Scanner sc, Database db) {
+
+    // Metodo de exclusão de professor
+
     System.out.println("Digite o nome do professor(a) que deseja excluir:\t");
     sc.useDelimiter("\\r\\n");
     String nomeProfessor = sc.next();
@@ -120,6 +138,9 @@ public class GerenciarProfessoresController {
   }
 
   private static void verProfessor(Scanner sc, Database db) {
+
+    // Metodo de visualização de professor
+
     ArrayList<Professor> professores = db.getProfessores();
     for (Professor professor : professores) {
       System.out.printf("Professor: %s\t | Curso: %s\t | Turno: %s\t | \n", professor.getNome(), professor.getCurso(),

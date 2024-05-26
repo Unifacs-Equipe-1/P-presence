@@ -16,7 +16,11 @@ public class ProfessorController {
 
     public static void loginProfessor(Scanner sc, Database db) {
         while (true) {
+
+            // Metodo de Login como professor
+
             Util.limparTela();
+
             sc.useDelimiter("\\r\\n");
             System.out.print("Informe o nome para login:\t");
             String user = sc.next();
@@ -43,6 +47,14 @@ public class ProfessorController {
             });
 
             switch (option) {
+                /*
+                 * Cada opção serve para um caso em especifico
+                 * 1 - Configuração = Criação de sala
+                 * 2 - Gerar código = Uma espécie de senha para o Aluno
+                 * para confirmar que ele estava realmente presente
+                 * 3 - Ver os Alunos = Visualizar uma lista com todos os alunos
+                 * 4 - Sair = Sair
+                 */
                 case 1:
                     ProfessorController.configurarSala(sc, db, professor);
                     break;
