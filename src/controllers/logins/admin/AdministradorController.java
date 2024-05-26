@@ -1,14 +1,11 @@
 package controllers.logins.admin;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import controllers.logins.admin.gerenciar.GerenciarAlunosController;
 import controllers.logins.admin.gerenciar.GerenciarProfessoresController;
 import extras.Util;
-import models.Aluno;
 import models.Database;
-import models.Professor;
 
 public class AdministradorController {
     public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {
