@@ -7,22 +7,25 @@ import java.util.Scanner;
 import models.Database;
 
 public class AdministradorController {
-
-	public static void loginAdmin(Scanner sc, Database db, String administrador,
-			String senhaAdministrador) {
+	// Metodo de login ADM
+	public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {
+		String userSession = "";
 		while (true) {
-			// Metodo de login ADM
+			String user = null;
+			String senha = null;
 			Util.limparTela();
-			System.out.print("Informe o usuário para login:\t");
-			String user = sc.nextLine();
-			System.out.print("Informe a senha para login:\t");
-			String senha = sc.nextLine();
-			if (!administrador.equals(user) || !senhaAdministrador.equals(senha)) {
+			if (userSession.equals("")) {
+				System.out.print("Informe o usuário para login:\t");
+				user = sc.nextLine();
+				System.out.print("Informe a senha para login:\t");
+				senha = sc.nextLine();
+			}
+
+			if (!userSession.equals("admin") && (!administrador.equals(user) || !senhaAdministrador.equals(senha))) {
 				Util.limparTela();
 				System.out.println("Usuário ou senha incorretos!");
 				System.out.println("Deseja tentar novamente?");
-				int prosseguir =
-						Util.optionPainel(sc, new String[] {"[0]- Não (default)", "[1]- Sim"});
+				int prosseguir = Util.optionPainel(sc, new String[] { "[0]- Não (default)", "[1]- Sim" });
 				switch (prosseguir) {
 					case 1:
 						continue;
@@ -31,6 +34,8 @@ public class AdministradorController {
 						System.out.println("Retornando a página inicial");
 						return;
 				}
+			} else {
+				userSession = "admin";
 			}
 			Util.limparTela();
 			int option = Util.optionPainel(sc, new String[] {
@@ -39,7 +44,7 @@ public class AdministradorController {
 					 * (GerenciarAlunoController) 2 - Vai para gerenciamento de Prof
 					 * (GerenciarProfessorController) 3 - Sair
 					 */
-					"[1]- Gerenciar alunos", "[2]- Gerenciar professores", "[3]- Sair da conta"});
+					"[1]- Gerenciar alunos", "[2]- Gerenciar professores", "[3]- Sair da conta" });
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.gerenciarAlunos(sc, db);
@@ -50,6 +55,7 @@ public class AdministradorController {
 					break;
 				case 3:
 					System.out.println("Voltando a página inicial");
+					userSession = "";
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");

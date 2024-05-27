@@ -10,12 +10,14 @@ public class GerenciarAlunosController {
 	public static void gerenciarAlunos(Scanner sc, Database db) {
 		while (true) {
 			/*
-			 * Opção do Administrador de gerenciamento dos alunos 1- Cadastro de alunos = Linha 51
-			 * 2- Atualização aluno = Linha 87 3- Exclusão de aluno = Linha 127 4- Voltar = Voltar
+			 * Opção do Administrador de gerenciamento dos alunos 1- Cadastro de alunos =
+			 * Linha 51
+			 * 2- Atualização aluno = Linha 87 3- Exclusão de aluno = Linha 127 4- Voltar =
+			 * Voltar
 			 */
 			int option = Util.optionPainel(sc,
-					new String[] {"[1] - Cadastrar Alunos", "[2] - Atualizar Alunos",
-							"[3] - Excluir aluno", "[4] - Voltar a página anterior"});
+					new String[] { "[1] - Cadastrar Alunos", "[2] - Atualizar Alunos",
+							"[3] - Excluir aluno", "[4] - Voltar a página anterior" });
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.cadastrarAluno(sc, db);
@@ -74,8 +76,13 @@ public class GerenciarAlunosController {
 		System.out.print("Digite o aluno que deseja modificar:\t");
 		String nomeAluno = sc.nextLine();
 		Aluno aluno = db.getAluno(nomeAluno);
+		if (aluno == null) {
+			System.out.println();
+			System.out.println("Aluno não encontrado!!");
+			return;
+		}
 		System.out.println("O que deseja modificar?");
-		int option = Util.optionPainel(sc, new String[] {"[1] - Turno", "[2] - Curso"});
+		int option = Util.optionPainel(sc, new String[] { "[1] - Turno", "[2] - Curso" });
 		int acc = 0;
 		while (acc < 1) {
 			switch (option) {
@@ -84,12 +91,14 @@ public class GerenciarAlunosController {
 					String turno = sc.nextLine();
 					aluno.setTurno(turno);
 					db.atualizarAluno(aluno);
+					acc++;
 					break;
 				case 2:
 					System.out.print("Digite o novo curso:\t");
 					String curso = sc.nextLine();
 					aluno.setCurso(curso);
 					db.atualizarAluno(aluno);
+					acc++;
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
@@ -104,6 +113,10 @@ public class GerenciarAlunosController {
 		System.out.println("Digite o nome do aluno que deseja excluir:\t");
 		String nomeAluno = sc.nextLine();
 		Aluno aluno = db.getAluno(nomeAluno);
+		if (aluno == null) {
+			System.out.println("\nAluno não encontrado!!\n");
+			return;
+		}
 		db.excluirAluno(aluno);
 		System.out.println("Aluno excluído com sucesso!");
 	}

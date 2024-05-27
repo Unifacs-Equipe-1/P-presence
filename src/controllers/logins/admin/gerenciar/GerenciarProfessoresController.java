@@ -11,14 +11,16 @@ public class GerenciarProfessoresController {
 	public static void gerenciarProfessores(Scanner sc, Database db) {
 		while (true) {
 			/*
-			 * Opção do Administrador para o gerenciamento dos professores 1 - Cadastro de um novo
-			 * Professor = Linha 2 - Atualização de dados de um professor = Linha 3 - Exclusão de um
+			 * Opção do Administrador para o gerenciamento dos professores 1 - Cadastro de
+			 * um novo
+			 * Professor = Linha 2 - Atualização de dados de um professor = Linha 3 -
+			 * Exclusão de um
 			 * professor = Linha 4 - Lista dos professores = Linha 5 - Voltar = Voltar
 			 */
 			int option = Util.optionPainel(sc,
-					new String[] {"[1] - Cadastrar Professores", "[2] - Atualizar Professores",
+					new String[] { "[1] - Cadastrar Professores", "[2] - Atualizar Professores",
 							"[3] - Excluir Professor", "[4] - Ver Professores",
-							"[5] - Voltar a página anterior"});
+							"[5] - Voltar a página anterior" });
 			switch (option) {
 				case 1:
 					GerenciarProfessoresController.cadastrarProfessor(sc, db);
@@ -79,8 +81,12 @@ public class GerenciarProfessoresController {
 		System.out.print("Digite o professor que deseja modificar:\t");
 		String nomeProfessor = sc.nextLine();
 		Professor professor = db.getProfessor(nomeProfessor);
+		if (professor == null) {
+			System.out.println("\nProfessor nao encontrado!!\n");
+			return;
+		}
 		System.out.println("O que deseja modificar?");
-		int option = Util.optionPainel(sc, new String[] {"[1] - Turno", "[2] - Curso"});
+		int option = Util.optionPainel(sc, new String[] { "[1] - Turno", "[2] - Curso" });
 		int acc = 0;
 		while (acc < 1) {
 			switch (option) {
@@ -89,12 +95,14 @@ public class GerenciarProfessoresController {
 					String turno = sc.nextLine();
 					professor.setTurno(turno);
 					db.atualizarProfessor(professor);
+					acc++;
 					break;
 				case 2:
 					System.out.print("Digite o novo curso:\t");
 					String curso = sc.nextLine();
 					professor.setCurso(curso);
 					db.atualizarProfessor(professor);
+					acc++;
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
@@ -109,6 +117,10 @@ public class GerenciarProfessoresController {
 		System.out.println("Digite o nome do professor(a) que deseja excluir:\t");
 		String nomeProfessor = sc.nextLine();
 		Professor professor = db.getProfessor(nomeProfessor);
+		if (professor == null) {
+			System.out.println("\nProfessor nao encontrado!!\n");
+			return;
+		}
 		db.excluirProfessor(professor);
 		System.out.println("Professor(a) excluído com sucesso!");
 
