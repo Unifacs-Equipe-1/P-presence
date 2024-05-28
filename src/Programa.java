@@ -14,18 +14,27 @@ public class Programa {
 		String senhaAdministrador = "admin";
 		Database db = new Database();
 		// Informações referente aos dados dos alunos
-		db.cadastrarAluno(new Aluno("Erick", "masculino", UUID.randomUUID().toString(), "abc", "manhã", "Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Marcilio", "masculino", UUID.randomUUID().toString(), "123", "manhã", "Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Rodson", "masculino", UUID.randomUUID().toString(), "teste", "manhã", "Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Arthur", "masculino", UUID.randomUUID().toString(), "789", "manhã", "Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Marcus", "masculino", UUID.randomUUID().toString(), "senha", "manhã", "Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Marcela", "feminino", UUID.randomUUID().toString(), "password", "manhã", "Ciência da Computação"));
-		db.cadastrarProfessor(new Professor("Eliane", UUID.randomUUID().toString(), "profeliane", "manhã", "Ciência da Computação", "Programas e soluções computacionais"));
+		db.cadastrarAluno(new Aluno("Erick", "Masculino", UUID.randomUUID().toString(), "abc", "Matutino",
+				"Ciência da Computação"));
+		db.cadastrarAluno(new Aluno("Marcilio", "Masculino", UUID.randomUUID().toString(), "123", "Matutino",
+				"Ciência da Computação"));
+		db.cadastrarAluno(new Aluno("Rodson", "Masculino", UUID.randomUUID().toString(), "teste", "Matutino",
+				"Ciência da Computação"));
+		db.cadastrarAluno(new Aluno("Arthur", "Masculino", UUID.randomUUID().toString(), "789", "Matutino",
+				"Ciência da Computação"));
+		db.cadastrarAluno(new Aluno("Marcus", "Masculino", UUID.randomUUID().toString(), "senha", "Matutino",
+				"Ciência da Computação"));
+		db.cadastrarAluno(new Aluno("Marcela", "Feminino", UUID.randomUUID().toString(), "password", "Matutino",
+				"Ciência da Computação"));
+		db.cadastrarProfessor(new Professor("Eliane", UUID.randomUUID().toString(), "profeliane", "Matutino",
+				"Ciência da Computação", "Programas e soluções computacionais"));
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			Util.limparTela();
 			// Apresenta as opções na tela e retorna a opção escolhida
-			int option = Util.optionPainel(sc, new String[] {"[1]- Fazer login como aluno", "[2]- Fazer login como professor", "[3]- Fazer login como administrador", "[4]- Sair do programa"});
+			int option = Util.optionPainel(sc,
+					new String[] { "[1]- Fazer login como aluno", "[2]- Fazer login como professor",
+							"[3]- Fazer login como administrador", "[4]- Sair do programa" });
 			// Abre um novo painel com base na opção escolhida
 			switch (option) {
 				case 1:

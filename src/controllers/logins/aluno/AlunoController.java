@@ -9,12 +9,18 @@ import models.Professor;
 
 public class AlunoController {
 	public static void loginAluno(Scanner sc, Database db) {
+		String sessionAluno = "";
+		String user = "";
+		String senha = "";
 		while (true) {
 			Util.limparTela();
-			System.out.print("Informe o nome para login:\t");
-			String user = sc.nextLine();
-			System.out.print("Informe a senha para login:\t");
-			String senha = sc.nextLine();
+			if (sessionAluno == "") {
+				System.out.print("Informe o nome para login:\t");
+				user = sc.nextLine();
+				System.out.print("Informe a senha para login:\t");
+				senha = sc.nextLine();
+				sessionAluno = "logado";
+			}
 			Aluno aluno = db.getAluno(user);
 			if (aluno == null) {
 				System.out.println("Usuário não encontrado! Pressione enter para voltar...");
@@ -28,7 +34,8 @@ public class AlunoController {
 			}
 			Util.limparTela();
 			System.out.println("Usuário logado com sucesso!");
-			int option = Util.optionPainel(sc, new String[] {"[1]- Mostrar sala disponível", "[2]- Entrar na sala e marcar presença", "[3]- Ver meus dados", "[4]- Sair da conta"});
+			int option = Util.optionPainel(sc, new String[] { "[1]- Mostrar sala disponível",
+					"[2]- Entrar na sala e marcar presença", "[3]- Ver meus dados", "[4]- Sair da conta" });
 			switch (option) {
 				case 1:
 					AlunoController.informarDadosDaSala(sc, aluno);

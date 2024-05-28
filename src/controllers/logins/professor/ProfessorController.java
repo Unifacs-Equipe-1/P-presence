@@ -10,13 +10,19 @@ import models.Professor;
 
 public class ProfessorController {
 	public static void loginProfessor(Scanner sc, Database db) {
+		String sessionProf = "";
+		String user = "";
+		String senha = "";
 		while (true) {
 			// Metodo de Login como professor
 			Util.limparTela();
-			System.out.print("Informe o nome para login:\t");
-			String user = sc.nextLine();
-			System.out.print("Informe a senha para login:\t");
-			String senha = sc.nextLine();
+			if (sessionProf == "") {
+				System.out.print("Informe o nome para login:\t");
+				user = sc.nextLine();
+				System.out.print("Informe a senha para login:\t");
+				senha = sc.nextLine();
+				sessionProf = "logado";
+			}
 			Professor professor = db.getProfessor(user);
 			if (professor == null) {
 				System.out.println("Usuário não encontrado! Pressione enter para voltar...");
@@ -29,11 +35,14 @@ public class ProfessorController {
 				return;
 			}
 			Util.limparTela();
-			int option = Util.optionPainel(sc, new String[] {"[1]- Configurar sala", "[2]- Gerar código da sala", "[3]- Ver todos os alunos", "[4]- Sair da conta"});
+			int option = Util.optionPainel(sc, new String[] { "[1]- Configurar sala", "[2]- Gerar código da sala",
+					"[3]- Ver todos os alunos", "[4]- Sair da conta" });
 			switch (option) {
 				/*
-				 * Cada opção serve para um caso em especifico 1 - Configuração = Criação de sala 2 - Gerar código =
-				 * Uma espécie de senha para o Aluno para confirmar que ele estava realmente presente 3 - Ver os
+				 * Cada opção serve para um caso em especifico 1 - Configuração = Criação de
+				 * sala 2 - Gerar código =
+				 * Uma espécie de senha para o Aluno para confirmar que ele estava realmente
+				 * presente 3 - Ver os
 				 * Alunos = Visualizar uma lista com todos os alunos 4 - Sair = Sair
 				 */
 				case 1:
@@ -91,7 +100,8 @@ public class ProfessorController {
 	private static void verAlunos(Scanner sc, Database db) {
 		List<Aluno> alunos = db.getAlunos();
 		for (Aluno aluno : alunos) {
-			System.out.printf("Aluno: %s\t | Curso: %s\t | Turno: %s\t |  ", aluno.getNome(), aluno.getCurso(), aluno.getTurno());
+			System.out.printf("Aluno: %s\t | Curso: %s\t | Turno: %s\t |  ", aluno.getNome(), aluno.getCurso(),
+					aluno.getTurno());
 			if (aluno.getPresente() != null) {
 				System.out.printf("Presença na aula: %s%n", aluno.getPresente() ? "Sim" : "Não");
 			} else {
