@@ -59,24 +59,6 @@ public class Database {
 		return null;
 	}
 
-	public Professor getProfessorID(int id) {
-		for (Professor p : this.professores) {
-			if (p.getID() == (id)) {
-				return p;
-			}
-		}
-		return null;
-	}
-
-	public Aluno getAlunoID(int id) {
-		for (Aluno a : this.alunos) {
-			if (a.getID() == (id)) {
-				return a;
-			}
-		}
-		return null;
-	}
-
 	public void atualizarProfessor(Professor professor) {
 		for (Professor p : this.professores) {
 			if (p.getRa().equals(professor.getRa())) {
