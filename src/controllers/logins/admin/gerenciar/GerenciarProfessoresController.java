@@ -4,6 +4,7 @@ import extras.Util;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+
 import models.Database;
 import models.Professor;
 
@@ -18,9 +19,9 @@ public class GerenciarProfessoresController {
 			 * professor = Linha 4 - Lista dos professores = Linha 5 - Voltar = Voltar
 			 */
 			int option = Util.optionPainel(sc,
-					new String[] { "[1] - Cadastrar Professores", "[2] - Atualizar Professores",
-							"[3] - Excluir Professor", "[4] - Ver Professores",
-							"[5] - Voltar a página anterior" });
+					new String[] { "[1] - Cadastrar Professores(a)", "[2] - Atualizar Professores(a)",
+							"[3] - Excluir Professor(a)", "[4] - Ver Professores(a)",
+							"[5] - Procurar Professor(a)", "[6] - Voltar página anterior" });
 			switch (option) {
 				case 1:
 					GerenciarProfessoresController.cadastrarProfessor(sc, db);
@@ -33,7 +34,11 @@ public class GerenciarProfessoresController {
 					break;
 				case 4:
 					GerenciarProfessoresController.verProfessor(sc, db);
+					break;
 				case 5:
+					GerenciarProfessoresController.listardadosProfessor(sc, db);
+					break;
+				case 6:
 					System.out.println("Voltando a página anterior!");
 					return;
 				default:
@@ -78,9 +83,9 @@ public class GerenciarProfessoresController {
 
 	private static void atualizarProfessor(Scanner sc, Database db) {
 		// Metodo de atualização de professor
-		System.out.print("Digite o professor que deseja modificar:\t");
-		String nomeProfessor = sc.nextLine();
-		Professor professor = db.getProfessor(nomeProfessor);
+		System.out.print("Digite o ID do professor que deseja buscar:\t");
+		int id = sc.nextInt();
+		Professor professor = db.getProfessorID(id);
 		if (professor == null) {
 			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
@@ -115,8 +120,9 @@ public class GerenciarProfessoresController {
 	private static void excluirProfessor(Scanner sc, Database db) {
 		// Metodo de exclusão de professor
 		System.out.println("Digite o nome do professor(a) que deseja excluir:\t");
-		String nomeProfessor = sc.nextLine();
-		Professor professor = db.getProfessor(nomeProfessor);
+		System.out.print("Digite o ID do professor que deseja buscar:\t");
+		int id = sc.nextInt();
+		Professor professor = db.getProfessorID(id);
 		if (professor == null) {
 			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
@@ -130,10 +136,23 @@ public class GerenciarProfessoresController {
 		// Metodo de visualização de professor
 		List<Professor> professores = db.getProfessores();
 		for (Professor professor : professores) {
-			System.out.printf("Professor: %s\t | Curso: %s\t | Turno: %s\t | \n",
+			System.out.printf("ID: %d\t | Professor: %s\t | Curso: %s\t | Turno: %s\t | \n", professor.getID(),
 					professor.getNome(), professor.getCurso(), professor.getTurno());
 		}
 		System.out.print("\nPressione enter para prosseguir...");
 		sc.nextLine();
+	}
+
+	private static void listardadosProfessor(Scanner sc, Database db) {
+		System.out.print("Digite o ID do professor que deseja buscar:\t");
+		int id = sc.nextInt();
+		Professor professor = db.getProfessorID(id);
+		if (professor == null) {
+			System.out.println("\nProfessor nao encontrado!!\n");
+			return;
+		} else {
+			System.out.printf("Professor: %s\t | Curso: %s\t | Turno: %s\t | ID: %d\n",
+					professor.getNome(), professor.getCurso(), professor.getTurno(), professor.getID());
+		}
 	}
 }

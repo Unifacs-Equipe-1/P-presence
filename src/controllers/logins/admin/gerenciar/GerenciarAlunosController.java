@@ -1,6 +1,8 @@
 package controllers.logins.admin.gerenciar;
 
 import extras.Util;
+
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import models.Aluno;
@@ -17,7 +19,7 @@ public class GerenciarAlunosController {
 			 */
 			int option = Util.optionPainel(sc,
 					new String[] { "[1] - Cadastrar Alunos", "[2] - Atualizar Alunos",
-							"[3] - Excluir aluno", "[4] - Voltar a página anterior" });
+							"[3] - Excluir aluno", "[4] - Pesquisar aluno", "[5] - Ver Alunos", "[6] Voltar" });
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.cadastrarAluno(sc, db);
@@ -29,6 +31,12 @@ public class GerenciarAlunosController {
 					GerenciarAlunosController.excluirAluno(sc, db);
 					break;
 				case 4:
+					GerenciarAlunosController.listardadosAlunos(sc, db);
+					break;
+				case 5:
+					GerenciarAlunosController.verAluno(sc, db);
+					break;
+				case 6:
 					System.out.println("Voltando a página anterior!");
 					return;
 				default:
@@ -73,9 +81,9 @@ public class GerenciarAlunosController {
 
 	private static void atualizarAluno(Scanner sc, Database db) {
 		// Metodo de atualização das informações de um aluno
-		System.out.print("Digite o aluno que deseja modificar:\t");
-		String nomeAluno = sc.nextLine();
-		Aluno aluno = db.getAluno(nomeAluno);
+		System.out.print("Digite o id que deseja modificar:\t");
+		int id = sc.nextInt();
+		Aluno aluno = db.getAlunoID(id);
 		if (aluno == null) {
 			System.out.println();
 			System.out.println("Aluno não encontrado!!");
@@ -110,14 +118,38 @@ public class GerenciarAlunosController {
 
 	private static void excluirAluno(Scanner sc, Database db) {
 		// Metodo para exclusão de aluno
-		System.out.println("Digite o nome do aluno que deseja excluir:\t");
-		String nomeAluno = sc.nextLine();
-		Aluno aluno = db.getAluno(nomeAluno);
+		System.out.println("Digite o id do aluno que deseja excluir:\t");
+		int id = sc.nextInt();
+		Aluno aluno = db.getAlunoID(id);
 		if (aluno == null) {
 			System.out.println("\nAluno não encontrado!!\n");
 			return;
 		}
 		db.excluirAluno(aluno);
 		System.out.println("Aluno excluído com sucesso!");
+		// PRECISA TERMINAR PARA ABAIXAR O ID DE CADA ALUNO!!
+	}
+
+	private static void listardadosAlunos(Scanner sc, Database db) {
+		System.out.print("Digite o ID do aluno que deseja buscar:\t");
+		int id = sc.nextInt();
+		Aluno aluno = db.getAlunoID(id);
+		if (aluno == null) {
+			System.out.println("\nAluno nao encontrado!!\n");
+			return;
+		} else {
+			System.out.printf("ID: %d\t |Aluno: %s\t | Curso: %s\t | Turno: %s\t | \n", aluno.getID(),
+					aluno.getNome(), aluno.getCurso(), aluno.getTurno());
+		}
+	}
+
+	private static void verAluno(Scanner sc, Database db) {
+		List<Aluno> alunos = db.getAlunos();
+		for (Aluno aluno : alunos) {
+			System.out.printf("ID: %d\t | Aluno: %s\t | Curso: %s\t | Turno: %s\t | \n", aluno.getID(),
+					aluno.getNome(), aluno.getCurso(), aluno.getTurno());
+		}
+		System.out.print("\nPressione enter para prosseguir...");
+		sc.nextLine();
 	}
 }

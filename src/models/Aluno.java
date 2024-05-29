@@ -5,10 +5,14 @@ public class Aluno extends models.Pessoa {
 	private String uc;
 	private int sala;
 	private Boolean presente = null;
+	private static int estaticoid = 0;
+	private int variavelid;
 
 	public Aluno(String nome, String genero, String ra, String senha, String turno, String curso) {
 		super(nome, ra, senha, turno, curso);
 		this.genero = genero;
+		estaticoid++;
+		this.variavelid = estaticoid;
 	}
 
 	public String getGenero() {
@@ -42,5 +46,9 @@ public class Aluno extends models.Pessoa {
 
 	public void setPresente(boolean presente) {
 		this.presente = presente;
+	}
+
+	public int getID() {
+		return this.variavelid;
 	}
 }
