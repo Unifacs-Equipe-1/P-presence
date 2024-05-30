@@ -1,13 +1,18 @@
 package models;
 
+import java.util.UUID;
+import extras.Util;
+
 public class Aluno extends models.Pessoa {
+	private final String registroAluno;
 	private String genero;
 	private String uc;
 	private int sala;
 	private Boolean presente = null;
 
-	public Aluno(String nome, String genero, String ra, String senha, String turno, String curso) {
-		super(nome, ra, senha, turno, curso);
+	public Aluno(String nome, String senha, String genero, String turno, String curso) {
+		super(nome, senha, turno, curso);
+		this.registroAluno = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);
 		this.genero = genero;
 	}
 
@@ -42,5 +47,9 @@ public class Aluno extends models.Pessoa {
 
 	public void setPresente(boolean presente) {
 		this.presente = presente;
+	}
+
+	public String getRa() {
+		return registroAluno;
 	}
 }

@@ -3,7 +3,6 @@ import controllers.logins.aluno.AlunoController;
 import controllers.logins.professor.ProfessorController;
 import extras.Util;
 import java.util.Scanner;
-import java.util.UUID;
 import models.Aluno;
 import models.Database;
 import models.Professor;
@@ -14,19 +13,19 @@ public class Programa {
 		String senhaAdministrador = "admin";
 		Database db = new Database();
 		// Informações referente aos dados dos alunos
-		db.cadastrarAluno(new Aluno("Erick", "Masculino", UUID.randomUUID().toString(), "abc", "Matutino",
+		db.cadastrarAluno(new Aluno("Marcilio", "123", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Marcilio", "Masculino", UUID.randomUUID().toString(), "123", "Matutino",
+		db.cadastrarAluno(new Aluno("Erick ", "abc", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Rodson", "Masculino", UUID.randomUUID().toString(), "teste", "Matutino",
+		db.cadastrarAluno(new Aluno("Rodson", "teste", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Arthur", "Masculino", UUID.randomUUID().toString(), "789", "Matutino",
+		db.cadastrarAluno(new Aluno("Arthur", "789", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Marcus", "Masculino", UUID.randomUUID().toString(), "senha", "Matutino",
+		db.cadastrarAluno(new Aluno("Marcus", "senha", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		db.cadastrarAluno(new Aluno("Marcela", "Feminino", UUID.randomUUID().toString(), "password", "Matutino",
+		db.cadastrarAluno(new Aluno("Marcela", "password", "Feminino", "Matutino",
 				"Ciência da Computação"));
-		db.cadastrarProfessor(new Professor("Eliane", UUID.randomUUID().toString(), "profeliane", "Matutino",
+		db.cadastrarProfessor(new Professor("Eliane", "profeliane", "Matutino",
 				"Ciência da Computação", "Programas e soluções computacionais"));
 		Scanner sc = new Scanner(System.in);
 		while (true) {

@@ -2,6 +2,7 @@ package extras;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
@@ -27,5 +28,18 @@ public class Util {
 		for (int i = 0; i < 1000; i++) {
 			System.out.println("\n");
 		}
+	}
+
+	public static String generateUuidNumber(String seed, int digitos) {
+		String numberMaximo = "";
+		if (digitos <= 0) {
+			numberMaximo = "9";
+		}
+		for (int index = 0; index < digitos; index++) {
+			numberMaximo += "9";
+		}
+		Random random = new Random(seed.hashCode());
+		Long uuid = random.nextLong(Long.parseLong(numberMaximo));
+		return uuid.toString();
 	}
 }

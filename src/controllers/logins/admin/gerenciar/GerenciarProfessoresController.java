@@ -3,7 +3,6 @@ package controllers.logins.admin.gerenciar;
 import extras.Util;
 import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 import models.Database;
 import models.Professor;
 
@@ -46,14 +45,12 @@ public class GerenciarProfessoresController {
 	private static void cadastrarProfessor(Scanner sc, Database db) {
 		// Metodo de cadastro do professor
 		String nome;
-		String ra;
 		String senha = "";
 		String turno;
 		String curso;
 		String uc;
 		System.out.print("Digite o nome do professor: ");
 		nome = sc.nextLine();
-		ra = UUID.randomUUID().toString();
 		System.out.print("Escolha um turno para o professor: ");
 		turno = sc.nextLine();
 		System.out.print("Escolha um curso para o professor: ");
@@ -71,7 +68,7 @@ public class GerenciarProfessoresController {
 				i--;
 			}
 		}
-		Professor professor = new Professor(nome, ra, senha, turno, curso, uc);
+		Professor professor = new Professor(nome, senha, turno, curso, uc);
 		db.cadastrarProfessor(professor);
 		System.out.println("Professor cadastrado com sucesso!");
 	}
@@ -130,7 +127,7 @@ public class GerenciarProfessoresController {
 		// Metodo de visualização de professor
 		List<Professor> professores = db.getProfessores();
 		for (Professor professor : professores) {
-			System.out.printf("Professor: %s\t | Curso: %s\t | Turno: %s\t | \n",
+			System.out.printf("RP: %s\t | Professor: %s\t | Curso: %s\t | Turno: %s\t | \n", professor.getRp(),
 					professor.getNome(), professor.getCurso(), professor.getTurno());
 		}
 		System.out.print("\nPressione enter para prosseguir...");

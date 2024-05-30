@@ -2,14 +2,12 @@ package models;
 
 public abstract class Pessoa {
 	private String nome = "";
-	private String ra = "";
 	private String senha = "";
 	private String turno = "";
 	private String curso = "";
 
-	protected Pessoa(String nome, String ra, String senha, String turno, String curso) {
+	protected Pessoa(String nome, String senha, String turno, String curso) {
 		this.nome = nome;
-		this.ra = ra;
 		this.senha = senha;
 		this.turno = turno;
 		this.curso = curso;
@@ -21,10 +19,6 @@ public abstract class Pessoa {
 
 	public final void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	protected final String getRa() {
-		return ra;
 	}
 
 	public final String getSenha() {
