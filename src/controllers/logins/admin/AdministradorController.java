@@ -14,7 +14,7 @@ public class AdministradorController {
 			String user = null;
 			String senha = null;
 			Util.limparTela();
-			if (userSession.equals("")) {
+			if (userSession.isEmpty()) {
 				System.out.print("Informe o usuário para login:\t");
 				user = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
