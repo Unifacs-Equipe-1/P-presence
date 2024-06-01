@@ -8,20 +8,20 @@ import models.Database;
 import models.Professor;
 
 public class AlunoController {
-	public static void loginAluno(Scanner scanner, Database database) {
-		String sessionAluno = "";
-		String user = "";
+	public static void loginAluno(Scanner scanner, Database banco_de_dados) {
+		String sessao_aluno = "";
+		String usuario = "";
 		String senha = "";
 		while (true) {
 			Util.limparTela();
-			if (sessionAluno == "") {
+			if (sessao_aluno == "") {
 				System.out.print("Informe o nome para login:\t");
-				user = scanner.nextLine();
+				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
-				sessionAluno = "logado";
+				sessao_aluno = "logado";
 			}
-			Aluno aluno = database.getAluno(user);
+			Aluno aluno = banco_de_dados.getAluno(usuario);
 			if (aluno == null) {
 				System.out.println("Usuário não encontrado! Pressione enter para voltar...");
 				scanner.nextLine();
@@ -34,14 +34,14 @@ public class AlunoController {
 			}
 			Util.limparTela();
 			System.out.println("Usuário logado com sucesso!");
-			int option = Util.optionPainel(scanner, new String[] { "[1]- Mostrar sala disponível",
+			int opcao = Util.opcaoPainel(scanner, new String[] { "[1]- Mostrar sala disponível",
 					"[2]- Entrar na sala e marcar presença", "[3]- Ver meus dados", "[4]- Sair da conta" });
-			switch (option) {
+			switch (opcao) {
 				case 1:
 					AlunoController.informarDadosDaSala(scanner, aluno);
 					break;
 				case 2:
-					AlunoController.marcarPresenca(scanner, database, aluno);
+					AlunoController.marcarPresenca(scanner, banco_de_dados, aluno);
 					break;
 				case 3:
 					AlunoController.mostrarDadosAluno(scanner, aluno);
@@ -56,7 +56,7 @@ public class AlunoController {
 		}
 	}
 
-	private static void marcarPresenca(Scanner scanner, Database database, Aluno aluno) {
+	private static void marcarPresenca(Scanner scanner, Database banco_de_dados, Aluno aluno) {
 		if (aluno.getSala() == 0) {
 			System.out.println("Você não possui aulas para marcar presença");
 			System.out.println("Pressione enter para voltar...");
@@ -64,11 +64,11 @@ public class AlunoController {
 			return;
 		}
 		System.out.print("Informe o código da sala para marcar presença:\t");
-		String codigoSala = scanner.nextLine();
-		List<Professor> professores = database.getProfessores();
+		String codigo_sala = scanner.nextLine();
+		List<Professor> professores = banco_de_dados.getProfessores();
 		for (Professor p : professores) {
 			if (aluno.getUc().equals(p.getUc())) {
-				if (p.getCodigoSala().equals(codigoSala)) {
+				if (p.getCodigoSala().equals(codigo_sala)) {
 					aluno.setPresente(true);
 					System.out.println("Você marcou presença na aula!");
 				} else {

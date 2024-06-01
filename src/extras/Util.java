@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
-	public static int optionPainel(Scanner scanner, String[] options) {
+	public static int opcaoPainel(Scanner scanner, String[] options) {
 		System.out.println("Selecione uma das opções:\n");
 		for (String value : options) {
 			System.out.println(value);
