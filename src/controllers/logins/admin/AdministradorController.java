@@ -8,7 +8,7 @@ import models.Database;
 
 public class AdministradorController {
 	// Metodo de login ADM
-	public static void loginAdmin(Scanner sc, Database db, String administrador, String senhaAdministrador) {
+	public static void loginAdmin(Scanner scanner, Database database, String administrador, String senhaAdministrador) {
 		String userSession = "";
 		while (true) {
 			String user = null;
@@ -16,16 +16,16 @@ public class AdministradorController {
 			Util.limparTela();
 			if (userSession.equals("")) {
 				System.out.print("Informe o usuário para login:\t");
-				user = sc.nextLine();
+				user = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
-				senha = sc.nextLine();
+				senha = scanner.nextLine();
 			}
 
 			if (!userSession.equals("admin") && (!administrador.equals(user) || !senhaAdministrador.equals(senha))) {
 				Util.limparTela();
 				System.out.println("Usuário ou senha incorretos!");
 				System.out.println("Deseja tentar novamente?");
-				int prosseguir = Util.optionPainel(sc, new String[] { "[0]- Não (default)", "[1]- Sim" });
+				int prosseguir = Util.optionPainel(scanner, new String[] { "[0]- Não (default)", "[1]- Sim" });
 				switch (prosseguir) {
 					case 1:
 						continue;
@@ -38,7 +38,7 @@ public class AdministradorController {
 				userSession = "admin";
 			}
 			Util.limparTela();
-			int option = Util.optionPainel(sc, new String[] {
+			int option = Util.optionPainel(scanner, new String[] {
 					/*
 					 * Opções de ações para o ADM 1 - Vai para gerenciamento de Aluno
 					 * (GerenciarAlunoController) 2 - Vai para gerenciamento de Prof
@@ -47,11 +47,11 @@ public class AdministradorController {
 					"[1]- Gerenciar alunos", "[2]- Gerenciar professores", "[3]- Sair da conta" });
 			switch (option) {
 				case 1:
-					GerenciarAlunosController.gerenciarAlunos(sc, db);
+					GerenciarAlunosController.gerenciarAlunos(scanner, database);
 					break;
 				case 2:
 					// Programa.gerenciarProfessores();
-					GerenciarProfessoresController.gerenciarProfessores(sc, db);
+					GerenciarProfessoresController.gerenciarProfessores(scanner, database);
 					break;
 				case 3:
 					System.out.println("Voltando a página inicial");

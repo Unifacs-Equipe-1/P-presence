@@ -8,29 +8,29 @@ import models.Aluno;
 import models.Database;
 
 public class GerenciarAlunosController {
-	public static void gerenciarAlunos(Scanner sc, Database db) {
+	public static void gerenciarAlunos(Scanner scanner, Database database) {
+
+		/*
+		 * Opção do Administrador de gerenciamento dos alunos
+		 * 1- Cadastro de alunos / 2- Atualização aluno /
+		 * 3- Exclusão de aluno / * 4- Voltar = Voltar /
+		 */
 		while (true) {
-			/*
-			 * Opção do Administrador de gerenciamento dos alunos 1- Cadastro de alunos =
-			 * Linha 51
-			 * 2- Atualização aluno = Linha 87 3- Exclusão de aluno = Linha 127 4- Voltar =
-			 * Voltar
-			 */
-			int option = Util.optionPainel(sc,
+			int option = Util.optionPainel(scanner,
 					new String[] { "[1] - Cadastrar Alunos", "[2] - Atualizar Alunos",
 							"[3] - Excluir aluno", "[4] - Ver alunos", "[5] - Voltar" });
 			switch (option) {
 				case 1:
-					GerenciarAlunosController.cadastrarAluno(sc, db);
+					GerenciarAlunosController.cadastrarAluno(scanner, database);
 					break;
 				case 2:
-					GerenciarAlunosController.atualizarAluno(sc, db);
+					GerenciarAlunosController.atualizarAluno(scanner, database);
 					break;
 				case 3:
-					GerenciarAlunosController.excluirAluno(sc, db);
+					GerenciarAlunosController.excluirAluno(scanner, database);
 					break;
 				case 4:
-					GerenciarAlunosController.verAluno(sc, db);
+					GerenciarAlunosController.verAluno(scanner, database);
 					return;
 				case 5:
 					System.out.println("Voltando a página anterior!");
@@ -42,7 +42,7 @@ public class GerenciarAlunosController {
 		}
 	}
 
-	private static void cadastrarAluno(Scanner sc, Database db) {
+	private static void cadastrarAluno(Scanner scanner, Database database) {
 		// Metodo para imput dos dados do Aluno a ser cadastrado
 		String nome;
 		String genero;
@@ -50,18 +50,18 @@ public class GerenciarAlunosController {
 		String turno;
 		String curso;
 		System.out.print("Digite o nome do aluno: ");
-		nome = sc.nextLine();
+		nome = scanner.nextLine();
 		System.out.print("Digite o gênero do aluno: ");
-		genero = sc.nextLine();
+		genero = scanner.nextLine();
 		System.out.print("Escolha um turno para o aluno: ");
-		turno = sc.nextLine();
+		turno = scanner.nextLine();
 		System.out.print("Escolha um curso para o aluno: ");
-		curso = sc.nextLine();
+		curso = scanner.nextLine();
 		for (int i = 0; i < 1; i++) {
 			System.out.print("Digite uma senha: ");
-			senha = sc.nextLine();
+			senha = scanner.nextLine();
 			System.out.print("Digite a senha novamente: ");
-			String senhaRepetida = sc.nextLine();
+			String senhaRepetida = scanner.nextLine();
 			if (!senha.equals(senhaRepetida)) {
 				Util.limparTela();
 				System.out.println("As senhas não coincidem");
@@ -69,37 +69,37 @@ public class GerenciarAlunosController {
 			}
 		}
 		Aluno aluno = new Aluno(nome, senha, genero, turno, curso);
-		db.cadastrarAluno(aluno);
+		database.cadastrarAluno(aluno);
 		System.out.println("Aluno cadastrado com sucesso!");
 	}
 
-	private static void atualizarAluno(Scanner sc, Database db) {
+	private static void atualizarAluno(Scanner scanner, Database database) {
 		// Metodo de atualização das informações de um aluno
 		System.out.print("Digite o aluno que deseja modificar:\t");
-		String registroAluno = sc.nextLine();
-		Aluno aluno = db.getAluno(registroAluno);
+		String registroAluno = scanner.nextLine();
+		Aluno aluno = database.getAluno(registroAluno);
 		if (aluno == null) {
 			System.out.println();
 			System.out.println("Aluno não encontrado!!");
 			return;
 		}
 		System.out.println("O que deseja modificar?");
-		int option = Util.optionPainel(sc, new String[] { "[1] - Turno", "[2] - Curso" });
+		int option = Util.optionPainel(scanner, new String[] { "[1] - Turno", "[2] - Curso" });
 		int acc = 0;
 		while (acc < 1) {
 			switch (option) {
 				case 1:
 					System.out.print("Digite o novo turno:\t");
-					String turno = sc.nextLine();
+					String turno = scanner.nextLine();
 					aluno.setTurno(turno);
-					db.atualizarAluno(aluno);
+					database.atualizarAluno(aluno);
 					acc++;
 					break;
 				case 2:
 					System.out.print("Digite o novo curso:\t");
-					String curso = sc.nextLine();
+					String curso = scanner.nextLine();
 					aluno.setCurso(curso);
-					db.atualizarAluno(aluno);
+					database.atualizarAluno(aluno);
 					acc++;
 					break;
 				default:
@@ -110,26 +110,26 @@ public class GerenciarAlunosController {
 		}
 	}
 
-	private static void excluirAluno(Scanner sc, Database db) {
+	private static void excluirAluno(Scanner scanner, Database database) {
 		// Metodo para exclusão de aluno
 		System.out.println("Digite o nome do aluno que deseja excluir:\t");
-		String nomeAluno = sc.nextLine();
-		Aluno aluno = db.getAluno(nomeAluno);
+		String nomeAluno = scanner.nextLine();
+		Aluno aluno = database.getAluno(nomeAluno);
 		if (aluno == null) {
 			System.out.println("\nAluno não encontrado!!\n");
 			return;
 		}
-		db.excluirAluno(aluno);
+		database.excluirAluno(aluno);
 		System.out.println("Aluno excluído com sucesso!");
 	}
 
-	private static void verAluno(Scanner sc, Database db) {
-		List<Aluno> alunos = db.getAlunos();
+	private static void verAluno(Scanner scanner, Database database) {
+		List<Aluno> alunos = database.getAlunos();
 		for (Aluno aluno : alunos) {
 			System.out.printf("RA: %s\t | Aluno: %s\t | Curso: %s\t | Turno: %s\t | \n", aluno.getRa(),
 					aluno.getNome(), aluno.getCurso(), aluno.getTurno());
 		}
 		System.out.print("\nPressione enter para prosseguir...");
-		sc.nextLine();
+		scanner.nextLine();
 	}
 }

@@ -9,7 +9,7 @@ import models.Database;
 import models.Professor;
 
 public class ProfessorController {
-	public static void loginProfessor(Scanner sc, Database db) {
+	public static void loginProfessor(Scanner scanner, Database database) {
 		String sessionProf = "";
 		String user = "";
 		String senha = "";
@@ -18,24 +18,24 @@ public class ProfessorController {
 			Util.limparTela();
 			if (sessionProf == "") {
 				System.out.print("Informe o nome para login:\t");
-				user = sc.nextLine();
+				user = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
-				senha = sc.nextLine();
+				senha = scanner.nextLine();
 				sessionProf = "logado";
 			}
-			Professor professor = db.getProfessor(user);
+			Professor professor = database.getProfessor(user);
 			if (professor == null) {
 				System.out.println("Usuário não encontrado! Pressione enter para voltar...");
-				sc.nextLine();
+				scanner.nextLine();
 				return;
 			}
 			if (!professor.getSenha().equals(senha)) {
 				System.out.println("Usuário ou senha incorretos! Pressione enter para voltar a página inicial...");
-				sc.nextLine();
+				scanner.nextLine();
 				return;
 			}
 			Util.limparTela();
-			int option = Util.optionPainel(sc, new String[] { "[1]- Configurar sala", "[2]- Gerar código da sala",
+			int option = Util.optionPainel(scanner, new String[] { "[1]- Configurar sala", "[2]- Gerar código da sala",
 					"[3]- Ver todos os alunos", "[4]- Sair da conta" });
 			switch (option) {
 				/*
@@ -46,13 +46,13 @@ public class ProfessorController {
 				 * Alunos = Visualizar uma lista com todos os alunos 4 - Sair = Sair
 				 */
 				case 1:
-					ProfessorController.configurarSala(sc, db, professor);
+					ProfessorController.configurarSala(scanner, database, professor);
 					break;
 				case 2:
-					ProfessorController.gerarCodigo(sc, db, professor);
+					ProfessorController.gerarCodigo(scanner, database, professor);
 					break;
 				case 3:
-					ProfessorController.verAlunos(sc, db);
+					ProfessorController.verAlunos(scanner, database);
 					break;
 				case 4:
 					System.out.println("Saindo da conta de professor...");
@@ -64,23 +64,23 @@ public class ProfessorController {
 		}
 	}
 
-	private static void gerarCodigo(Scanner sc, Database db, Professor professor) {
+	private static void gerarCodigo(Scanner sc, Database database, Professor professor) {
 		professor.setCodigo(UUID.randomUUID().toString());
-		db.atualizarProfessor(professor);
+		database.atualizarProfessor(professor);
 		System.out.printf("Informe esse código para os alunos marcarem presença: %s%n", professor.getCodigoSala());
 		System.out.println("Pressione enter para voltar a página anterior...");
 		sc.nextLine();
 	}
 
-	private static void configurarSala(Scanner sc, Database db, Professor professor) {
-		List<Aluno> alunos = db.getAlunos();
+	private static void configurarSala(Scanner sc, Database database, Professor professor) {
+		List<Aluno> alunos = database.getAlunos();
 		for (int index = 0; index < 1; index++) {
 			try {
 				System.out.print("Informe a sala que deseja usar:\t");
 				int sala = sc.nextInt();
 				sc.nextLine();
 				professor.setSala(sala);
-				db.atualizarProfessor(professor);
+				database.atualizarProfessor(professor);
 			} catch (Exception _e) {
 				sc.nextLine();
 				System.out.println("Sala inexistente, digite uma sala válida");
@@ -90,15 +90,15 @@ public class ProfessorController {
 		for (Aluno aluno : alunos) {
 			aluno.setUc(professor.getUc());
 			aluno.setSala(professor.getSala());
-			db.atualizarAluno(aluno);
+			database.atualizarAluno(aluno);
 		}
 		System.out.println("Sala criada!");
 		System.out.println("Pressione enter para voltar a página anterior...");
 		sc.nextLine();
 	}
 
-	private static void verAlunos(Scanner sc, Database db) {
-		List<Aluno> alunos = db.getAlunos();
+	private static void verAlunos(Scanner sc, Database database) {
+		List<Aluno> alunos = database.getAlunos();
 		for (Aluno aluno : alunos) {
 			System.out.printf("Aluno: %s\t | Curso: %s\t | Turno: %s\t |  ", aluno.getNome(), aluno.getCurso(),
 					aluno.getTurno());

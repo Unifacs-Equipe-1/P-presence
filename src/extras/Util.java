@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
-	public static int optionPainel(Scanner sc, String[] options) {
+	public static int optionPainel(Scanner scanner, String[] options) {
 		System.out.println("Selecione uma das opções:\n");
 		for (String value : options) {
 			System.out.println(value);
@@ -14,10 +14,10 @@ public class Util {
 		System.out.print("\nInsira aqui: ");
 		int option = -1;
 		try {
-			option = sc.nextInt();
-			sc.nextLine();
+			option = scanner.nextInt();
+			scanner.nextLine();
 		} catch (InputMismatchException e) {
-			sc.nextLine();
+			scanner.nextLine();
 		}
 		Util.limparTela();
 		return option;
