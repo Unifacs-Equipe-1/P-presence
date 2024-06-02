@@ -35,8 +35,8 @@ public class ProfessorController {
 				return;
 			}
 			Util.limparTela();
-			int option = Util.optionPainel(scanner, new String[] { "[1]- Configurar sala", "[2]- Gerar código da sala",
-					"[3]- Ver todos os alunos", "[4]- Sair da conta" });
+			int option = Util.optionPainel(scanner, new String[] { " 1  Configurar sala", " 2  Gerar código da sala",
+					" 3  Ver todos os alunos", " 4  Sair da conta" });
 			switch (option) {
 				/*
 				 * Cada opção serve para um caso em especifico 1 - Configuração = Criação de
@@ -99,15 +99,23 @@ public class ProfessorController {
 
 	private static void verAlunos(Scanner sc, Database database) {
 		List<Aluno> alunos = database.getAlunos();
+		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                              ALUNOS                                                |%n");
+		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-25s | %-10s | %-34s |%n", "Nome", "Curso", "Turno", "Presença");
+		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+
 		for (Aluno aluno : alunos) {
-			System.out.printf("Aluno: %s\t | Curso: %s\t | Turno: %s\t |  ", aluno.getNome(), aluno.getCurso(),
+			System.out.printf("| %-20s | %-25s | %-10s | ", aluno.getNome(), aluno.getCurso(),
 					aluno.getTurno());
 			if (aluno.getPresente() != null) {
-				System.out.printf("Presença na aula: %s%n", aluno.getPresente() ? "Sim" : "Não");
+				System.out.printf("%-34s |%n", aluno.getPresente() ? "Sim" : "Não");
 			} else {
-				System.out.println("Presença na aula: Ainda não foi configurado uma sala");
+				System.out.println("Ainda não foi configurado uma sala |");
 			}
 		}
+		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+
 		System.out.print("\nPressione enter para prosseguir...");
 		sc.nextLine();
 	}

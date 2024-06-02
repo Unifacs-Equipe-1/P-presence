@@ -34,8 +34,8 @@ public class AlunoController {
 			}
 			Util.limparTela();
 			System.out.println("Usuário logado com sucesso!");
-			int option = Util.optionPainel(scanner, new String[] { "[1]- Mostrar sala disponível",
-					"[2]- Entrar na sala e marcar presença", "[3]- Ver meus dados", "[4]- Sair da conta" });
+			int option = Util.optionPainel(scanner, new String[] { " 1  Mostrar sala disponível",
+					" 2  Entrar na sala e marcar presença", " 3  Ver meus dados", " 4  Sair da conta" });
 			switch (option) {
 				case 1:
 					AlunoController.informarDadosDaSala(scanner, aluno);
@@ -92,11 +92,17 @@ public class AlunoController {
 	}
 
 	private static void mostrarDadosAluno(Scanner scanner, Aluno aluno) {
-		System.out.printf("O nome do aluno: %s%n", aluno.getNome());
-		System.out.printf("O gênero do aluno: %s%n", aluno.getGenero());
-		System.out.printf("O curso do aluno: %s%n", aluno.getCurso());
-		System.out.printf("O turno do aluno: %s%n", aluno.getTurno());
-		System.out.printf("A UC do aluno: %s%n%n", aluno.getUc() != null ? aluno.getUc() : "Ainda não possui");
+
+		System.out.printf("--------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                                      ALUNO                                                       |%n");
+		System.out.printf("--------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-10s | %-25s | %-10s | %-35s |%n", "Nome", "Gênero", "Curso", "Turno", "UC");
+		System.out.printf("--------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-10s | %-25s | %-10s |", aluno.getNome(),
+					aluno.getGenero(), aluno.getCurso(), aluno.getTurno());
+
+		System.out.printf(" %-35s |%n", aluno.getUc() != null ? aluno.getUc() : "Ainda não possui");
+		System.out.printf("--------------------------------------------------------------------------------------------------------------------%n");
 		System.out.println("Pressione enter para voltar...");
 		scanner.nextLine();
 	}

@@ -17,9 +17,9 @@ public class GerenciarProfessoresController {
 			 * professor = Linha 4 - Lista dos professores = Linha 5 - Voltar = Voltar
 			 */
 			int option = Util.optionPainel(scanner,
-					new String[] { "[1] - Cadastrar Professores", "[2] - Atualizar Professores",
-							"[3] - Excluir Professor", "[4] - Ver Professores",
-							"[5] - Voltar a página anterior" });
+					new String[] { " 1  Cadastrar Professores", " 2  Atualizar Professores",
+							" 3  Excluir Professor", " 4  Ver Professores",
+							" 5  Voltar a página anterior" });
 			switch (option) {
 				case 1:
 					GerenciarProfessoresController.cadastrarProfessor(scanner, database);
@@ -83,7 +83,7 @@ public class GerenciarProfessoresController {
 			return;
 		}
 		System.out.println("O que deseja modificar?");
-		int option = Util.optionPainel(scanner, new String[] { "[1] - Turno", "[2] - Curso" });
+		int option = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acc = 0;
 		while (acc < 1) {
 			switch (option) {
@@ -119,17 +119,24 @@ public class GerenciarProfessoresController {
 			return;
 		}
 		database.excluirProfessor(professor);
-		System.out.println("Professor(a) excluído com sucesso!");
+		System.out.println("\n Professor(a) excluído com sucesso!");
 
 	}
 
 	private static void verProfessor(Scanner scanner, Database database) {
 		// Metodo de visualização de professor
 		List<Professor> professores = database.getProfessores();
+
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("|                               PROFESSORES                                   |%n");
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "RP", "Professor", "Curso", "Turno");
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		for (Professor professor : professores) {
-			System.out.printf("RP: %s\t | Professor: %s\t | Curso: %s\t | Turno: %s\t | \n", professor.getRp(),
+			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", professor.getRp(),
 					professor.getNome(), professor.getCurso(), professor.getTurno());
 		}
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}

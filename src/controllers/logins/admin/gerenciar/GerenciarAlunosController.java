@@ -17,8 +17,8 @@ public class GerenciarAlunosController {
 		 */
 		while (true) {
 			int option = Util.optionPainel(scanner,
-					new String[] { "[1] - Cadastrar Alunos", "[2] - Atualizar Alunos",
-							"[3] - Excluir aluno", "[4] - Ver alunos", "[5] - Voltar" });
+					new String[] { " 1  Cadastrar Alunos", " 2  Atualizar Alunos",
+							" 3  Excluir aluno", " 4  Ver alunos", " 5  Voltar" });
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.cadastrarAluno(scanner, database);
@@ -84,7 +84,7 @@ public class GerenciarAlunosController {
 			return;
 		}
 		System.out.println("O que deseja modificar?");
-		int option = Util.optionPainel(scanner, new String[] { "[1] - Turno", "[2] - Curso" });
+		int option = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acc = 0;
 		while (acc < 1) {
 			switch (option) {
@@ -120,15 +120,22 @@ public class GerenciarAlunosController {
 			return;
 		}
 		database.excluirAluno(aluno);
-		System.out.println("Aluno excluído com sucesso!");
+		System.out.println("\n Aluno excluído com sucesso!");
 	}
 
 	private static void verAluno(Scanner scanner, Database database) {
 		List<Aluno> alunos = database.getAlunos();
+
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("|                                  ALUNOS                                     |%n");
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "RA", "Aluno", "Curso", "Turno");
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		for (Aluno aluno : alunos) {
-			System.out.printf("RA: %s\t | Aluno: %s\t | Curso: %s\t | Turno: %s\t | \n", aluno.getRa(),
+			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getRa(),
 					aluno.getNome(), aluno.getCurso(), aluno.getTurno());
 		}
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}

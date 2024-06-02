@@ -32,8 +32,8 @@ public class Programa {
 			Util.limparTela();
 			// Apresenta as opções na tela e retorna a opção escolhida
 			int option = Util.optionPainel(scanner,
-					new String[] { "[1]- Fazer login como aluno", "[2]- Fazer login como professor",
-							"[3]- Fazer login como administrador", "[4]- Sair do programa" });
+					new String[] { " 1  Fazer login como aluno", " 2  Fazer login como professor",
+							" 3  Fazer login como administrador", " 4  Sair do programa" });
 			// Abre um novo painel com base na opção escolhida
 			switch (option) {
 				case 1:

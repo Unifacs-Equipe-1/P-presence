@@ -7,10 +7,19 @@ import java.util.Random;
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
 	public static int optionPainel(Scanner scanner, String[] options) {
-		System.out.println("Selecione uma das opções:\n");
+		System.out.println("");
+		System.out.printf(" ---------------------------------------%n");
+		System.out.printf("|      SISTEMA DE PRESENÇA UNIFACS     |%n");
+		System.out.printf(" ---------------------------------------%n");
+		System.out.println("|       Selecione uma das opções:      |");
+		System.out.printf(" ---------------------------------------%n");
+		System.out.println("|                                      |");
 		for (String value : options) {
-			System.out.println(value);
+			System.out.printf("| %-36s |%n", value);
+
 		}
+		System.out.println("|                                      |");
+		System.out.printf(" ---------------------------------------%n");
 		System.out.print("\nInsira aqui: ");
 		int option = -1;
 		try {

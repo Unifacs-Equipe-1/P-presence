@@ -25,7 +25,7 @@ public class AdministradorController {
 				Util.limparTela();
 				System.out.println("Usuário ou senha incorretos!");
 				System.out.println("Deseja tentar novamente?");
-				int prosseguir = Util.optionPainel(scanner, new String[] { "[0]- Não (default)", "[1]- Sim" });
+				int prosseguir = Util.optionPainel(scanner, new String[] { "0  Não (default)", " 1  Sim" });
 				switch (prosseguir) {
 					case 1:
 						continue;
@@ -44,7 +44,7 @@ public class AdministradorController {
 					 * (GerenciarAlunoController) 2 - Vai para gerenciamento de Prof
 					 * (GerenciarProfessorController) 3 - Sair
 					 */
-					"[1]- Gerenciar alunos", "[2]- Gerenciar professores", "[3]- Sair da conta" });
+					" 1  Gerenciar alunos", " 2  Gerenciar professores", " 3  Sair da conta" });
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.gerenciarAlunos(scanner, database);
