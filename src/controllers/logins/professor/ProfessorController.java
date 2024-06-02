@@ -9,19 +9,20 @@ import models.Database;
 import models.Professor;
 
 public class ProfessorController {
+
 	public static void loginProfessor(Scanner scanner, Database banco_de_dados) {
-		String sessao_profe = "";
+		String sessao_professor = "";
 		String usuario = "";
 		String senha = "";
 		while (true) {
 			// Metodo de Login como professor
 			Util.limparTela();
-			if (sessao_profe == "") {
+			if (sessao_professor == "") {
 				System.out.print("Informe RP para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
-				sessao_profe = "logado";
+				sessao_professor = "logado";
 			}
 			Professor professor = banco_de_dados.getProfessor(usuario);
 			if (professor == null) {
@@ -40,11 +41,12 @@ public class ProfessorController {
 					" 3  Ver todos os alunos", " 4  Sair da conta" });
 			switch (opcao) {
 				/*
-				 * Cada opção serve para um caso em especifico 1 - Configuração = Criação de
-				 * sala 2 - Gerar código =
-				 * Uma espécie de senha para o Aluno para confirmar que ele estava realmente
-				 * presente 3 - Ver os
-				 * Alunos = Visualizar uma lista com todos os alunos 4 - Sair = Sair
+				 * Cada opção serve para um caso em especifico
+				 * 1 - Configuração = Criação de sala
+				 * 2 - Gerar código = Uma espécie de senha para o Aluno para confirmar que ele
+				 * estava realmente presente
+				 * 3 - Ver os alunos = Visualizar uma lista com todos os alunos
+				 * 4 - Sair = Sair
 				 */
 				case 1:
 					ProfessorController.configurarSala(scanner, banco_de_dados, professor);
@@ -66,6 +68,12 @@ public class ProfessorController {
 	}
 
 	private static void gerarCodigo(Scanner sc, Database banco_de_dados, Professor professor) {
+		if (professor.getSala() == null) {
+			System.out.println("Sala não configurada, configure a sala antes de gerar o código");
+			System.out.println("Pressione enter para voltar a página anterior...");
+			sc.nextLine();
+			return;
+		}
 		professor.setCodigo(UUID.randomUUID().toString());
 		banco_de_dados.atualizarProfessor(professor);
 		System.out.printf("Informe esse código para os alunos marcarem presença: %s%n", professor.getCodigoSala());
@@ -77,10 +85,10 @@ public class ProfessorController {
 		List<Aluno> alunos = banco_de_dados.getAlunos();
 		for (int index = 0; index < 1; index++) {
 			try {
-				System.out.print("Informe a sala que deseja usar:\t");
-				int sala = sc.nextInt();
+				System.out.print("Informe o número da sala que deseja usar: \t");
+				Integer sala = sc.nextInt();
 				sc.nextLine();
-				professor.setSala(sala);
+				professor.setSala(sala.toString());
 				banco_de_dados.atualizarProfessor(professor);
 			} catch (Exception _e) {
 				sc.nextLine();

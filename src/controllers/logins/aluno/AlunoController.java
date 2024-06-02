@@ -8,6 +8,7 @@ import models.Database;
 import models.Professor;
 
 public class AlunoController {
+
 	public static void loginAluno(Scanner scanner, Database banco_de_dados) {
 		String sessao_aluno = "";
 		String usuario = "";
@@ -58,7 +59,7 @@ public class AlunoController {
 	}
 
 	private static void marcarPresenca(Scanner scanner, Database banco_de_dados, Aluno aluno) {
-		if (aluno.getSala() == 0) {
+		if (aluno.getSala() == null) {
 			System.out.println("Você não possui aulas para marcar presença");
 			System.out.println("Pressione enter para voltar...");
 			scanner.nextLine();
@@ -83,8 +84,8 @@ public class AlunoController {
 	}
 
 	private static void informarDadosDaSala(Scanner scanner, Aluno aluno) {
-		if (aluno.getSala() != 0) {
-			System.out.printf("Você tem uma aula: %s - Sala %d%n", aluno.getUc(), aluno.getSala());
+		if (aluno.getSala() != null) {
+			System.out.printf("Você tem uma aula: %s - Sala %s%n", aluno.getUc(), aluno.getSala());
 		} else {
 			System.out.println("Você ainda não possui aulas disponíveis, tente novamente mais tarde!");
 		}

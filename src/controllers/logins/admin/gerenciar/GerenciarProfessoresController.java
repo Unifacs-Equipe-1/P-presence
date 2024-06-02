@@ -75,7 +75,7 @@ public class GerenciarProfessoresController {
 
 	private static void atualizarProfessor(Scanner scanner, Database banco_de_dados) {
 		// Metodo de atualização de professor
-		System.out.print("Digite o professor que deseja modificar:\t");
+		System.out.print("Digite o RP do professor que deseja modificar:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
@@ -111,7 +111,7 @@ public class GerenciarProfessoresController {
 
 	private static void excluirProfessor(Scanner scanner, Database banco_de_dados) {
 		// Metodo de exclusão de professor
-		System.out.println("Digite o nome do professor(a) que deseja excluir:\t");
+		System.out.println("Digite o RP do professor(a) que deseja excluir:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
