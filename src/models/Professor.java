@@ -4,15 +4,15 @@ import extras.Util;
 import java.util.UUID;
 
 public class Professor extends Pessoa {
-	private final String registroProfessor;
+	private final String registro_professor;
 	private final String uc;
 	private int sala;
-	private String codigoSala;
+	private String codigo_sala;
 
 	public Professor(String nome, String senha, String turno, String curso, String uc) {
 		super(nome, senha, turno, curso);
 		this.uc = uc;
-		this.registroProfessor = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);
+		this.registro_professor = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);
 	}
 
 	public String getUc() {
@@ -28,14 +28,14 @@ public class Professor extends Pessoa {
 	}
 
 	public String getCodigoSala() {
-		return this.codigoSala;
+		return this.codigo_sala;
 	}
 
-	public void setCodigo(String codigoSala) {
-		this.codigoSala = codigoSala;
+	public void setCodigo(String codigo_sala) {
+		this.codigo_sala = codigo_sala;
 	}
 
 	public String getRp() {
-		return registroProfessor;
+		return registro_professor;
 	}
 }

@@ -7,7 +7,7 @@ import models.Database;
 import models.Professor;
 
 public class GerenciarProfessoresController {
-	public static void gerenciarProfessores(Scanner scanner, Database database) {
+	public static void gerenciarProfessores(Scanner scanner, Database banco_de_dados) {
 		while (true) {
 			/*
 			 * Opção do Administrador para o gerenciamento dos professores 1 - Cadastro de
@@ -16,22 +16,22 @@ public class GerenciarProfessoresController {
 			 * Exclusão de um
 			 * professor = Linha 4 - Lista dos professores = Linha 5 - Voltar = Voltar
 			 */
-			int option = Util.optionPainel(scanner,
+			int opcao = Util.optionPainel(scanner,
 					new String[] { " 1  Cadastrar Professores", " 2  Atualizar Professores",
 							" 3  Excluir Professor", " 4  Ver Professores",
 							" 5  Voltar a página anterior" });
-			switch (option) {
+			switch (opcao) {
 				case 1:
-					GerenciarProfessoresController.cadastrarProfessor(scanner, database);
+					GerenciarProfessoresController.cadastrarProfessor(scanner, banco_de_dados);
 					break;
 				case 2:
-					GerenciarProfessoresController.atualizarProfessor(scanner, database);
+					GerenciarProfessoresController.atualizarProfessor(scanner, banco_de_dados);
 					break;
 				case 3:
-					GerenciarProfessoresController.excluirProfessor(scanner, database);
+					GerenciarProfessoresController.excluirProfessor(scanner, banco_de_dados);
 					break;
 				case 4:
-					GerenciarProfessoresController.verProfessor(scanner, database);
+					GerenciarProfessoresController.verProfessor(scanner, banco_de_dados);
 				case 5:
 					System.out.println("Voltando a página anterior!");
 					return;
@@ -42,7 +42,7 @@ public class GerenciarProfessoresController {
 		}
 	}
 
-	private static void cadastrarProfessor(Scanner scanner, Database database) {
+	private static void cadastrarProfessor(Scanner scanner, Database banco_de_dados) {
 		// Metodo de cadastro do professor
 		String nome;
 		String senha = "";
@@ -61,71 +61,71 @@ public class GerenciarProfessoresController {
 			System.out.print("Digite uma senha: ");
 			senha = scanner.nextLine();
 			System.out.print("Digite a senha novamente: ");
-			String senhaRepetida = scanner.nextLine();
-			if (!senha.equals(senhaRepetida)) {
+			String senha_repetida = scanner.nextLine();
+			if (!senha.equals(senha_repetida)) {
 				Util.limparTela();
 				System.out.println("As senhas não coincidem");
 				i--;
 			}
 		}
 		Professor professor = new Professor(nome, senha, turno, curso, uc);
-		database.cadastrarProfessor(professor);
+		banco_de_dados.cadastrarProfessor(professor);
 		System.out.println("Professor cadastrado com sucesso!");
 	}
 
-	private static void atualizarProfessor(Scanner scanner, Database database) {
+	private static void atualizarProfessor(Scanner scanner, Database banco_de_dados) {
 		// Metodo de atualização de professor
 		System.out.print("Digite o professor que deseja modificar:\t");
-		String nomeProfessor = scanner.nextLine();
-		Professor professor = database.getProfessor(nomeProfessor);
+		String nome_professor = scanner.nextLine();
+		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
 			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
 		}
 		System.out.println("O que deseja modificar?");
-		int option = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
-		int acc = 0;
-		while (acc < 1) {
-			switch (option) {
+		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
+		int acumulador = 0;
+		while (acumulador < 1) {
+			switch (opcao) {
 				case 1:
 					System.out.print("Digite o novo turno:\t");
 					String turno = scanner.nextLine();
 					professor.setTurno(turno);
-					database.atualizarProfessor(professor);
-					acc++;
+					banco_de_dados.atualizarProfessor(professor);
+					acumulador++;
 					break;
 				case 2:
 					System.out.print("Digite o novo curso:\t");
 					String curso = scanner.nextLine();
 					professor.setCurso(curso);
-					database.atualizarProfessor(professor);
-					acc++;
+					banco_de_dados.atualizarProfessor(professor);
+					acumulador++;
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acc--;
+					acumulador--;
 					break;
 			}
 		}
 	}
 
-	private static void excluirProfessor(Scanner scanner, Database database) {
+	private static void excluirProfessor(Scanner scanner, Database banco_de_dados) {
 		// Metodo de exclusão de professor
 		System.out.println("Digite o nome do professor(a) que deseja excluir:\t");
-		String nomeProfessor = scanner.nextLine();
-		Professor professor = database.getProfessor(nomeProfessor);
+		String nome_professor = scanner.nextLine();
+		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
 			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
 		}
-		database.excluirProfessor(professor);
+		banco_de_dados.excluirProfessor(professor);
 		System.out.println("\n Professor(a) excluído com sucesso!");
 
 	}
 
-	private static void verProfessor(Scanner scanner, Database database) {
+	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
 		// Metodo de visualização de professor
-		List<Professor> professores = database.getProfessores();
+		List<Professor> professores = banco_de_dados.getProfessores();
 
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                               PROFESSORES                                   |%n");

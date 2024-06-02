@@ -9,35 +9,36 @@ import models.Database;
 import models.Professor;
 
 public class ProfessorController {
-	public static void loginProfessor(Scanner scanner, Database database) {
-		String sessionProf = "";
-		String user = "";
+	public static void loginProfessor(Scanner scanner, Database banco_de_dados) {
+		String sessao_profe = "";
+		String usuario = "";
 		String senha = "";
 		while (true) {
 			// Metodo de Login como professor
 			Util.limparTela();
-			if (sessionProf == "") {
-				System.out.print("Informe o nome para login:\t");
-				user = scanner.nextLine();
+			if (sessao_profe == "") {
+				System.out.print("Informe RP para login:\t");
+				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
-				sessionProf = "logado";
+				sessao_profe = "logado";
 			}
-			Professor professor = database.getProfessor(user);
+			Professor professor = banco_de_dados.getProfessor(usuario);
 			if (professor == null) {
-				System.out.println("Usuário não encontrado! Pressione enter para voltar...");
+				System.out.println(" \n Usuário não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
 				return;
 			}
 			if (!professor.getSenha().equals(senha)) {
-				System.out.println("Usuário ou senha incorretos! Pressione enter para voltar a página inicial...");
+				System.out
+						.println(" \n Usuário ou senha incorretos! \n Pressione enter para voltar a página inicial...");
 				scanner.nextLine();
 				return;
 			}
 			Util.limparTela();
-			int option = Util.optionPainel(scanner, new String[] { " 1  Configurar sala", " 2  Gerar código da sala",
+			int opcao = Util.optionPainel(scanner, new String[] { " 1  Configurar sala", " 2  Gerar código da sala",
 					" 3  Ver todos os alunos", " 4  Sair da conta" });
-			switch (option) {
+			switch (opcao) {
 				/*
 				 * Cada opção serve para um caso em especifico 1 - Configuração = Criação de
 				 * sala 2 - Gerar código =
@@ -46,13 +47,13 @@ public class ProfessorController {
 				 * Alunos = Visualizar uma lista com todos os alunos 4 - Sair = Sair
 				 */
 				case 1:
-					ProfessorController.configurarSala(scanner, database, professor);
+					ProfessorController.configurarSala(scanner, banco_de_dados, professor);
 					break;
 				case 2:
-					ProfessorController.gerarCodigo(scanner, database, professor);
+					ProfessorController.gerarCodigo(scanner, banco_de_dados, professor);
 					break;
 				case 3:
-					ProfessorController.verAlunos(scanner, database);
+					ProfessorController.verAlunos(scanner, banco_de_dados);
 					break;
 				case 4:
 					System.out.println("Saindo da conta de professor...");
@@ -64,23 +65,23 @@ public class ProfessorController {
 		}
 	}
 
-	private static void gerarCodigo(Scanner sc, Database database, Professor professor) {
+	private static void gerarCodigo(Scanner sc, Database banco_de_dados, Professor professor) {
 		professor.setCodigo(UUID.randomUUID().toString());
-		database.atualizarProfessor(professor);
+		banco_de_dados.atualizarProfessor(professor);
 		System.out.printf("Informe esse código para os alunos marcarem presença: %s%n", professor.getCodigoSala());
 		System.out.println("Pressione enter para voltar a página anterior...");
 		sc.nextLine();
 	}
 
-	private static void configurarSala(Scanner sc, Database database, Professor professor) {
-		List<Aluno> alunos = database.getAlunos();
+	private static void configurarSala(Scanner sc, Database banco_de_dados, Professor professor) {
+		List<Aluno> alunos = banco_de_dados.getAlunos();
 		for (int index = 0; index < 1; index++) {
 			try {
 				System.out.print("Informe a sala que deseja usar:\t");
 				int sala = sc.nextInt();
 				sc.nextLine();
 				professor.setSala(sala);
-				database.atualizarProfessor(professor);
+				banco_de_dados.atualizarProfessor(professor);
 			} catch (Exception _e) {
 				sc.nextLine();
 				System.out.println("Sala inexistente, digite uma sala válida");
@@ -90,20 +91,24 @@ public class ProfessorController {
 		for (Aluno aluno : alunos) {
 			aluno.setUc(professor.getUc());
 			aluno.setSala(professor.getSala());
-			database.atualizarAluno(aluno);
+			banco_de_dados.atualizarAluno(aluno);
 		}
 		System.out.println("Sala criada!");
 		System.out.println("Pressione enter para voltar a página anterior...");
 		sc.nextLine();
 	}
 
-	private static void verAlunos(Scanner sc, Database database) {
-		List<Aluno> alunos = database.getAlunos();
-		System.out.printf("------------------------------------------------------------------------------------------------------%n");
-		System.out.printf("|                                              ALUNOS                                                |%n");
-		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+	private static void verAlunos(Scanner sc, Database banco_de_dados) {
+		List<Aluno> alunos = banco_de_dados.getAlunos();
+		System.out.printf(
+				"------------------------------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"|                                              ALUNOS                                                |%n");
+		System.out.printf(
+				"------------------------------------------------------------------------------------------------------%n");
 		System.out.printf("| %-20s | %-25s | %-10s | %-34s |%n", "Nome", "Curso", "Turno", "Presença");
-		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"------------------------------------------------------------------------------------------------------%n");
 
 		for (Aluno aluno : alunos) {
 			System.out.printf("| %-20s | %-25s | %-10s | ", aluno.getNome(), aluno.getCurso(),
@@ -114,7 +119,8 @@ public class ProfessorController {
 				System.out.println("Ainda não foi configurado uma sala |");
 			}
 		}
-		System.out.printf("------------------------------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"------------------------------------------------------------------------------------------------------%n");
 
 		System.out.print("\nPressione enter para prosseguir...");
 		sc.nextLine();

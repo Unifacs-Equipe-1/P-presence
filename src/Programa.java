@@ -10,49 +10,49 @@ import models.Professor;
 public class Programa {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		Database database = new Database();
+		Database banco_de_dados = new Database();
 		// Informações referente aos dados dos alunos
-		database.cadastrarAluno(new Aluno("Marcilio", "123", "Masculino", "Matutino",
+		banco_de_dados.cadastrarAluno(new Aluno("Marcilio", "123", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		database.cadastrarAluno(new Aluno("Erick ", "abc", "Masculino", "Matutino",
+		banco_de_dados.cadastrarAluno(new Aluno("Erick ", "abc", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		database.cadastrarAluno(new Aluno("Rodson", "teste", "Masculino", "Matutino",
+		banco_de_dados.cadastrarAluno(new Aluno("Rodson", "teste", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		database.cadastrarAluno(new Aluno("Arthur", "789", "Masculino", "Matutino",
+		banco_de_dados.cadastrarAluno(new Aluno("Arthur", "789", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		database.cadastrarAluno(new Aluno("Marcus", "senha", "Masculino", "Matutino",
+		banco_de_dados.cadastrarAluno(new Aluno("Marcus", "senha", "Masculino", "Matutino",
 				"Ciência da Computação"));
-		database.cadastrarAluno(new Aluno("Marcela", "password", "Feminino", "Matutino",
+		banco_de_dados.cadastrarAluno(new Aluno("Marcela", "password", "Feminino", "Matutino",
 				"Ciência da Computação"));
-		database.cadastrarProfessor(new Professor("Eliane", "profeliane", "Matutino",
+		banco_de_dados.cadastrarProfessor(new Professor("Eliane", "profeliane", "Matutino",
 				"Ciência da Computação", "Programas e soluções computacionais"));
 		String administrador = "admin";
-		String senhaAdministrador = "admin";
+		String senha_administrador = "admin";
 		while (true) {
 			Util.limparTela();
 			// Apresenta as opções na tela e retorna a opção escolhida
-			int option = Util.optionPainel(scanner,
+			int opcao = Util.optionPainel(scanner,
 					new String[] { " 1  Fazer login como aluno", " 2  Fazer login como professor",
 							" 3  Fazer login como administrador", " 4  Sair do programa" });
 			// Abre um novo painel com base na opção escolhida
-			switch (option) {
+			switch (opcao) {
 				case 1:
 					/*
 					 * Método responsável por logar o aluno
 					 */
-					AlunoController.loginAluno(scanner, database);
+					AlunoController.loginAluno(scanner, banco_de_dados);
 					break;
 				case 2:
 					/*
 					 * Método responsável por logar o professor
 					 */
-					ProfessorController.loginProfessor(scanner, database);
+					ProfessorController.loginProfessor(scanner, banco_de_dados);
 					break;
 				case 3:
 					/*
 					 * Método responsável por logar o administrador
 					 */
-					AdministradorController.loginAdmin(scanner, database, administrador, senhaAdministrador);
+					AdministradorController.loginAdmin(scanner, banco_de_dados, administrador, senha_administrador);
 					break;
 				case 4:
 					/*
@@ -63,7 +63,7 @@ public class Programa {
 					return;
 				default:
 					/*
-					 * O metodo caso o usuário utilize outro valor
+					 * Método caso o usuário utilize outro valor
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;

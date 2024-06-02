@@ -12,9 +12,9 @@ public class Database {
 		professores = new ArrayList<>();
 	}
 
-	public Aluno getAluno(String registroAluno) {
+	public Aluno getAluno(String registro_aluno) {
 		for (Aluno a : this.alunos) {
-			if (a.getRa().equals(registroAluno)) {
+			if (a.getRa().equals(registro_aluno)) {
 				return a;
 			}
 		}
@@ -53,9 +53,9 @@ public class Database {
 		alunos.remove(aluno);
 	}
 
-	public Professor getProfessor(String registroProfessor) {
+	public Professor getProfessor(String registro_professor) {
 		for (Professor p : this.professores) {
-			if (p.getRp().equals(registroProfessor)) {
+			if (p.getRp().equals(registro_professor)) {
 				return p;
 			}
 		}
@@ -66,7 +66,7 @@ public class Database {
 		return this.professores;
 	}
 
-	// método que retorna lista de professores com base no nome
+	// Método que retorna lista de professores com base no nome
 	public List<Professor> getProfessores(String name) {
 		List<Professor> profs = new ArrayList<>();
 		for (Professor p : this.professores) {
