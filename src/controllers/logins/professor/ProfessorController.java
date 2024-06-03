@@ -9,14 +9,14 @@ import models.Database;
 import models.Professor;
 
 public class ProfessorController {
-
+	// Metodo de Login como professor
 	public static void loginProfessor(Scanner scanner, Database banco_de_dados) {
 		String sessao_professor = "";
 		String usuario = "";
 		String senha = "";
 		while (true) {
-			// Metodo de Login como professor
 			Util.limparTela();
+			// Verificação de usuário e senha
 			if (sessao_professor.equals("")) {
 				System.out.print("Informe RP para login:\t");
 				usuario = scanner.nextLine();
@@ -24,12 +24,14 @@ public class ProfessorController {
 				senha = scanner.nextLine();
 				sessao_professor = "logado";
 			}
+			// Verificação de usuário
 			Professor professor = banco_de_dados.getProfessor(usuario);
 			if (professor == null) {
 				System.out.println(" \n Usuário não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
 				return;
 			}
+			// Verificação de senha
 			if (!professor.getSenha().equals(senha)) {
 				System.out
 						.println(" \n Usuário ou senha incorretos! \n Pressione enter para voltar a página inicial...");
@@ -49,24 +51,40 @@ public class ProfessorController {
 				 * 4 - Sair = Sair
 				 */
 				case 1:
+					/*
+					 * Método para configurar a sala
+					 */
 					ProfessorController.configurarSala(scanner, banco_de_dados, professor);
 					break;
 				case 2:
+					/*
+					 * Método para gerar o código da sala
+					 */
 					ProfessorController.gerarCodigo(scanner, banco_de_dados, professor);
 					break;
 				case 3:
+					/*
+					 * Método para visualizar os alunos
+					 */
 					ProfessorController.verAlunos(scanner, banco_de_dados);
 					break;
 				case 4:
+					/*
+					 * Método para sair da conta
+					 */
 					System.out.println("Saindo da conta de professor...");
 					return;
 				default:
+					/*
+					 * Caso a opção não seja válida
+					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
 	}
 
+	// Métodos de configuração da sala
 	private static void configurarSala(Scanner sc, Database banco_de_dados, Professor professor) {
 		// Método do professor criar a sala
 		List<Aluno> alunos = banco_de_dados.getAlunos();
@@ -85,7 +103,6 @@ public class ProfessorController {
 		}
 		for (Aluno aluno : alunos) {
 			// Código da sala sendo exportada para os Alunos
-			// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			aluno.setUc(professor.getUc());
 			aluno.setSala(professor.getSala());
 			banco_de_dados.atualizarAluno(aluno);
@@ -95,10 +112,9 @@ public class ProfessorController {
 		sc.nextLine();
 	}
 
+	// Método para criação do código da sala para marcarem presença deve ser
+	// repassado para os alunos
 	private static void gerarCodigo(Scanner sc, Database banco_de_dados, Professor professor) {
-		// Método para criação do código da salad
-		// para marcarem presença deve ser repassado para os alunos
-
 		if (professor.getSala() == null) {
 			// Sea sala não for criada, não tem como gerar o código
 			System.out.println("Sala não configurada, configure a sala antes de gerar o código");
@@ -113,6 +129,7 @@ public class ProfessorController {
 		sc.nextLine();
 	}
 
+	// Método para visualização dos alunos
 	private static void verAlunos(Scanner sc, Database banco_de_dados) {
 		// Método de visualização dos alunos
 		List<Aluno> alunos = banco_de_dados.getAlunos();

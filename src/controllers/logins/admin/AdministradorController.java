@@ -15,13 +15,14 @@ public class AdministradorController {
 			String usuario = null;
 			String senha = null;
 			Util.limparTela();
+			// Verificação de usuário e senha
 			if (sessao_usuario.isEmpty()) {
 				System.out.print("Informe o usuário para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
 			}
-
+			// Verificação de usuário e senha
 			if (!sessao_usuario.equals("admin")
 					&& (!administrador.equals(usuario) || !senha_administrador.equals(senha))) {
 				Util.limparTela();
@@ -49,6 +50,9 @@ public class AdministradorController {
 					" 1  Gerenciar alunos", " 2  Gerenciar professores", " 3  Sair da conta" });
 			switch (opcao) {
 				case 1:
+					/*
+					 * Método para gerenciar alunos
+					 */
 					GerenciarAlunosController.gerenciarAlunos(scanner, banco_de_dados);
 					break;
 				case 2:
@@ -56,9 +60,16 @@ public class AdministradorController {
 					GerenciarProfessoresController.gerenciarProfessores(scanner, banco_de_dados);
 					break;
 				case 3:
+					/*
+					 * Sair da conta
+					 * 
+					 */
 					System.out.println("Voltando a página inicial");
 					return;
 				default:
+					/*
+					 * Caso o usuário digite uma opção inválida
+					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}

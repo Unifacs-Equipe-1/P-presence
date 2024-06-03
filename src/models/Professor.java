@@ -4,12 +4,13 @@ import extras.Util;
 import java.util.UUID;
 
 public class Professor extends Pessoa {
-
+	// atributos dos professores
 	private final String registro_professor;
 	private final String uc;
 	private String sala;
 	private String codigo_sala;
 
+	// construtor de Professor
 	public Professor(String nome, String senha, String turno, String curso, String uc) {
 		super(nome, senha, turno, curso);
 		this.uc = uc;

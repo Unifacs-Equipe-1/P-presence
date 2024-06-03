@@ -4,7 +4,7 @@ import extras.Util;
 import java.util.UUID;
 
 public class Aluno extends models.Pessoa {
-
+	// atributos dos alunos
 	private final String registro_aluno;
 	private String genero;
 	private String uc;
