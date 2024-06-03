@@ -26,7 +26,7 @@ public class Database {
 		return this.alunos;
 	}
 
-	// método que retorna lista de alunos com base no nome
+	// Método que retorna lista de alunos com base no nome
 	public List<Aluno> getAlunosNome(String nome) {
 		List<Aluno> alunos_local = new ArrayList<>();
 		for (Aluno a : this.alunos) {

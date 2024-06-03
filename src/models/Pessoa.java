@@ -13,6 +13,7 @@ public abstract class Pessoa {
 		this.curso = curso;
 	}
 
+	// Getter e Setters de Pessoa
 	public final String getNome() {
 		return nome;
 	}
