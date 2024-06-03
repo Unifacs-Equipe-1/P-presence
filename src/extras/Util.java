@@ -1,16 +1,26 @@
 package extras;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
-	public static int opcaoPainel(Scanner scanner, String[] options) {
-		System.out.println("Selecione uma das opções:\n");
+
+	public static int optionPainel(Scanner scanner, String[] options) {
+		System.out.println("");
+		System.out.printf(" ---------------------------------------%n");
+		System.out.printf("|      SISTEMA DE PRESENÇA UNIFACS     |%n");
+		System.out.printf(" ---------------------------------------%n");
+		System.out.println("|       Selecione uma das opções:      |");
+		System.out.printf(" ---------------------------------------%n");
+		System.out.println("|                                      |");
 		for (String value : options) {
-			System.out.println(value);
+			System.out.printf("| %-36s |%n", value);
+
 		}
+		System.out.println("|                                      |");
+		System.out.printf(" ---------------------------------------%n");
 		System.out.print("\nInsira aqui: ");
 		int option = -1;
 		try {
@@ -31,6 +41,7 @@ public class Util {
 	}
 
 	public static String generateUuidNumber(String seed, int digitos) {
+		// Método para gerar o RA e o RP
 		String numberMaximo = "";
 		if (digitos <= 0) {
 			numberMaximo = "9";

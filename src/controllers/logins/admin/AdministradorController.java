@@ -7,7 +7,7 @@ import java.util.Scanner;
 import models.Database;
 
 public class AdministradorController {
-	// Metodo de login administrador
+	// Metodo de login como administrador / admin & admin
 	public static void loginAdmin(Scanner scanner, Database banco_de_dados, String administrador,
 			String senha_administrador) {
 		String sessao_usuario = "";
@@ -27,7 +27,7 @@ public class AdministradorController {
 				Util.limparTela();
 				System.out.println("Usuário ou senha incorretos!");
 				System.out.println("Deseja tentar novamente?");
-				int prosseguir = Util.opcaoPainel(scanner, new String[] { "[0]- Não (default)", "[1]- Sim" });
+				int prosseguir = Util.optionPainel(scanner, new String[] { " 0  Não (default)", " 1  Sim" });
 				switch (prosseguir) {
 					case 1:
 						continue;
@@ -40,13 +40,13 @@ public class AdministradorController {
 				sessao_usuario = "admin";
 			}
 			Util.limparTela();
-			int opcao = Util.opcaoPainel(scanner, new String[] {
+			int opcao = Util.optionPainel(scanner, new String[] {
 					/*
 					 * Opções de ações para o ADM 1 - Vai para gerenciamento de Aluno
 					 * (GerenciarAlunoController) 2 - Vai para gerenciamento de Prof
 					 * (GerenciarProfessorController) 3 - Sair
 					 */
-					"[1]- Gerenciar alunos", "[2]- Gerenciar professores", "[3]- Sair da conta" });
+					" 1  Gerenciar alunos", " 2  Gerenciar professores", " 3  Sair da conta" });
 			switch (opcao) {
 				case 1:
 					GerenciarAlunosController.gerenciarAlunos(scanner, banco_de_dados);
@@ -57,12 +57,12 @@ public class AdministradorController {
 					break;
 				case 3:
 					System.out.println("Voltando a página inicial");
-					sessao_usuario = "";
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
+
 	}
 }

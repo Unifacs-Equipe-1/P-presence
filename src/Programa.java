@@ -28,13 +28,13 @@ public class Programa {
 				"Ciência da Computação", "Programas e soluções computacionais"));
 		// Login e senha do administrador:
 		String administrador = "admin";
-		String senhaAdministrador = "admin";
+		String senha_administrador = "admin";
 		while (true) {
 			Util.limparTela();
 			// Apresenta as opções na tela e retorna a opção escolhida
-			int opcao = Util.opcaoPainel(scanner,
-					new String[] { "[1]- Fazer login como aluno", "[2]- Fazer login como professor",
-							"[3]- Fazer login como administrador", "[4]- Sair do programa" });
+			int opcao = Util.optionPainel(scanner,
+					new String[] { " 1  Fazer login como aluno", " 2  Fazer login como professor",
+							" 3  Fazer login como administrador", " 4  Sair do programa" });
 			// Abre um novo painel com base na opção escolhida
 			switch (opcao) {
 				case 1:
@@ -53,7 +53,7 @@ public class Programa {
 					/*
 					 * Método responsável por logar o administrador
 					 */
-					AdministradorController.loginAdmin(scanner, banco_de_dados, administrador, senhaAdministrador);
+					AdministradorController.loginAdmin(scanner, banco_de_dados, administrador, senha_administrador);
 					break;
 				case 4:
 					/*
@@ -64,7 +64,7 @@ public class Programa {
 					return;
 				default:
 					/*
-					 * O metodo caso o usuário utilize outro valor
+					 * Método caso o usuário utilize outro valor
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;

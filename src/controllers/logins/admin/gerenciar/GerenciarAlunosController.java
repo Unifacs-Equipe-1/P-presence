@@ -1,7 +1,7 @@
 package controllers.logins.admin.gerenciar;
 
+import controllers.logins.admin.gerenciar.filtroAlunos.FiltrarAlunosController;
 import extras.Util;
-
 import java.util.List;
 import java.util.Scanner;
 import models.Aluno;
@@ -12,14 +12,14 @@ public class GerenciarAlunosController {
 
 		/*
 		 * Opção do Administrador de gerenciamento dos alunos
-		 * 1- Cadastro de alunos / 2- Atualização aluno /
-		 * 3- Exclusão de aluno / * 4- Voltar = Voltar /
+		 * 1- Cadastro de alunos / 2- Atualização aluno / 3- Exclusão de aluno /
+		 * 4- Ver todos os alunos/ 5- Filtrar Aluno / 6 - Voltar = Voltar
 		 */
 		while (true) {
-			int opcao = Util.opcaoPainel(scanner,
-					new String[] { "[1] - Cadastrar Alunos", "[2] - Atualizar Alunos",
-							"[3] - Excluir aluno", "[4] - Ver alunos", "[5] - Voltar" });
-			switch (opcao) {
+			int option = Util.optionPainel(scanner,
+					new String[] { " 1  Cadastrar Alunos", " 2  Atualizar Alunos",
+							" 3  Excluir aluno", " 4  Ver alunos", " 5  Filtrar alunos", " 6  Voltar" });
+			switch (option) {
 				case 1:
 					GerenciarAlunosController.cadastrarAluno(scanner, banco_de_dados);
 					break;
@@ -33,6 +33,9 @@ public class GerenciarAlunosController {
 					GerenciarAlunosController.verAluno(scanner, banco_de_dados);
 					return;
 				case 5:
+					FiltrarAlunosController.filtrarAlunos(scanner, banco_de_dados);
+					return;
+				case 6:
 					System.out.println("Voltando a página anterior!");
 					return;
 				default:
@@ -43,7 +46,7 @@ public class GerenciarAlunosController {
 	}
 
 	private static void cadastrarAluno(Scanner scanner, Database banco_de_dados) {
-		// Metodo para imput dos dados do Aluno a ser cadastrado
+		// Metodo para imput dps dados de um Aluno a ser cadastrado
 		String nome;
 		String genero;
 		String senha = "";
@@ -74,8 +77,8 @@ public class GerenciarAlunosController {
 	}
 
 	private static void atualizarAluno(Scanner scanner, Database banco_de_dados) {
-		// Metodo de atualização das informações de um aluno
-		System.out.print("Digite o aluno que deseja modificar:\t");
+		// Método de atualização das informações de um aluno
+		System.out.print("Digite o RA do aluno que deseja modificar:\t");
 		String registro_aluno = scanner.nextLine();
 		Aluno aluno = banco_de_dados.getAluno(registro_aluno);
 		if (aluno == null) {
@@ -84,35 +87,35 @@ public class GerenciarAlunosController {
 			return;
 		}
 		System.out.println("O que deseja modificar?");
-		int opcao = Util.opcaoPainel(scanner, new String[] { "[1] - Turno", "[2] - Curso" });
-		int acc = 0;
-		while (acc < 1) {
+		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
+		int acumulador = 0;
+		while (acumulador < 1) {
 			switch (opcao) {
 				case 1:
 					System.out.print("Digite o novo turno:\t");
 					String turno = scanner.nextLine();
 					aluno.setTurno(turno);
 					banco_de_dados.atualizarAluno(aluno);
-					acc++;
+					acumulador++;
 					break;
 				case 2:
 					System.out.print("Digite o novo curso:\t");
 					String curso = scanner.nextLine();
 					aluno.setCurso(curso);
 					banco_de_dados.atualizarAluno(aluno);
-					acc++;
+					acumulador++;
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acc--;
+					acumulador--;
 					break;
 			}
 		}
 	}
 
 	private static void excluirAluno(Scanner scanner, Database banco_de_dados) {
-		// Metodo para exclusão de aluno
-		System.out.println("Digite o nome do aluno que deseja excluir:\t");
+		// Método para exclusão de aluno
+		System.out.println("Digite o RA do aluno que deseja excluir:\t");
 		String nome_aluno = scanner.nextLine();
 		Aluno aluno = banco_de_dados.getAluno(nome_aluno);
 		if (aluno == null) {
@@ -120,15 +123,22 @@ public class GerenciarAlunosController {
 			return;
 		}
 		banco_de_dados.excluirAluno(aluno);
-		System.out.println("Aluno excluído com sucesso!");
+		System.out.println("\n Aluno excluído com sucesso!");
 	}
 
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
+		// Método para a vizualição de todos os alunos
 		List<Aluno> alunos = banco_de_dados.getAlunos();
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("|                                  ALUNOS                                     |%n");
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "RA", "Aluno", "Curso", "Turno");
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		for (Aluno aluno : alunos) {
-			System.out.printf("RA: %s\t | Aluno: %s\t | Curso: %s\t | Turno: %s\t | \n", aluno.getRa(),
+			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getRa(),
 					aluno.getNome(), aluno.getCurso(), aluno.getTurno());
 		}
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}

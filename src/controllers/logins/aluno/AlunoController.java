@@ -8,14 +8,16 @@ import models.Database;
 import models.Professor;
 
 public class AlunoController {
+
+	// Login como Aluno / RA & Senha
 	public static void loginAluno(Scanner scanner, Database banco_de_dados) {
 		String sessao_aluno = "";
 		String usuario = "";
 		String senha = "";
 		while (true) {
 			Util.limparTela();
-			if (sessao_aluno == "") {
-				System.out.print("Informe o nome para login:\t");
+			if (sessao_aluno.equals("")) {
+				System.out.print("Informe RA para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
@@ -23,19 +25,28 @@ public class AlunoController {
 			}
 			Aluno aluno = banco_de_dados.getAluno(usuario);
 			if (aluno == null) {
-				System.out.println("Usuário não encontrado! Pressione enter para voltar...");
+				System.out.println(" \n RA não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
 				return;
 			}
 			if (!aluno.getSenha().equals(senha)) {
-				System.out.println("Usuário ou senha incorretos! Pressione enter para voltar a página inicial...");
+				System.out
+						.println(" \n RA ou senha incorretos! \n Pressione enter para voltar a página inicial...");
 				scanner.nextLine();
 				return;
 			}
 			Util.limparTela();
 			System.out.println("Usuário logado com sucesso!");
-			int opcao = Util.opcaoPainel(scanner, new String[] { "[1]- Mostrar sala disponível",
-					"[2]- Entrar na sala e marcar presença", "[3]- Ver meus dados", "[4]- Sair da conta" });
+			int opcao = Util.optionPainel(scanner, new String[] { " 1  Mostrar sala disponível",
+					" 2  Entrar na sala e marcar presença", " 3  Ver meus dados", " 4  Sair da conta" });
+			/*
+			 * Painel do Aluno:
+			 * 1- Mostrar sala da aula disponível (A sala que o professor criou)
+			 * 2- Entrar na sala de aula e marcar a presença com o código da sala (Enviado
+			 * pelo professor)
+			 * 3- Ver as informações (Nome / Genero / Curso / Turno / UC)
+			 * 4-
+			 */
 			switch (opcao) {
 				case 1:
 					AlunoController.informarDadosDaSala(scanner, aluno);
@@ -56,13 +67,27 @@ public class AlunoController {
 		}
 	}
 
+	private static void informarDadosDaSala(Scanner scanner, Aluno aluno) {
+		// Método para visualizar a sala
+		if (aluno.getSala() != null) {
+			System.out.printf("Você tem uma aula: %s - Sala %s%n", aluno.getUc(), aluno.getSala());
+		} else {
+			System.out.println("Você ainda não possui aulas disponíveis, tente novamente mais tarde!");
+		}
+		System.out.println("Pressione enter para voltar...");
+		scanner.nextLine();
+	}
+
 	private static void marcarPresenca(Scanner scanner, Database banco_de_dados, Aluno aluno) {
-		if (aluno.getSala() == 0) {
+		// Método para maracar a presença na sala de aula
+		// Caso a sala não esteja disponivel (O professor não criou)
+		if (aluno.getSala() == null) {
 			System.out.println("Você não possui aulas para marcar presença");
 			System.out.println("Pressione enter para voltar...");
 			scanner.nextLine();
 			return;
 		}
+		// Caso a sala esteja disponivel (O professor criou)
 		System.out.print("Informe o código da sala para marcar presença:\t");
 		String codigo_sala = scanner.nextLine();
 		List<Professor> professores = banco_de_dados.getProfessores();
@@ -70,8 +95,10 @@ public class AlunoController {
 			if (aluno.getUc().equals(p.getUc())) {
 				if (p.getCodigoSala().equals(codigo_sala)) {
 					aluno.setPresente(true);
+					// Colocou o código certo
 					System.out.println("Você marcou presença na aula!");
 				} else {
+					// Colocou o código errado
 					System.out.println("Código para marcar presença incorreto!");
 				}
 				break;
@@ -81,22 +108,23 @@ public class AlunoController {
 		scanner.nextLine();
 	}
 
-	private static void informarDadosDaSala(Scanner scanner, Aluno aluno) {
-		if (aluno.getSala() != 0) {
-			System.out.printf("Você tem uma aula: %s - Sala %d%n", aluno.getUc(), aluno.getSala());
-		} else {
-			System.out.println("Você ainda não possui aulas disponíveis, tente novamente mais tarde!");
-		}
-		System.out.println("Pressione enter para voltar...");
-		scanner.nextLine();
-	}
-
 	private static void mostrarDadosAluno(Scanner scanner, Aluno aluno) {
-		System.out.printf("O nome do aluno: %s%n", aluno.getNome());
-		System.out.printf("O gênero do aluno: %s%n", aluno.getGenero());
-		System.out.printf("O curso do aluno: %s%n", aluno.getCurso());
-		System.out.printf("O turno do aluno: %s%n", aluno.getTurno());
-		System.out.printf("A UC do aluno: %s%n%n", aluno.getUc() != null ? aluno.getUc() : "Ainda não possui");
+		// Método para vizualizar os dados do aluno (Nome / Genero / Curso / Turno / UC)
+		System.out.printf(
+				"--------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"|                                                      ALUNO                                                       |%n");
+		System.out.printf(
+				"--------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-10s | %-25s | %-10s | %-35s |%n", "Nome", "Gênero", "Curso", "Turno", "UC");
+		System.out.printf(
+				"--------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-10s | %-25s | %-10s |", aluno.getNome(),
+				aluno.getGenero(), aluno.getCurso(), aluno.getTurno());
+
+		System.out.printf(" %-35s |%n", aluno.getUc() != null ? aluno.getUc() : "Ainda não possui");
+		System.out.printf(
+				"--------------------------------------------------------------------------------------------------------------------%n");
 		System.out.println("Pressione enter para voltar...");
 		scanner.nextLine();
 	}

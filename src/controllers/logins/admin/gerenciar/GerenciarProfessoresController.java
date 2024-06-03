@@ -7,6 +7,7 @@ import models.Database;
 import models.Professor;
 
 public class GerenciarProfessoresController {
+
 	public static void gerenciarProfessores(Scanner scanner, Database banco_de_dados) {
 		while (true) {
 			/*
@@ -16,10 +17,10 @@ public class GerenciarProfessoresController {
 			 * Exclusão de um
 			 * professor = Linha 4 - Lista dos professores = Linha 5 - Voltar = Voltar
 			 */
-			int opcao = Util.opcaoPainel(scanner,
-					new String[] { "[1] - Cadastrar Professores", "[2] - Atualizar Professores",
-							"[3] - Excluir Professor", "[4] - Ver Professores",
-							"[5] - Voltar a página anterior" });
+			int opcao = Util.optionPainel(scanner,
+					new String[] { " 1  Cadastrar Professores", " 2  Atualizar Professores",
+							" 3  Excluir Professor", " 4  Ver Professores",
+							" 5  Voltar a página anterior" });
 			switch (opcao) {
 				case 1:
 					GerenciarProfessoresController.cadastrarProfessor(scanner, banco_de_dados);
@@ -43,7 +44,7 @@ public class GerenciarProfessoresController {
 	}
 
 	private static void cadastrarProfessor(Scanner scanner, Database banco_de_dados) {
-		// Metodo de cadastro do professor
+		// Método de cadastro de um novo professor
 		String nome;
 		String senha = "";
 		String turno;
@@ -74,8 +75,8 @@ public class GerenciarProfessoresController {
 	}
 
 	private static void atualizarProfessor(Scanner scanner, Database banco_de_dados) {
-		// Metodo de atualização de professor
-		System.out.print("Digite o professor que deseja modificar:\t");
+		// Método de modificação de professor já existente
+		System.out.print("Digite o RP do professor que deseja modificar:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
@@ -83,35 +84,35 @@ public class GerenciarProfessoresController {
 			return;
 		}
 		System.out.println("O que deseja modificar?");
-		int opcao = Util.opcaoPainel(scanner, new String[] { "[1] - Turno", "[2] - Curso" });
-		int acc = 0;
-		while (acc < 1) {
+		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
+		int acumulador = 0;
+		while (acumulador < 1) {
 			switch (opcao) {
 				case 1:
 					System.out.print("Digite o novo turno:\t");
 					String turno = scanner.nextLine();
 					professor.setTurno(turno);
 					banco_de_dados.atualizarProfessor(professor);
-					acc++;
+					acumulador++;
 					break;
 				case 2:
 					System.out.print("Digite o novo curso:\t");
 					String curso = scanner.nextLine();
 					professor.setCurso(curso);
 					banco_de_dados.atualizarProfessor(professor);
-					acc++;
+					acumulador++;
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acc--;
+					acumulador--;
 					break;
 			}
 		}
 	}
 
 	private static void excluirProfessor(Scanner scanner, Database banco_de_dados) {
-		// Metodo de exclusão de professor
-		System.out.println("Digite o nome do professor(a) que deseja excluir:\t");
+		// Método de exclusão de um professor
+		System.out.println("Digite o RP do professor(a) que deseja excluir:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
@@ -119,17 +120,24 @@ public class GerenciarProfessoresController {
 			return;
 		}
 		banco_de_dados.excluirProfessor(professor);
-		System.out.println("Professor(a) excluído com sucesso!");
+		System.out.println("\n Professor(a) excluído com sucesso!");
 
 	}
 
 	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
-		// Metodo de visualização de professor
+		// Método de visualização dos professores criados
 		List<Professor> professores = banco_de_dados.getProfessores();
+
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("|                               PROFESSORES                                   |%n");
+		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "RP", "Professor", "Curso", "Turno");
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		for (Professor professor : professores) {
-			System.out.printf("RP: %s\t | Professor: %s\t | Curso: %s\t | Turno: %s\t | \n", professor.getRp(),
+			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", professor.getRp(),
 					professor.getNome(), professor.getCurso(), professor.getTurno());
 		}
+		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}
