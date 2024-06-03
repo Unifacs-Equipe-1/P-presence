@@ -17,7 +17,7 @@ public class ProfessorController {
 		while (true) {
 			// Metodo de Login como professor
 			Util.limparTela();
-			if (sessao_professor.equals("")) {
+			if (sessao_professor.isEmpty()) {
 				System.out.print("Informe RP para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");

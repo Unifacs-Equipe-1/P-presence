@@ -16,7 +16,7 @@ public class AlunoController {
 		String senha = "";
 		while (true) {
 			Util.limparTela();
-			if (sessao_aluno.equals("")) {
+			if (sessao_aluno.isEmpty()) {
 				System.out.print("Informe RA para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
