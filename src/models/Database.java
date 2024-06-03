@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
+
 	private final List<Aluno> alunos;
 	private final List<Professor> professores;
 
 	public Database() {
-		alunos = new ArrayList<>();
-		professores = new ArrayList<>();
+		this.alunos = new ArrayList<>();
+		this.professores = new ArrayList<>();
 	}
 
 	public Aluno getAluno(String registro_aluno) {
@@ -26,14 +27,54 @@ public class Database {
 	}
 
 	// método que retorna lista de alunos com base no nome
-	public List<Aluno> getAlunos(String name) {
-		List<Aluno> alunos = new ArrayList<>();
+	public List<Aluno> getAlunosNome(String nome) {
+		List<Aluno> alunos_local = new ArrayList<>();
 		for (Aluno a : this.alunos) {
-			if (a.getNome().contains(name)) {
-				alunos.add(a);
+			if (a.getNome().contains(nome)) {
+				alunos_local.add(a);
 			}
 		}
-		return alunos;
+		return alunos_local;
+	}
+
+	public List<Aluno> getAlunosCurso(String curso) {
+		List<Aluno> alunos_local = new ArrayList<>();
+		for (Aluno a : this.alunos) {
+			if (a.getCurso().contains(curso)) {
+				alunos_local.add(a);
+			}
+		}
+		return alunos_local;
+	}
+
+	public List<Aluno> getAlunosRA(String ra) {
+		List<Aluno> alunos_local = new ArrayList<>();
+		for (Aluno a : this.alunos) {
+			if (a.getRa().contains(ra)) {
+				alunos_local.add(a);
+			}
+		}
+		return alunos_local;
+	}
+
+	public List<Aluno> getAlunosTurno(String turno) {
+		List<Aluno> alunos_local = new ArrayList<>();
+		for (Aluno a : this.alunos) {
+			if (a.getTurno().contains(turno)) {
+				alunos_local.add(a);
+			}
+		}
+		return alunos_local;
+	}
+
+	public List<Aluno> getAlunosGenero(String genero) {
+		List<Aluno> alunos_local = new ArrayList<>();
+		for (Aluno a : this.alunos) {
+			if (a.getGenero().contains(genero)) {
+				alunos_local.add(a);
+			}
+		}
+		return alunos_local;
 	}
 
 	public void cadastrarAluno(Aluno aluno) {

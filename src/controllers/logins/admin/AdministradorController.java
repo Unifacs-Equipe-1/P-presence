@@ -7,7 +7,7 @@ import java.util.Scanner;
 import models.Database;
 
 public class AdministradorController {
-	// Metodo de login ADM
+	// Metodo de login como administrador / admin & admin
 	public static void loginAdmin(Scanner scanner, Database banco_de_dados, String administrador,
 			String senha_administrador) {
 		String sessao_usuario = "";
@@ -57,12 +57,12 @@ public class AdministradorController {
 					break;
 				case 3:
 					System.out.println("Voltando a página inicial");
-					sessao_usuario = "";
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
+
 	}
 }
