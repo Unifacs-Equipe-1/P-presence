@@ -3,6 +3,8 @@ package controllers.logins.professor;
 import extras.Util;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 import models.Aluno;
 import models.Database;
@@ -124,8 +126,27 @@ public class ProfessorController {
 		professor.setCodigo(UUID.randomUUID().toString());
 		banco_de_dados.atualizarProfessor(professor);
 		System.out.printf("Informe esse código para os alunos marcarem presença: %s%n", professor.getCodigoSala());
+
+		System.out.println("Digite a quantidade de minutos:");
+		int minutos = sc.nextInt();
+
+		long tempoMilissegundos = minutos * 60 * 1000;
+
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println("Tempo acabou!");
+				timer.cancel(); // Cancela o timer após o tempo especificado
+			}
+		}, tempoMilissegundos);
+
+		System.out.println("Temporizador iniciado para " + minutos + " minutos.");
+
 		System.out.println("Pressione enter para voltar a página anterior...");
 		sc.nextLine();
+		sc.nextLine();
+
 	}
 
 	// Método para visualização dos alunos
