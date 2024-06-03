@@ -19,36 +19,57 @@ public class FiltrarAlunosController {
 					" 3  Filtrar por curso", " 4  Filtrar por turno", " 5  Filtrar por genero", " 6  Voltar" });
 			switch (opcao) {
 				case 1:
+					/*
+					 * Método para filtrar os alunos
+					 */
 					FiltrarAlunosController.filtrarPorNome(scanner, banco_de_dados);
 					break;
 				case 2:
+					/*
+					 * Método para filtrar os alunos
+					 */
 					FiltrarAlunosController.filtrarPorRA(scanner, banco_de_dados);
 					break;
 				case 3:
+					/*
+					 * Método para filtrar os alunos
+					 */
 					FiltrarAlunosController.filtrarPorCurso(scanner, banco_de_dados);
 					break;
 				case 4:
+					/*
+					 * Método para filtrar os alunos
+					 */
 					FiltrarAlunosController.filtrarPorTurno(scanner, banco_de_dados);
 					break;
 				case 5:
+					/*
+					 * Método para filtrar os alunos
+					 */
 					FiltrarAlunosController.filtrarPorGenero(scanner, banco_de_dados);
 					break;
 				case 6:
+					/*
+					 * Método para voltar a página anterior
+					 */
 					System.out.println("Voltando a página anterior!");
 					return;
 				default:
+					/*
+					 * Caso a opção não exista
+					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
 	}
 
+	/*
+	 * Case 1 =
+	 * Método para filtrar os alunos
+	 * Busca Por RA
+	 */
 	private static void filtrarPorRA(Scanner scanner, Database banco_de_dados) {
-		/*
-		 * Case 1 =
-		 * Método para filtrar os alunos
-		 * Busca Por RA
-		 */
 		System.out.println("O informe o RA: ");
 		String ra = scanner.nextLine();
 		List<Aluno> registros = banco_de_dados.getAlunosRA(ra);
@@ -71,11 +92,12 @@ public class FiltrarAlunosController {
 
 	}
 
+	/*
+	 * Metodo para filtrar os alunos
+	 * Busca Por Nome
+	 */
 	private static void filtrarPorNome(Scanner scanner, Database banco_de_dados) {
-		/*
-		 * Metodo para filtrar os alunos
-		 * Busca Por Nome
-		 */
+
 		System.out.println("O informe o Nome: ");
 		String nome = scanner.nextLine();
 		List<Aluno> registros = banco_de_dados.getAlunosNome(nome);
@@ -97,11 +119,11 @@ public class FiltrarAlunosController {
 		scanner.nextLine();
 	}
 
+	/*
+	 * Metodo para filtrar os alunos
+	 * Busca Por Curso
+	 */
 	private static void filtrarPorCurso(Scanner scanner, Database banco_de_dados) {
-		/*
-		 * Metodo para filtrar os alunos
-		 * Busca Por Curso
-		 */
 		System.out.println("O informe o Curso: ");
 		String curso = scanner.nextLine();
 		List<Aluno> registros = banco_de_dados.getAlunosCurso(curso);
@@ -123,11 +145,11 @@ public class FiltrarAlunosController {
 		scanner.nextLine();
 	}
 
+	/*
+	 * Metodo para filtrar os alunos
+	 * Busca Por Turno
+	 */
 	private static void filtrarPorTurno(Scanner scanner, Database banco_de_dados) {
-		/*
-		 * Metodo para filtrar os alunos
-		 * Busca Por Turno
-		 */
 		System.out.println("O informe o Turno: ");
 		String turno = scanner.nextLine();
 		List<Aluno> registros = banco_de_dados.getAlunosTurno(turno);
@@ -149,11 +171,11 @@ public class FiltrarAlunosController {
 		scanner.nextLine();
 	}
 
+	/*
+	 * Metodo para filtrar os alunos
+	 * Busca Por Genero
+	 */
 	private static void filtrarPorGenero(Scanner scanner, Database banco_de_dados) {
-		/*
-		 * Metodo para filtrar os alunos
-		 * Busca Por Genero
-		 */
 		System.out.println("O informe o Genero: ");
 		String genero = scanner.nextLine();
 		List<Aluno> registros = banco_de_dados.getAlunosGenero(genero);

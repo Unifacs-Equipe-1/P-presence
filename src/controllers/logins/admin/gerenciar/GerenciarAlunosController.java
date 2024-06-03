@@ -8,6 +8,7 @@ import models.Aluno;
 import models.Database;
 
 public class GerenciarAlunosController {
+	// Método para gerenciar os alunos
 	public static void gerenciarAlunos(Scanner scanner, Database banco_de_dados) {
 
 		/*
@@ -45,8 +46,9 @@ public class GerenciarAlunosController {
 		}
 	}
 
+	// Metodo para imput dps dados de um Aluno a ser cadastrado
 	private static void cadastrarAluno(Scanner scanner, Database banco_de_dados) {
-		// Metodo para imput dps dados de um Aluno a ser cadastrado
+
 		String nome;
 		String genero;
 		String senha = "";
@@ -76,8 +78,9 @@ public class GerenciarAlunosController {
 		System.out.println("Aluno cadastrado com sucesso!");
 	}
 
+	// Método de atualização das informações de um aluno
 	private static void atualizarAluno(Scanner scanner, Database banco_de_dados) {
-		// Método de atualização das informações de um aluno
+
 		System.out.print("Digite o RA do aluno que deseja modificar:\t");
 		String registro_aluno = scanner.nextLine();
 		Aluno aluno = banco_de_dados.getAluno(registro_aluno);
@@ -113,8 +116,9 @@ public class GerenciarAlunosController {
 		}
 	}
 
+	// Método para exclusão de aluno
 	private static void excluirAluno(Scanner scanner, Database banco_de_dados) {
-		// Método para exclusão de aluno
+
 		System.out.println("Digite o RA do aluno que deseja excluir:\t");
 		String nome_aluno = scanner.nextLine();
 		Aluno aluno = banco_de_dados.getAluno(nome_aluno);
@@ -126,8 +130,9 @@ public class GerenciarAlunosController {
 		System.out.println("\n Aluno excluído com sucesso!");
 	}
 
+	// Método para a vizualição de todos os alunos
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
-		// Método para a vizualição de todos os alunos
+
 		List<Aluno> alunos = banco_de_dados.getAlunos();
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                                  ALUNOS                                     |%n");

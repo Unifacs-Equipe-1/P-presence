@@ -23,28 +23,47 @@ public class GerenciarProfessoresController {
 							" 5  Voltar a página anterior" });
 			switch (opcao) {
 				case 1:
+					/*
+					 * Método para cadastrar um novo professor
+					 */
 					GerenciarProfessoresController.cadastrarProfessor(scanner, banco_de_dados);
 					break;
 				case 2:
+					/*
+					 * Método para atualizar um professor
+					 */
 					GerenciarProfessoresController.atualizarProfessor(scanner, banco_de_dados);
 					break;
 				case 3:
+					/*
+					 * Método para excluir um professor
+					 */
 					GerenciarProfessoresController.excluirProfessor(scanner, banco_de_dados);
 					break;
 				case 4:
+					/*
+					 * Método para visualizar os professores
+					 */
 					GerenciarProfessoresController.verProfessor(scanner, banco_de_dados);
 				case 5:
+					/*
+					 * Método para voltar a página anterior
+					 */
 					System.out.println("Voltando a página anterior!");
 					return;
 				default:
+					/*
+					 * Caso a opção não exista
+					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
 	}
 
+	// Método de cadastro de um novo professor
 	private static void cadastrarProfessor(Scanner scanner, Database banco_de_dados) {
-		// Método de cadastro de um novo professor
+
 		String nome;
 		String senha = "";
 		String turno;
@@ -74,8 +93,9 @@ public class GerenciarProfessoresController {
 		System.out.println("Professor cadastrado com sucesso!");
 	}
 
+	// Método de modificação de professor já existente
 	private static void atualizarProfessor(Scanner scanner, Database banco_de_dados) {
-		// Método de modificação de professor já existente
+
 		System.out.print("Digite o RP do professor que deseja modificar:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
@@ -110,8 +130,9 @@ public class GerenciarProfessoresController {
 		}
 	}
 
+	// Método de exclusão de um professor
 	private static void excluirProfessor(Scanner scanner, Database banco_de_dados) {
-		// Método de exclusão de um professor
+
 		System.out.println("Digite o RP do professor(a) que deseja excluir:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
@@ -124,8 +145,9 @@ public class GerenciarProfessoresController {
 
 	}
 
+	// Método de visualização dos professores criados
 	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
-		// Método de visualização dos professores criados
+
 		List<Professor> professores = banco_de_dados.getProfessores();
 
 		System.out.printf("-------------------------------------------------------------------------------%n");

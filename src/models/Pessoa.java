@@ -1,11 +1,13 @@
 package models;
 
 public abstract class Pessoa {
+	// atributos de Pessoa
 	private String nome = "";
 	private String senha = "";
 	private String turno = "";
 	private String curso = "";
 
+	// constutor de Pessoa
 	protected Pessoa(String nome, String senha, String turno, String curso) {
 		this.nome = nome;
 		this.senha = senha;
@@ -13,6 +15,7 @@ public abstract class Pessoa {
 		this.curso = curso;
 	}
 
+	// Getter e Setters de Pessoa
 	public final String getNome() {
 		return nome;
 	}

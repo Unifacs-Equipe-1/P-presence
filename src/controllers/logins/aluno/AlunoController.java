@@ -23,12 +23,14 @@ public class AlunoController {
 				senha = scanner.nextLine();
 				sessao_aluno = "logado";
 			}
+			// Verificação de usuário
 			Aluno aluno = banco_de_dados.getAluno(usuario);
 			if (aluno == null) {
 				System.out.println(" \n RA não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
 				return;
 			}
+			// Verificação de senha
 			if (!aluno.getSenha().equals(senha)) {
 				System.out
 						.println(" \n RA ou senha incorretos! \n Pressione enter para voltar a página inicial...");
@@ -36,6 +38,7 @@ public class AlunoController {
 				return;
 			}
 			Util.limparTela();
+			// Painel do Aluno
 			System.out.println("Usuário logado com sucesso!");
 			int opcao = Util.optionPainel(scanner, new String[] { " 1  Mostrar sala disponível",
 					" 2  Entrar na sala e marcar presença", " 3  Ver meus dados", " 4  Sair da conta" });
@@ -49,24 +52,40 @@ public class AlunoController {
 			 */
 			switch (opcao) {
 				case 1:
+					/*
+					 * Método para informar a sala
+					 */
 					AlunoController.informarDadosDaSala(scanner, aluno);
 					break;
 				case 2:
+					/*
+					 * Método para marcar presença
+					 */
 					AlunoController.marcarPresenca(scanner, banco_de_dados, aluno);
 					break;
 				case 3:
+					/*
+					 * Método para mostrar os dados do aluno
+					 */
 					AlunoController.mostrarDadosAluno(scanner, aluno);
 					break;
 				case 4:
+					/*
+					 * Sair da conta
+					 */
 					System.out.println("Saindo da conta de aluno...");
 					return;
 				default:
+					/*
+					 * Caso o usuário digite uma opção inválida
+					 */
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
 	}
 
+	// Métodos para o Aluno
 	private static void informarDadosDaSala(Scanner scanner, Aluno aluno) {
 		// Método para visualizar a sala
 		if (aluno.getSala() != null) {
@@ -78,6 +97,7 @@ public class AlunoController {
 		scanner.nextLine();
 	}
 
+	// Método para marcar a presença
 	private static void marcarPresenca(Scanner scanner, Database banco_de_dados, Aluno aluno) {
 		// Método para maracar a presença na sala de aula
 		// Caso a sala não esteja disponivel (O professor não criou)
@@ -108,6 +128,7 @@ public class AlunoController {
 		scanner.nextLine();
 	}
 
+	// Método para vizualizar os dados do aluno
 	private static void mostrarDadosAluno(Scanner scanner, Aluno aluno) {
 		// Método para vizualizar os dados do aluno (Nome / Genero / Curso / Turno / UC)
 		System.out.printf(

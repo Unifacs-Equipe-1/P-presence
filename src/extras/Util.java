@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
-
 	public static int optionPainel(Scanner scanner, String[] options) {
 		System.out.println("");
 		System.out.printf(" ---------------------------------------%n");
@@ -40,8 +39,9 @@ public class Util {
 		}
 	}
 
+	// Método para gerar o RA e o RP
 	public static String generateUuidNumber(String seed, int digitos) {
-		// Método para gerar o RA e o RP
+
 		String numberMaximo = "";
 		if (digitos <= 0) {
 			numberMaximo = "9";
