@@ -140,9 +140,15 @@ public class GerenciarProfessoresController {
 			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
 		}
-		banco_de_dados.excluirProfessor(professor);
-		System.out.println("\n Professor(a) excluído com sucesso!");
-
+		System.out.println("Professor encontrado, tem certeza que deseja excluir?");
+		int escolha = Util.optionPainel(scanner, new String[] { "[1] - Sim", "[2] - Não (Padrão)" });
+		if (escolha == 1) {
+			banco_de_dados.excluirProfessor(professor);
+			System.out.println("\n Professor(a) excluído com sucesso!");
+		} else {
+			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
+			scanner.nextLine();
+		}
 	}
 
 	// Método de visualização dos professores criados

@@ -126,8 +126,15 @@ public class GerenciarAlunosController {
 			System.out.println("\nAluno não encontrado!!\n");
 			return;
 		}
-		banco_de_dados.excluirAluno(aluno);
-		System.out.println("\n Aluno excluído com sucesso!");
+		System.out.println("Aluno encontrado, tem certeza que deseja excluir?");
+		int escolha = Util.optionPainel(scanner, new String[] { "[1] - Sim", "[2] - Não (Padrão)" });
+		if (escolha == 1) {
+			banco_de_dados.excluirAluno(aluno);
+			System.out.println("\n Aluno excluído com sucesso!");
+		} else {
+			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
+			scanner.nextLine();
+		}
 	}
 
 	// Método para a vizualição de todos os alunos
