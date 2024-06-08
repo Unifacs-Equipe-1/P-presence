@@ -25,7 +25,7 @@ public class Programa {
 		banco_de_dados.cadastrarAluno(new Aluno("Marcela", "password", "Feminino", "Matutino",
 				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarProfessor(new Professor("Eliane", "profeliane", "Matutino",
-				"Ciência da Computação", "Programas e soluções computacionais", "5/5"));
+				"Ciência da Computação", "Programas e soluções computacionais", "Doutora"));
 		// Login e senha do administrador:
 		String administrador = "admin";
 		String senha_administrador = "admin";

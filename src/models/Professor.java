@@ -9,13 +9,13 @@ public class Professor extends Pessoa {
 	private final String uc;
 	private String sala;
 	private String codigo_sala;
-	private String desempenho;
+	private String graduacao;
 
 	// construtor de Professor
-	public Professor(String nome, String senha, String turno, String curso, String uc, String desempenho) {
+	public Professor(String nome, String senha, String turno, String curso, String uc, String graduacao) {
 		super(nome, senha, turno, curso);
 		this.uc = uc;
-		this.desempenho = desempenho;
+		this.graduacao = graduacao;
 		this.registro_professor = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);
 	}
 
@@ -44,11 +44,12 @@ public class Professor extends Pessoa {
 		return registro_professor;
 	}
 
-	public String getDesempenho() {
-		return desempenho;
+	public String getGraduacao() {
+		return graduacao;
 	}
 
-	public void setDesempenho(String desempenho) {
-		this.desempenho = desempenho;
+	public void setGraduacao(String graduacao) {
+		this.graduacao = graduacao;
 	}
+
 }

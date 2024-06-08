@@ -69,7 +69,7 @@ public class GerenciarProfessoresController {
 		String turno;
 		String curso;
 		String uc;
-		String desempenho;
+		String graduacao;
 		System.out.print("Digite o nome do professor: ");
 		nome = scanner.nextLine();
 		System.out.print("Escolha um turno para o professor: ");
@@ -78,8 +78,8 @@ public class GerenciarProfessoresController {
 		curso = scanner.nextLine();
 		System.out.print("Escolha a UC do professor: ");
 		uc = scanner.nextLine();
-		System.out.println("Digite a qualidade de desempenho do professor(a), entre 1 e 5");
-		desempenho = scanner.nextLine();
+		System.out.println("Digite o nivel de graduação do professor(a)");
+		graduacao = scanner.nextLine();
 		for (int i = 0; i < 1; i++) {
 			System.out.print("Digite uma senha: ");
 			senha = scanner.nextLine();
@@ -91,7 +91,7 @@ public class GerenciarProfessoresController {
 				i--;
 			}
 		}
-		Professor professor = new Professor(nome, senha, turno, curso, uc, desempenho);
+		Professor professor = new Professor(nome, senha, turno, curso, uc, graduacao);
 		banco_de_dados.cadastrarProfessor(professor);
 		System.out.println("Professor cadastrado com sucesso!");
 	}
@@ -156,16 +156,16 @@ public class GerenciarProfessoresController {
 		System.out.printf(
 				"--------------------------------------------------------------------------------------------%n");
 		System.out.printf(
-				"|                               PROFESSORES                                                |%n");
+				"|                                     PROFESSORES                                          |%n");
 		System.out.printf(
 				"--------------------------------------------------------------------------------------------%n");
 		System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s |%n", "RP", "Professor", "Curso", "Turno",
-				"Desempenho");
+				"Graduação");
 		System.out.printf(
 				"--------------------------------------------------------------------------------------------%n");
 		for (Professor professor : professores) {
 			System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s |%n", professor.getRp(),
-					professor.getNome(), professor.getCurso(), professor.getTurno(), professor.getDesempenho());
+					professor.getNome(), professor.getCurso(), professor.getTurno(), professor.getGraduacao());
 		}
 		System.out.printf(
 				"--------------------------------------------------------------------------------------------%n");
