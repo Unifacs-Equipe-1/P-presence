@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Pessoa implements Comparable<Pessoa> {
+public abstract class Pessoa {
 	// atributos de Pessoa
 	private String nome = "";
 	private String senha = "";
@@ -42,11 +42,5 @@ public abstract class Pessoa implements Comparable<Pessoa> {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
-	}
-
-	@Override
-	// Metodo para comparar os nomes das pessoas
-	public int compareTo(Pessoa pessoa) {
-		return this.nome.compareTo(pessoa.getNome());
 	}
 }
