@@ -54,6 +54,7 @@ public class GerenciarAlunosController {
 		String senha = "";
 		String turno;
 		String curso;
+		String semestre;
 		System.out.print("Digite o nome do aluno: ");
 		nome = scanner.nextLine();
 		System.out.print("Digite o gênero do aluno: ");
@@ -62,6 +63,8 @@ public class GerenciarAlunosController {
 		turno = scanner.nextLine();
 		System.out.print("Escolha um curso para o aluno: ");
 		curso = scanner.nextLine();
+		System.out.println("Digite o semestre do aluno");
+		semestre = scanner.nextLine();
 		for (int i = 0; i < 1; i++) {
 			System.out.print("Digite uma senha: ");
 			senha = scanner.nextLine();
@@ -73,7 +76,7 @@ public class GerenciarAlunosController {
 				i--;
 			}
 		}
-		Aluno aluno = new Aluno(nome, senha, genero, turno, curso);
+		Aluno aluno = new Aluno(nome, senha, genero, turno, curso, semestre);
 		banco_de_dados.cadastrarAluno(aluno);
 		System.out.println("Aluno cadastrado com sucesso!");
 	}
@@ -134,16 +137,22 @@ public class GerenciarAlunosController {
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
 		List<Aluno> alunos = banco_de_dados.getAlunos();
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("|                                  ALUNOS                                     |%n");
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "RA", "Aluno", "Curso", "Turno");
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"---------------------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"|                                        ALUNOS                                             |%n");
+		System.out.printf(
+				"---------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s  |%n", "RA", "Aluno", "Curso", "Turno",
+				" Semestre ");
+		System.out.printf(
+				"---------------------------------------------------------------------------------------------%n");
 		for (Aluno aluno : alunos) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getRa(),
-					aluno.getNome(), aluno.getCurso(), aluno.getTurno());
+			System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-9s |%n", aluno.getRa(),
+					aluno.getNome(), aluno.getCurso(), aluno.getTurno(), aluno.getSemestre());
 		}
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"---------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}

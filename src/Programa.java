@@ -13,19 +13,19 @@ public class Programa {
 		Database banco_de_dados = new Database();
 		// Informações referente aos dados dos alunos
 		banco_de_dados.cadastrarAluno(new Aluno("Marcilio", "123", "Masculino", "Matutino",
-				"Ciência da Computação"));
+				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarAluno(new Aluno("Erick ", "abc", "Masculino", "Matutino",
-				"Ciência da Computação"));
+				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarAluno(new Aluno("Rodson", "teste", "Masculino", "Matutino",
-				"Ciência da Computação"));
+				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarAluno(new Aluno("Arthur", "789", "Masculino", "Matutino",
-				"Ciência da Computação"));
+				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarAluno(new Aluno("Marcus", "senha", "Masculino", "Matutino",
-				"Ciência da Computação"));
+				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarAluno(new Aluno("Marcela", "password", "Feminino", "Matutino",
-				"Ciência da Computação"));
+				"Ciência da Computação", "1º semestre"));
 		banco_de_dados.cadastrarProfessor(new Professor("Eliane", "profeliane", "Matutino",
-				"Ciência da Computação", "Programas e soluções computacionais"));
+				"Ciência da Computação", "Programas e soluções computacionais", "5/5"));
 		// Login e senha do administrador:
 		String administrador = "admin";
 		String senha_administrador = "admin";
