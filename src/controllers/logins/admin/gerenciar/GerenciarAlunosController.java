@@ -111,7 +111,7 @@ public class GerenciarAlunosController {
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acumulador--;
+					acumulador++;
 					break;
 			}
 		}
