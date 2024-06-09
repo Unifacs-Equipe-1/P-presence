@@ -15,6 +15,7 @@ public class FiltrarAlunosController {
 	 */
 	public static void filtrarAlunos(Scanner scanner, Database banco_de_dados) {
 		while (true) {
+			Util.limparTela();
 			int opcao = Util.optionPainel(scanner, new String[] { " 1  Filtrar por nome", " 2  Filtrar por RA",
 					" 3  Filtrar por curso", " 4  Filtrar por turno", " 5  Filtrar por genero", " 6  Voltar" });
 			switch (opcao) {
@@ -77,16 +78,21 @@ public class FiltrarAlunosController {
 		 * Tabela sendo filtrada pelo RA
 		 * E mostrando os Atributos
 		 */
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("|                                     RA " + ra + "                              |%n");
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                    RA %-11s                                       |%n",
+				ra);
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
+			System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", aluno.getNome(),
 					aluno.getGenero(), aluno.getCurso(), aluno.getTurno(), aluno.getRa());
 		}
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 
@@ -105,16 +111,20 @@ public class FiltrarAlunosController {
 		 * Tabela sendo filtrada pelo Nome
 		 * E mostrando os Atributos
 		 */
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("|                                     Nome " + nome + "                        |%n");
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                       Nome %-20s                         |%n", nome);
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
+			System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", aluno.getNome(),
 					aluno.getGenero(), aluno.getCurso(), aluno.getTurno(), aluno.getRa());
 		}
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}
@@ -131,16 +141,20 @@ public class FiltrarAlunosController {
 		 * Tabela sendo filtrada pelo Curso
 		 * E mostrando os Atributos
 		 */
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("|                                     Curso " + curso + "                        |%n");
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                  Curso %-25s                        |%n", curso);
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
+			System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", aluno.getNome(),
 					aluno.getGenero(), aluno.getCurso(), aluno.getTurno(), aluno.getRa());
 		}
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}
@@ -157,16 +171,21 @@ public class FiltrarAlunosController {
 		 * Tabela sendo filtrada pelo Turno
 		 * E mostrando os Atributos
 		 */
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("||                                     Turno " + turno + "                          |%n");
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                  Turno %-10s                                       |%n",
+				turno);
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
+			System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", aluno.getNome(),
 					aluno.getGenero(), aluno.getCurso(), aluno.getTurno(), aluno.getRa());
 		}
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}
@@ -183,17 +202,21 @@ public class FiltrarAlunosController {
 		 * Tabela sendo filtrada pelo Genero
 		 * E mostrando os Atributos
 		 */
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out
-				.printf("|                                     Genero " + genero + "                        |%n");
-		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("|                                     Genero %-9s                                    |%n",
+				genero);
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
+			System.out.printf("| %-20s | %-9s | %-25s | %-10s | %-11s |%n", aluno.getNome(),
 					aluno.getGenero(), aluno.getCurso(), aluno.getTurno(), aluno.getRa());
 		}
-		System.out.printf("-------------------------------------------------------------------------------%n");
+		System.out.printf(
+				"-------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}

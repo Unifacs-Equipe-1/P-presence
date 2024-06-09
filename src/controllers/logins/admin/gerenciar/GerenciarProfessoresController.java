@@ -90,6 +90,7 @@ public class GerenciarProfessoresController {
 		}
 		Professor professor = new Professor(nome, senha, turno, curso, uc);
 		banco_de_dados.cadastrarProfessor(professor);
+		Util.limparTela();
 		System.out.println("Professor cadastrado com sucesso!");
 	}
 
@@ -100,9 +101,10 @@ public class GerenciarProfessoresController {
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
-			System.out.println("\nProfessor nao encontrado!!\n");
+			System.out.println("\nProfessor não encontrado!!\n");
 			return;
 		}
+
 		System.out.println("O que deseja modificar?");
 		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acumulador = 0;
@@ -128,6 +130,7 @@ public class GerenciarProfessoresController {
 					break;
 			}
 		}
+
 	}
 
 	// Método de exclusão de um professor
@@ -135,13 +138,15 @@ public class GerenciarProfessoresController {
 
 		System.out.println("Digite o RP do professor(a) que deseja excluir:\t");
 		String nome_professor = scanner.nextLine();
+		Util.limparTela();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
 			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
 		}
+		Util.limparTela();
 		System.out.println("Professor encontrado, tem certeza que deseja excluir?");
-		int escolha = Util.optionPainel(scanner, new String[] { "[1] - Sim", "[2] - Não (Padrão)" });
+		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
 		if (escolha == 1) {
 			banco_de_dados.excluirProfessor(professor);
 			System.out.println("\n Professor(a) excluído com sucesso!");

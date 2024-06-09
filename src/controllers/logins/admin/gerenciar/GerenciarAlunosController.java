@@ -127,7 +127,7 @@ public class GerenciarAlunosController {
 			return;
 		}
 		System.out.println("Aluno encontrado, tem certeza que deseja excluir?");
-		int escolha = Util.optionPainel(scanner, new String[] { "[1] - Sim", "[2] - Não (Padrão)" });
+		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
 		if (escolha == 1) {
 			banco_de_dados.excluirAluno(aluno);
 			System.out.println("\n Aluno excluído com sucesso!");
