@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.Aluno;
 import models.Database;
+import java.util.Collections;
 
 public class GerenciarAlunosController {
 	// Método para gerenciar os alunos
@@ -134,6 +135,8 @@ public class GerenciarAlunosController {
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
 		List<Aluno> alunos = banco_de_dados.getAlunos();
+		// Ordernar Alunos
+		Collections.sort(alunos);
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                                  ALUNOS                                     |%n");
 		System.out.printf("-------------------------------------------------------------------------------%n");
