@@ -45,6 +45,7 @@ public abstract class Pessoa implements Comparable<Pessoa> {
 	}
 
 	// Comparar os nomes dos objetos
+	@Override
 	public int compareTo(Pessoa pessoa) {
 		return this.nome.compareTo(pessoa.getNome());
 	}
