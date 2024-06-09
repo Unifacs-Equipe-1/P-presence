@@ -80,7 +80,7 @@ public class FiltrarAlunosController {
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                                     RA " + ra + "                              |%n");
 		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA", "Semestre");
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
 			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
