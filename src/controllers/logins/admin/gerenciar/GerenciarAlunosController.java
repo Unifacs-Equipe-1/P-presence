@@ -128,8 +128,6 @@ public class GerenciarAlunosController {
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					System.out.println("Pressione enter para prosseguir...");
-					scanner.nextLine();
 					acumulador++;
 					break;
 			}
@@ -166,8 +164,8 @@ public class GerenciarAlunosController {
 	// Método para a vizualição de todos os alunos
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
-		List<Aluno> alunos = banco_de_dados.getAlunos();
-		// Ordenar Alunos
+		List<Aluno> alunos = banco_de_dados.getAlunos
+		// Ordernar Alunos
 		Collections.sort(alunos);
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                                  ALUNOS                                     |%n");

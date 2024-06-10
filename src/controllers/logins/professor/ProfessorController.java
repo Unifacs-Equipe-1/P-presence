@@ -144,6 +144,7 @@ public class ProfessorController {
 	private static void verAlunos(Scanner sc, Database banco_de_dados) {
 		// Método de visualização dos alunos
 		List<Aluno> alunos = banco_de_dados.getAlunos();
+		// Ordenar os alunos
 		Collections.sort(alunos);
 		System.out.printf(
 				"------------------------------------------------------------------------------------------------------%n");

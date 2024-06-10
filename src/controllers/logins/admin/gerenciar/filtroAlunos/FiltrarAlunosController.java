@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.Aluno;
 import models.Database;
+import java.util.Collections;
 
 public class FiltrarAlunosController {
 
@@ -15,8 +16,8 @@ public class FiltrarAlunosController {
 	 */
 	public static void filtrarAlunos(Scanner scanner, Database banco_de_dados) {
 		while (true) {
-			int opcao = Util.optionPainel(scanner, new String[] { " 1  Filtrar por nome", " 2  Filtrar por RA",
-					" 3  Filtrar por curso", " 4  Filtrar por turno", " 5  Filtrar por genero", " 6  Voltar" });
+			int opcao = Util.optionPainel(scanner, new String[] { " 1  Filtrar por Nome", " 2  Filtrar por RA",
+					" 3  Filtrar por Curso", " 4  Filtrar por Turno", " 5  Filtrar por Genero", " 6  Voltar" });
 			switch (opcao) {
 				case 1:
 					/*
@@ -85,6 +86,7 @@ public class FiltrarAlunosController {
 		String ra = scanner.nextLine();
 		Util.limparTela();
 		List<Aluno> registros = banco_de_dados.getAlunosRA(ra);
+		Collections.sort(registros);
 		/*
 		 * Tabela sendo filtrada pelo RA
 		 * E mostrando os Atributos
@@ -119,6 +121,7 @@ public class FiltrarAlunosController {
 		String nome = scanner.nextLine();
 		Util.limparTela();
 		List<Aluno> registros = banco_de_dados.getAlunosNome(nome);
+		Collections.sort(registros);
 		/*
 		 * Tabela sendo filtrada pelo Nome
 		 * E mostrando os Atributos
@@ -150,6 +153,7 @@ public class FiltrarAlunosController {
 		String curso = scanner.nextLine();
 		Util.limparTela();
 		List<Aluno> registros = banco_de_dados.getAlunosCurso(curso);
+		Collections.sort(registros);
 		/*
 		 * Tabela sendo filtrada pelo Curso
 		 * E mostrando os Atributos
@@ -181,6 +185,7 @@ public class FiltrarAlunosController {
 		String turno = scanner.nextLine();
 		Util.limparTela();
 		List<Aluno> registros = banco_de_dados.getAlunosTurno(turno);
+		Collections.sort(registros);
 		/*
 		 * Tabela sendo filtrada pelo Turno
 		 * E mostrando os Atributos
@@ -213,6 +218,7 @@ public class FiltrarAlunosController {
 		String genero = scanner.nextLine();
 		Util.limparTela();
 		List<Aluno> registros = banco_de_dados.getAlunosGenero(genero);
+		Collections.sort(registros);
 		/*
 		 * Tabela sendo filtrada pelo Genero
 		 * E mostrando os Atributos

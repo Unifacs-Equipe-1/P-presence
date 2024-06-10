@@ -1,2 +1,5 @@
 # Arquivos binários
 bin/
+.classpath
+.project
+.vscode

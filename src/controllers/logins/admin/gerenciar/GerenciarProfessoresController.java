@@ -186,7 +186,8 @@ public class GerenciarProfessoresController {
 	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
 
 		List<Professor> professores = banco_de_dados.getProfessores();
-		// Ordenar professor
+
+		// Ordernar Professores
 		Collections.sort(professores);
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                               PROFESSORES                                   |%n");
