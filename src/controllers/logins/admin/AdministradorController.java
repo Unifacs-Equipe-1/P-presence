@@ -14,20 +14,24 @@ public class AdministradorController {
 		while (true) {
 			String usuario = null;
 			String senha = null;
-			Util.limparTela();
 			// Verificação de usuário e senha
 			if (sessao_usuario.isEmpty()) {
 				System.out.print("Informe o usuário para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
+				Util.limparTela();
 			}
 			// Verificação de usuário e senha
 			if (!sessao_usuario.equals("admin")
 					&& (!administrador.equals(usuario) || !senha_administrador.equals(senha))) {
-				Util.limparTela();
+
 				System.out.println("Usuário ou senha incorretos!");
 				System.out.println("Deseja tentar novamente?");
+				System.out.println("Pressione enter para responder...");
+				scanner.nextLine();
+				Util.limparTela();
+
 				int prosseguir = Util.optionPainel(scanner, new String[] { " 0  Não (default)", " 1  Sim" });
 				switch (prosseguir) {
 					case 1:
@@ -35,12 +39,15 @@ public class AdministradorController {
 					case 0:
 					default:
 						System.out.println("Retornando a página inicial");
+						System.out.print("\nPressione enter para prosseguir...");
+						scanner.nextLine();
+						Util.limparTela();
 						return;
 				}
 			} else {
 				sessao_usuario = "admin";
 			}
-			Util.limparTela();
+
 			int opcao = Util.optionPainel(scanner, new String[] {
 					/*
 					 * Opções de ações para o ADM 1 - Vai para gerenciamento de Aluno
@@ -65,12 +72,18 @@ public class AdministradorController {
 					 * 
 					 */
 					System.out.println("Voltando a página inicial");
+					System.out.print("\nPressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					return;
 				default:
 					/*
 					 * Caso o usuário digite uma opção inválida
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					break;
 			}
 		}

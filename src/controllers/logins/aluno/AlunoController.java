@@ -15,31 +15,31 @@ public class AlunoController {
 		String usuario = "";
 		String senha = "";
 		while (true) {
-			Util.limparTela();
 			if (sessao_aluno.isEmpty()) {
 				System.out.print("Informe RA para login:\t");
 				usuario = scanner.nextLine();
 				System.out.print("Informe a senha para login:\t");
 				senha = scanner.nextLine();
 				sessao_aluno = "logado";
+				Util.limparTela();
 			}
 			// Verificação de usuário
 			Aluno aluno = banco_de_dados.getAluno(usuario);
 			if (aluno == null) {
 				System.out.println(" \n RA não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
-				return;
+				Util.limparTela();
 			}
 			// Verificação de senha
 			if (!aluno.getSenha().equals(senha)) {
 				System.out
 						.println(" \n RA ou senha incorretos! \n Pressione enter para voltar a página inicial...");
 				scanner.nextLine();
+				Util.limparTela();
 				return;
 			}
-			Util.limparTela();
+
 			// Painel do Aluno
-			System.out.println("Usuário logado com sucesso!");
 			int opcao = Util.optionPainel(scanner, new String[] { " 1  Mostrar sala disponível",
 					" 2  Entrar na sala e marcar presença", " 3  Ver meus dados", " 4  Sair da conta" });
 			/*
@@ -56,30 +56,39 @@ public class AlunoController {
 					 * Método para informar a sala
 					 */
 					AlunoController.informarDadosDaSala(scanner, aluno);
+					Util.limparTela();
 					break;
 				case 2:
 					/*
 					 * Método para marcar presença
 					 */
 					AlunoController.marcarPresenca(scanner, banco_de_dados, aluno);
+					Util.limparTela();
 					break;
 				case 3:
 					/*
 					 * Método para mostrar os dados do aluno
 					 */
 					AlunoController.mostrarDadosAluno(scanner, aluno);
+					Util.limparTela();
 					break;
 				case 4:
 					/*
 					 * Sair da conta
 					 */
 					System.out.println("Saindo da conta de aluno...");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					return;
 				default:
 					/*
 					 * Caso o usuário digite uma opção inválida
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					break;
 			}
 		}

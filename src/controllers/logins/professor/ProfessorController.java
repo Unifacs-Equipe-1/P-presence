@@ -15,7 +15,7 @@ public class ProfessorController {
 		String usuario = "";
 		String senha = "";
 		while (true) {
-			Util.limparTela();
+
 			if (sessao_professor.isEmpty()) {
 				System.out.print("Informe RP para login:\t");
 				usuario = scanner.nextLine();
@@ -28,13 +28,15 @@ public class ProfessorController {
 			if (professor == null) {
 				System.out.println(" \n Usuário não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
-				return;
+				Util.limparTela();
 			}
 			// Verificação de senha
 			if (!professor.getSenha().equals(senha)) {
 				System.out
 						.println(" \n Usuário ou senha incorretos! \n Pressione enter para voltar a página inicial...");
+				System.out.print("\nPressione enter para prosseguir...");
 				scanner.nextLine();
+				Util.limparTela();
 				return;
 			}
 			Util.limparTela();
@@ -54,30 +56,39 @@ public class ProfessorController {
 					 * Método para configurar a sala
 					 */
 					ProfessorController.configurarSala(scanner, banco_de_dados, professor);
+					Util.limparTela();
 					break;
 				case 2:
 					/*
 					 * Método para gerar o código da sala
 					 */
 					ProfessorController.gerarCodigo(scanner, banco_de_dados, professor);
+					Util.limparTela();
 					break;
 				case 3:
 					/*
 					 * Método para visualizar os alunos
 					 */
 					ProfessorController.verAlunos(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 4:
 					/*
 					 * Método para sair da conta
 					 */
 					System.out.println("Saindo da conta de professor...");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					return;
 				default:
 					/*
 					 * Caso a opção não seja válida
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					break;
 			}
 		}

@@ -27,35 +27,45 @@ public class GerenciarProfessoresController {
 					 * Método para cadastrar um novo professor
 					 */
 					GerenciarProfessoresController.cadastrarProfessor(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 2:
 					/*
 					 * Método para atualizar um professor
 					 */
 					GerenciarProfessoresController.atualizarProfessor(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 3:
 					/*
 					 * Método para excluir um professor
 					 */
 					GerenciarProfessoresController.excluirProfessor(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 4:
 					/*
 					 * Método para visualizar os professores
 					 */
 					GerenciarProfessoresController.verProfessor(scanner, banco_de_dados);
+					Util.limparTela();
 				case 5:
 					/*
 					 * Método para voltar a página anterior
 					 */
 					System.out.println("Voltando a página anterior!");
+					System.out.print("\nPressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					return;
 				default:
 					/*
 					 * Caso a opção não exista
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					break;
 			}
 		}
@@ -92,6 +102,8 @@ public class GerenciarProfessoresController {
 		banco_de_dados.cadastrarProfessor(professor);
 		Util.limparTela();
 		System.out.println("Professor cadastrado com sucesso!");
+		System.out.println("Pressione enter para prosseguir...");
+		scanner.nextLine();
 	}
 
 	// Método de modificação de professor já existente
@@ -101,11 +113,16 @@ public class GerenciarProfessoresController {
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
-			System.out.println("\nProfessor não encontrado!!\n");
+			System.out.println("Professor não encontrado!!");
+			System.out.println("Pressione enter para prosseguir...");
+			scanner.nextLine();
+			Util.limparTela();
 			return;
 		}
 
-		System.out.println("O que deseja modificar?");
+		System.out.println("Pressione enter definir o que deseja modificar...");
+		scanner.nextLine();
+		Util.limparTela();
 		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acumulador = 0;
 		while (acumulador < 1) {
@@ -126,7 +143,9 @@ public class GerenciarProfessoresController {
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acumulador--;
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					acumulador++;
 					break;
 			}
 		}
@@ -141,15 +160,22 @@ public class GerenciarProfessoresController {
 		Util.limparTela();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
-			System.out.println("\nProfessor nao encontrado!!\n");
+			System.out.println("\nProfessor nao encontrado!!\n");]
+			System.out.println("Pressione enter para prosseguir...");
+			scanner.nextLine();
 			return;
 		}
 		Util.limparTela();
 		System.out.println("Professor encontrado, tem certeza que deseja excluir?");
+		System.out.println("Pressione enter para responder...");
+		scanner.nextLine();
+		Util.limparTela();
 		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
 		if (escolha == 1) {
 			banco_de_dados.excluirProfessor(professor);
-			System.out.println("\n Professor(a) excluído com sucesso!");
+			System.out.println("\nProfessor(a) excluído com sucesso!");
+			System.out.println("Pressione enter para prosseguir...");
+			scanner.nextLine();
 		} else {
 			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
 			scanner.nextLine();
@@ -173,5 +199,6 @@ public class GerenciarProfessoresController {
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
+		Util.limparTela();
 	}
 }
