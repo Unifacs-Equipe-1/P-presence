@@ -30,7 +30,6 @@ public class Programa {
 		String administrador = "admin";
 		String senha_administrador = "admin";
 		while (true) {
-			Util.limparTela();
 			// Apresenta as opções na tela e retorna a opção escolhida
 			int opcao = Util.optionPainel(scanner,
 					new String[] { " 1  Fazer login como aluno", " 2  Fazer login como professor",
@@ -67,6 +66,9 @@ public class Programa {
 					 * Método caso o usuário utilize outro valor
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					break;
 			}
 		}

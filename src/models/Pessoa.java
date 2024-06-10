@@ -1,6 +1,7 @@
 package models;
 
 public abstract class Pessoa implements Comparable<Pessoa> {
+
 	// atributos de Pessoa
 	private String nome = "";
 	private String senha = "";
@@ -44,9 +45,11 @@ public abstract class Pessoa implements Comparable<Pessoa> {
 		this.curso = curso;
 	}
 
+
 	// Comparar os nomes dos objetos
 	@Override
 	public int compareTo(Pessoa pessoa) {
 		return this.nome.compareTo(pessoa.getNome());
 	}
+
 }

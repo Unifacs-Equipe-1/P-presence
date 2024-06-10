@@ -24,24 +24,35 @@ public class GerenciarAlunosController {
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.cadastrarAluno(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 2:
 					GerenciarAlunosController.atualizarAluno(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 3:
 					GerenciarAlunosController.excluirAluno(scanner, banco_de_dados);
+					Util.limparTela();
 					break;
 				case 4:
 					GerenciarAlunosController.verAluno(scanner, banco_de_dados);
+					Util.limparTela();
 					return;
 				case 5:
 					FiltrarAlunosController.filtrarAlunos(scanner, banco_de_dados);
+					Util.limparTela();
 					return;
 				case 6:
 					System.out.println("Voltando a página anterior!");
+					System.out.print("\nPressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");
+					System.out.println("Pressione enter para prosseguir...");
+					scanner.nextLine();
+					Util.limparTela();
 					break;
 			}
 		}
@@ -76,7 +87,10 @@ public class GerenciarAlunosController {
 		}
 		Aluno aluno = new Aluno(nome, senha, genero, turno, curso);
 		banco_de_dados.cadastrarAluno(aluno);
+		Util.limparTela();
 		System.out.println("Aluno cadastrado com sucesso!");
+		System.out.println("Pressione enter para prosseguir...");
+		scanner.nextLine();
 	}
 
 	// Método de atualização das informações de um aluno
@@ -88,9 +102,12 @@ public class GerenciarAlunosController {
 		if (aluno == null) {
 			System.out.println();
 			System.out.println("Aluno não encontrado!!");
+			System.out.println("Pressione enter para prosseguir...");
+			scanner.nextLine();
+			Util.limparTela();
 			return;
 		}
-		System.out.println("O que deseja modificar?");
+		Util.limparTela();
 		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acumulador = 0;
 		while (acumulador < 1) {
@@ -122,19 +139,32 @@ public class GerenciarAlunosController {
 
 		System.out.println("Digite o RA do aluno que deseja excluir:\t");
 		String nome_aluno = scanner.nextLine();
+		Util.limparTela();
 		Aluno aluno = banco_de_dados.getAluno(nome_aluno);
 		if (aluno == null) {
-			System.out.println("\nAluno não encontrado!!\n");
+			System.out.println("Aluno não encontrado!!");
+			System.out.println("Pressione enter para prosseguir...");
+			scanner.nextLine();
+			Util.limparTela();
 			return;
 		}
-		banco_de_dados.excluirAluno(aluno);
-		System.out.println("\n Aluno excluído com sucesso!");
+		System.out.println("Aluno encontrado, tem certeza que deseja excluir?");
+		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
+		if (escolha == 1) {
+			banco_de_dados.excluirAluno(aluno);
+			System.out.println("\n Aluno excluído com sucesso!");
+			System.out.print("\nPressione enter para prosseguir...");
+			scanner.nextLine();
+		} else {
+			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
+			scanner.nextLine();
+		}
 	}
 
 	// Método para a vizualição de todos os alunos
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
-		List<Aluno> alunos = banco_de_dados.getAlunos();
+		List<Aluno> alunos = banco_de_dados.getAlunos
 		// Ordernar Alunos
 		Collections.sort(alunos);
 		System.out.printf("-------------------------------------------------------------------------------%n");
