@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.Aluno;
 import models.Database;
+import java.util.Collections;
 
 public class GerenciarAlunosController {
 	// Método para gerenciar os alunos
@@ -106,8 +107,6 @@ public class GerenciarAlunosController {
 			Util.limparTela();
 			return;
 		}
-		System.out.println("Pressione enter definir o que deseja modificar...");
-		scanner.nextLine();
 		Util.limparTela();
 		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acumulador = 0;
@@ -152,9 +151,6 @@ public class GerenciarAlunosController {
 			return;
 		}
 		System.out.println("Aluno encontrado, tem certeza que deseja excluir?");
-		System.out.println("Pressione enter para responder...");
-		scanner.nextLine();
-		Util.limparTela();
 		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
 		if (escolha == 1) {
 			banco_de_dados.excluirAluno(aluno);
@@ -171,6 +167,8 @@ public class GerenciarAlunosController {
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
 		List<Aluno> alunos = banco_de_dados.getAlunos();
+		// Ordenar Alunos
+		Collections.sort(alunos);
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                                  ALUNOS                                     |%n");
 		System.out.printf("-------------------------------------------------------------------------------%n");

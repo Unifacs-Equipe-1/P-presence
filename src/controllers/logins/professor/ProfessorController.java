@@ -7,6 +7,7 @@ import java.util.UUID;
 import models.Aluno;
 import models.Database;
 import models.Professor;
+import java.util.Collections;
 
 public class ProfessorController {
 	// Metodo de Login como professor
@@ -143,6 +144,7 @@ public class ProfessorController {
 	private static void verAlunos(Scanner sc, Database banco_de_dados) {
 		// Método de visualização dos alunos
 		List<Aluno> alunos = banco_de_dados.getAlunos();
+		Collections.sort(alunos);
 		System.out.printf(
 				"------------------------------------------------------------------------------------------------------%n");
 		System.out.printf(

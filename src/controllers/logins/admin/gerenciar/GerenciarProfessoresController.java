@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.Database;
 import models.Professor;
+import java.util.Collections;
 
 public class GerenciarProfessoresController {
 
@@ -27,28 +28,25 @@ public class GerenciarProfessoresController {
 					 * Método para cadastrar um novo professor
 					 */
 					GerenciarProfessoresController.cadastrarProfessor(scanner, banco_de_dados);
-					Util.limparTela();
 					break;
 				case 2:
 					/*
 					 * Método para atualizar um professor
 					 */
 					GerenciarProfessoresController.atualizarProfessor(scanner, banco_de_dados);
-					Util.limparTela();
 					break;
 				case 3:
 					/*
 					 * Método para excluir um professor
 					 */
 					GerenciarProfessoresController.excluirProfessor(scanner, banco_de_dados);
-					Util.limparTela();
 					break;
 				case 4:
 					/*
 					 * Método para visualizar os professores
 					 */
 					GerenciarProfessoresController.verProfessor(scanner, banco_de_dados);
-					Util.limparTela();
+					break;
 				case 5:
 					/*
 					 * Método para voltar a página anterior
@@ -104,9 +102,10 @@ public class GerenciarProfessoresController {
 		System.out.println("Professor cadastrado com sucesso!");
 		System.out.println("Pressione enter para prosseguir...");
 		scanner.nextLine();
+		Util.limparTela();
 	}
 
-	// Método de modificação de professor já existente
+	// Método de atualização de professor já existente
 	private static void atualizarProfessor(Scanner scanner, Database banco_de_dados) {
 
 		System.out.print("Digite o RP do professor que deseja modificar:\t");
@@ -149,7 +148,7 @@ public class GerenciarProfessoresController {
 					break;
 			}
 		}
-
+		Util.limparTela();
 	}
 
 	// Método de exclusão de um professor
@@ -160,7 +159,7 @@ public class GerenciarProfessoresController {
 		Util.limparTela();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
-			System.out.println("\nProfessor nao encontrado!!\n");]
+			System.out.println("\nProfessor nao encontrado!!\n");
 			System.out.println("Pressione enter para prosseguir...");
 			scanner.nextLine();
 			return;
@@ -180,13 +179,15 @@ public class GerenciarProfessoresController {
 			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
 			scanner.nextLine();
 		}
+		Util.limparTela();
 	}
 
 	// Método de visualização dos professores criados
 	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
 
 		List<Professor> professores = banco_de_dados.getProfessores();
-
+		// Ordenar professor
+		Collections.sort(professores);
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                               PROFESSORES                                   |%n");
 		System.out.printf("-------------------------------------------------------------------------------%n");

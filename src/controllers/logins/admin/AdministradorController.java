@@ -28,9 +28,6 @@ public class AdministradorController {
 
 				System.out.println("Usuário ou senha incorretos!");
 				System.out.println("Deseja tentar novamente?");
-				System.out.println("Pressione enter para responder...");
-				scanner.nextLine();
-				Util.limparTela();
 
 				int prosseguir = Util.optionPainel(scanner, new String[] { " 0  Não (default)", " 1  Sim" });
 				switch (prosseguir) {
@@ -39,9 +36,6 @@ public class AdministradorController {
 					case 0:
 					default:
 						System.out.println("Retornando a página inicial");
-						System.out.print("\nPressione enter para prosseguir...");
-						scanner.nextLine();
-						Util.limparTela();
 						return;
 				}
 			} else {

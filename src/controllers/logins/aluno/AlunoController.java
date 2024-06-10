@@ -29,6 +29,7 @@ public class AlunoController {
 				System.out.println(" \n RA não encontrado! \n Pressione enter para voltar...");
 				scanner.nextLine();
 				Util.limparTela();
+				return;
 			}
 			// Verificação de senha
 			if (!aluno.getSenha().equals(senha)) {
