@@ -46,24 +46,17 @@ public class GerenciarProfessoresController {
 					 * Método para visualizar os professores
 					 */
 					GerenciarProfessoresController.verProfessor(scanner, banco_de_dados);
-					break;
 				case 5:
 					/*
 					 * Método para voltar a página anterior
 					 */
 					System.out.println("Voltando a página anterior!");
-					System.out.print("\nPressione enter para prosseguir...");
-					scanner.nextLine();
-					Util.limparTela();
 					return;
 				default:
 					/*
 					 * Caso a opção não exista
 					 */
 					System.out.println("\nDigite uma opção válida!\n");
-					System.out.println("Pressione enter para prosseguir...");
-					scanner.nextLine();
-					Util.limparTela();
 					break;
 			}
 		}
@@ -98,30 +91,20 @@ public class GerenciarProfessoresController {
 		}
 		Professor professor = new Professor(nome, senha, turno, curso, uc);
 		banco_de_dados.cadastrarProfessor(professor);
-		Util.limparTela();
 		System.out.println("Professor cadastrado com sucesso!");
-		System.out.println("Pressione enter para prosseguir...");
-		scanner.nextLine();
-		Util.limparTela();
 	}
 
-	// Método de atualização de professor já existente
+	// Método de modificação de professor já existente
 	private static void atualizarProfessor(Scanner scanner, Database banco_de_dados) {
 
 		System.out.print("Digite o RP do professor que deseja modificar:\t");
 		String nome_professor = scanner.nextLine();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
-			System.out.println("Professor não encontrado!!");
-			System.out.println("Pressione enter para prosseguir...");
-			scanner.nextLine();
-			Util.limparTela();
+			System.out.println("\nProfessor nao encontrado!!\n");
 			return;
 		}
-
-		System.out.println("Pressione enter definir o que deseja modificar...");
-		scanner.nextLine();
-		Util.limparTela();
+		System.out.println("O que deseja modificar?");
 		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acumulador = 0;
 		while (acumulador < 1) {
@@ -142,13 +125,10 @@ public class GerenciarProfessoresController {
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					System.out.println("Pressione enter para prosseguir...");
-					scanner.nextLine();
-					acumulador++;
+					acumulador--;
 					break;
 			}
 		}
-		Util.limparTela();
 	}
 
 	// Método de exclusão de um professor
@@ -156,39 +136,23 @@ public class GerenciarProfessoresController {
 
 		System.out.println("Digite o RP do professor(a) que deseja excluir:\t");
 		String nome_professor = scanner.nextLine();
-		Util.limparTela();
 		Professor professor = banco_de_dados.getProfessor(nome_professor);
 		if (professor == null) {
 			System.out.println("\nProfessor nao encontrado!!\n");
-			System.out.println("Pressione enter para prosseguir...");
-			scanner.nextLine();
 			return;
 		}
-		Util.limparTela();
-		System.out.println("Professor encontrado, tem certeza que deseja excluir?");
-		System.out.println("Pressione enter para responder...");
-		scanner.nextLine();
-		Util.limparTela();
-		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
-		if (escolha == 1) {
-			banco_de_dados.excluirProfessor(professor);
-			System.out.println("\nProfessor(a) excluído com sucesso!");
-			System.out.println("Pressione enter para prosseguir...");
-			scanner.nextLine();
-		} else {
-			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
-			scanner.nextLine();
-		}
-		Util.limparTela();
+		banco_de_dados.excluirProfessor(professor);
+		System.out.println("\n Professor(a) excluído com sucesso!");
+
 	}
 
 	// Método de visualização dos professores criados
 	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
 
 		List<Professor> professores = banco_de_dados.getProfessores();
-
 		// Ordernar Professores
 		Collections.sort(professores);
+
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                               PROFESSORES                                   |%n");
 		System.out.printf("-------------------------------------------------------------------------------%n");
@@ -201,6 +165,5 @@ public class GerenciarProfessoresController {
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
-		Util.limparTela();
 	}
 }
