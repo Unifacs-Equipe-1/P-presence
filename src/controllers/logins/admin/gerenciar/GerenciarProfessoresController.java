@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.Database;
 import models.Professor;
+import java.util.Collections;
 
 public class GerenciarProfessoresController {
 
@@ -152,6 +153,8 @@ public class GerenciarProfessoresController {
 	private static void verProfessor(Scanner scanner, Database banco_de_dados) {
 
 		List<Professor> professores = banco_de_dados.getProfessores();
+		// Ordernar Professores
+		Collections.sort(professores);
 
 		System.out.printf(
 				"--------------------------------------------------------------------------------------------%n");

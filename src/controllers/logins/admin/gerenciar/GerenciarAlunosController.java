@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.Aluno;
 import models.Database;
+import java.util.Collections;
 
 public class GerenciarAlunosController {
 	// Método para gerenciar os alunos
@@ -113,7 +114,7 @@ public class GerenciarAlunosController {
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acumulador--;
+					acumulador++;
 					break;
 			}
 		}
