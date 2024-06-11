@@ -54,7 +54,6 @@ public class GerenciarProfessoresController {
 					System.out.println("Voltando a página anterior!");
 					System.out.print("\nPressione enter para prosseguir...");
 					scanner.nextLine();
-					Util.limparTela();
 					return;
 				default:
 					/*

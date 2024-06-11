@@ -24,29 +24,23 @@ public class GerenciarAlunosController {
 			switch (option) {
 				case 1:
 					GerenciarAlunosController.cadastrarAluno(scanner, banco_de_dados);
-					Util.limparTela();
 					break;
 				case 2:
 					GerenciarAlunosController.atualizarAluno(scanner, banco_de_dados);
-					Util.limparTela();
 					break;
 				case 3:
 					GerenciarAlunosController.excluirAluno(scanner, banco_de_dados);
-					Util.limparTela();
 					break;
 				case 4:
 					GerenciarAlunosController.verAluno(scanner, banco_de_dados);
-					Util.limparTela();
 					return;
 				case 5:
 					FiltrarAlunosController.filtrarAlunos(scanner, banco_de_dados);
-					Util.limparTela();
 					return;
 				case 6:
 					System.out.println("Voltando a página anterior!");
 					System.out.print("\nPressione enter para prosseguir...");
 					scanner.nextLine();
-					Util.limparTela();
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");
@@ -91,6 +85,7 @@ public class GerenciarAlunosController {
 		System.out.println("Aluno cadastrado com sucesso!");
 		System.out.println("Pressione enter para prosseguir...");
 		scanner.nextLine();
+		Util.limparTela();
 	}
 
 	// Método de atualização das informações de um aluno
@@ -132,6 +127,7 @@ public class GerenciarAlunosController {
 					break;
 			}
 		}
+		Util.limparTela();
 	}
 
 	// Método para exclusão de aluno
@@ -159,12 +155,13 @@ public class GerenciarAlunosController {
 			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
 			scanner.nextLine();
 		}
+		Util.limparTela();
 	}
 
 	// Método para a vizualição de todos os alunos
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
-		List<Aluno> alunos = banco_de_dados.getAlunos
+		List<Aluno> alunos = banco_de_dados.getAlunos();
 		// Ordernar Alunos
 		Collections.sort(alunos);
 		System.out.printf("-------------------------------------------------------------------------------%n");
@@ -179,5 +176,6 @@ public class GerenciarAlunosController {
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
+		Util.limparTela();
 	}
 }
