@@ -9,12 +9,14 @@ public class Aluno extends models.Pessoa {
 	private String genero;
 	private String uc;
 	private String sala;
+	private String semestre;
 	private Boolean presente = null;
 
-	public Aluno(String nome, String senha, String genero, String turno, String curso) {
+	public Aluno(String nome, String senha, String genero, String turno, String curso, String semestre) {
 		super(nome, senha, turno, curso);
 		this.registro_aluno = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);
 		this.genero = genero;
+		this.semestre = semestre;
 	}
 
 	// Getters e Setters de Alunos
@@ -53,5 +55,13 @@ public class Aluno extends models.Pessoa {
 
 	public String getRa() {
 		return registro_aluno;
+	}
+
+	public String getSemestre() {
+		return semestre;
+	}
+
+	public void setSemestre(String semestre) {
+		this.semestre = semestre;
 	}
 }
