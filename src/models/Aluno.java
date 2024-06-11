@@ -57,19 +57,11 @@ public class Aluno extends models.Pessoa {
 		return registro_aluno;
 	}
 
-	public String getRegistro_aluno() {
-		return registro_aluno;
-	}
-
 	public String getSemestre() {
 		return semestre;
 	}
 
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
-	}
-
-	public void setPresente(Boolean presente) {
-		this.presente = presente;
 	}
 }
