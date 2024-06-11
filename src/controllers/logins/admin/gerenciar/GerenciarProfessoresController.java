@@ -71,6 +71,7 @@ public class GerenciarProfessoresController {
 		String curso;
 		String uc;
 		String graduacao;
+		String area;
 		System.out.print("Digite o nome do professor: ");
 		nome = scanner.nextLine();
 		System.out.print("Escolha um turno para o professor: ");
@@ -79,8 +80,10 @@ public class GerenciarProfessoresController {
 		curso = scanner.nextLine();
 		System.out.print("Escolha a UC do professor: ");
 		uc = scanner.nextLine();
-		System.out.println("Digite o nivel de graduação do professor(a)");
+		System.out.println("Digite o nivel de graduação do professor: ");
 		graduacao = scanner.nextLine();
+		System.out.println("Informe a área de atuação do professor: ");
+		area = scanner.nextLine();
 		for (int i = 0; i < 1; i++) {
 			System.out.print("Digite uma senha: ");
 			senha = scanner.nextLine();
@@ -92,7 +95,7 @@ public class GerenciarProfessoresController {
 				i--;
 			}
 		}
-		Professor professor = new Professor(nome, senha, turno, curso, uc, graduacao);
+		Professor professor = new Professor(nome, senha, turno, curso, uc, graduacao, area);
 		banco_de_dados.cadastrarProfessor(professor);
 		System.out.println("Professor cadastrado com sucesso!");
 	}
@@ -128,7 +131,7 @@ public class GerenciarProfessoresController {
 					break;
 				default:
 					System.out.println("Essa opção não existe!");
-					acumulador--;
+					acumulador++;
 					break;
 			}
 		}
@@ -157,21 +160,22 @@ public class GerenciarProfessoresController {
 		Collections.sort(professores);
 
 		System.out.printf(
-				"--------------------------------------------------------------------------------------------%n");
+				"-----------------------------------------------------------------------------------------------------------------------%n");
 		System.out.printf(
-				"|                                     PROFESSORES                                          |%n");
+				"|                                                  PROFESSORES                                                        |%n");
 		System.out.printf(
-				"--------------------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s |%n", "RP", "Professor", "Curso", "Turno",
-				"Graduação");
+				"-----------------------------------------------------------------------------------------------------------------------%n");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s | %-24s |%n", "RP", "Professor", "Curso", "Turno",
+				"Graduação", "Área");
 		System.out.printf(
-				"--------------------------------------------------------------------------------------------%n");
+				"-----------------------------------------------------------------------------------------------------------------------%n");
 		for (Professor professor : professores) {
-			System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s |%n", professor.getRp(),
-					professor.getNome(), professor.getCurso(), professor.getTurno(), professor.getGraduacao());
+			System.out.printf("| %-11s | %-20s | %-25s | %-10s | %-10s | %-24s |%n", professor.getRp(),
+					professor.getNome(), professor.getCurso(), professor.getTurno(), professor.getGraduacao(),
+					professor.getArea());
 		}
 		System.out.printf(
-				"--------------------------------------------------------------------------------------------%n");
+				"-----------------------------------------------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
 	}

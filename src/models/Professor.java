@@ -10,12 +10,14 @@ public class Professor extends Pessoa {
 	private String sala;
 	private String codigo_sala;
 	private String graduacao;
+	private String area;
 
 	// construtor de Professor
-	public Professor(String nome, String senha, String turno, String curso, String uc, String graduacao) {
+	public Professor(String nome, String senha, String turno, String curso, String uc, String graduacao, String area) {
 		super(nome, senha, turno, curso);
 		this.uc = uc;
 		this.graduacao = graduacao;
+		this.area = area;
 		this.registro_professor = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);
 	}
 
@@ -50,6 +52,14 @@ public class Professor extends Pessoa {
 
 	public void setGraduacao(String graduacao) {
 		this.graduacao = graduacao;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
 	}
 
 }
