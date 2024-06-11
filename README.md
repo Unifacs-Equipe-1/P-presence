@@ -1,5 +1,5 @@
 
-# A3 Programção e Soluções Computacionais
+# A3 Programação e Soluções Computacionais
 
 Este trabalho foi realizado para a última avaliação do semestre (conhecida como A3). Tivemos a ideia de criar uma lista de chamada para uma turma, pois alguns professores não a fazem devido ao tamanho da turma.
 
@@ -115,7 +115,7 @@ Na pasta "extras" e na classe "Util" foi criado um método para gerar os número
 É gerado um código aleatório contendo letras e números.
 
 + Ordenação
-Foi utilizado um método com a importação "Colection" para ordenar por ordem alfabética
+Foi utilizado um método com a importação "Collections" para ordenar por ordem alfabética
 
 ## Requisitos funcionais e não funcionais
 
@@ -167,22 +167,20 @@ Segurança:
 
 NRF03 - Autenticação de usuários com login e senha.
 
-NRF04 - Senhas predefinidas e possibilidade de alterar senhas.
-
 Manutenibilidade:
 
-NRF05 - Explicações claras sobre como adicionar, atualizar e excluir alunos e professores.
+NRF04 - Explicações claras sobre como adicionar, atualizar e excluir alunos e professores.
 
-NRF06 - Estrutura clara para geração e gestão de RA e RP.
+NRF05 - Estrutura clara para geração e gestão de RA e RP.
 
 Eficiência:
 
-NRF07 - Geração e uso de códigos únicos para salas.
+NRF06 - Geração e uso de códigos únicos para salas.
 
-NRF08 - Limpeza do terminal para melhor visualização.
+NRF07 - Limpeza do terminal para melhor visualização.
 
 Confiabilidade:
 
-NRF09 - Geração automática de RA e RP com até 11 dígitos, garantindo unicidade.
+NRF08 - Geração automática de RA e RP com até 11 dígitos, garantindo unicidade.
 
-NRF10 - Métodos definidos para garantir a integridade dos dados de presença e de usuários.
+NRF09 - Métodos definidos para garantir a integridade dos dados de presença e de usuários.
