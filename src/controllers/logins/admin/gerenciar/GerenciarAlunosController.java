@@ -39,6 +39,8 @@ public class GerenciarAlunosController {
 					return;
 				case 6:
 					System.out.println("Voltando a página anterior!");
+					System.out.print("\nPressione enter para prosseguir...");
+					scanner.nextLine();
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");
@@ -77,6 +79,9 @@ public class GerenciarAlunosController {
 		Aluno aluno = new Aluno(nome, senha, genero, turno, curso);
 		banco_de_dados.cadastrarAluno(aluno);
 		System.out.println("Aluno cadastrado com sucesso!");
+		System.out.println("Pressione enter para prosseguir...");
+		scanner.nextLine();
+		Util.limparTela();
 	}
 
 	// Método de atualização das informações de um aluno
@@ -115,6 +120,7 @@ public class GerenciarAlunosController {
 					break;
 			}
 		}
+		Util.limparTela();
 	}
 
 	// Método para exclusão de aluno
@@ -127,8 +133,18 @@ public class GerenciarAlunosController {
 			System.out.println("\nAluno não encontrado!!\n");
 			return;
 		}
-		banco_de_dados.excluirAluno(aluno);
-		System.out.println("\n Aluno excluído com sucesso!");
+		System.out.println("Aluno encontrado, tem certeza que deseja excluir?");
+		int escolha = Util.optionPainel(scanner, new String[] { " 1  Sim", " 2  Não (Padrão)" });
+		if (escolha == 1) {
+			banco_de_dados.excluirAluno(aluno);
+			System.out.println("\n Aluno excluído com sucesso!");
+			System.out.print("\nPressione enter para prosseguir...");
+			scanner.nextLine();
+		} else {
+			System.out.println("Exclusão cancelada, pressione enter para prosseguir...");
+			scanner.nextLine();
+		}
+		Util.limparTela();
 	}
 
 	// Método para a vizualição de todos os alunos
@@ -149,5 +165,6 @@ public class GerenciarAlunosController {
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.print("\nPressione enter para prosseguir...");
 		scanner.nextLine();
+		Util.limparTela();
 	}
 }

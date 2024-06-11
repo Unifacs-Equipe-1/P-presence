@@ -51,6 +51,8 @@ public class GerenciarProfessoresController {
 					 * Método para voltar a página anterior
 					 */
 					System.out.println("Voltando a página anterior!");
+					System.out.print("\nPressione enter para prosseguir...");
+					scanner.nextLine();
 					return;
 				default:
 					/*
