@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 import models.Aluno;
 import models.Database;
+import java.util.Collections;
 
+// Classe para gerenciar os alunos a partir do administrador
 public class GerenciarAlunosController {
 	// Método para gerenciar os alunos
 	public static void gerenciarAlunos(Scanner scanner, Database banco_de_dados) {
@@ -22,33 +24,40 @@ public class GerenciarAlunosController {
 							" 3  Excluir aluno", " 4  Ver alunos", " 5  Filtrar alunos", " 6  Voltar" });
 			switch (option) {
 				case 1:
+					// Método para cadastrar alunos
 					GerenciarAlunosController.cadastrarAluno(scanner, banco_de_dados);
 					break;
 				case 2:
+					// Método para atualizar alunos
 					GerenciarAlunosController.atualizarAluno(scanner, banco_de_dados);
 					break;
 				case 3:
+					// Método para excluir alunos
 					GerenciarAlunosController.excluirAluno(scanner, banco_de_dados);
 					break;
 				case 4:
+					// Método para ver alunos
 					GerenciarAlunosController.verAluno(scanner, banco_de_dados);
 					return;
 				case 5:
+					// Método para filtrar alunos
 					FiltrarAlunosController.filtrarAlunos(scanner, banco_de_dados);
 					return;
 				case 6:
+					// Método para retonar a página anterior
 					System.out.println("Voltando a página anterior!");
 					System.out.print("\nPressione enter para prosseguir...");
 					scanner.nextLine();
 					return;
 				default:
+					// Método para quando houver uma resposta inválida
 					System.out.println("\nDigite uma opção válida!\n");
 					break;
 			}
 		}
 	}
 
-	// Metodo para imput dps dados de um Aluno a ser cadastrado
+	// Método para input dos dados de um Aluno a ser cadastrado
 	private static void cadastrarAluno(Scanner scanner, Database banco_de_dados) {
 
 		String nome;
@@ -78,6 +87,7 @@ public class GerenciarAlunosController {
 				i--;
 			}
 		}
+		// Criação do objeto Aluno
 		Aluno aluno = new Aluno(nome, senha, genero, turno, curso, semestre);
 		banco_de_dados.cadastrarAluno(aluno);
 		System.out.println("Aluno cadastrado com sucesso!");
@@ -103,6 +113,7 @@ public class GerenciarAlunosController {
 		while (acumulador < 1) {
 			switch (opcao) {
 				case 1:
+					// Método para atulizar o turno de um aluno
 					System.out.print("Digite o novo turno:\t");
 					String turno = scanner.nextLine();
 					aluno.setTurno(turno);
@@ -110,6 +121,7 @@ public class GerenciarAlunosController {
 					acumulador++;
 					break;
 				case 2:
+					// Método para atulizar o curso de um aluno
 					System.out.print("Digite o novo curso:\t");
 					String curso = scanner.nextLine();
 					aluno.setCurso(curso);
@@ -117,6 +129,7 @@ public class GerenciarAlunosController {
 					acumulador++;
 					break;
 				default:
+					// Método para quando uma resposta for inválida
 					System.out.println("Essa opção não existe!");
 					acumulador++;
 					break;
@@ -153,6 +166,8 @@ public class GerenciarAlunosController {
 	private static void verAluno(Scanner scanner, Database banco_de_dados) {
 
 		List<Aluno> alunos = banco_de_dados.getAlunos();
+		// Método para organizar por ordem alfábetica os nomes dos alunos
+		Collections.sort(alunos);
 		System.out.printf(
 				"---------------------------------------------------------------------------------------------%n");
 		System.out.printf(

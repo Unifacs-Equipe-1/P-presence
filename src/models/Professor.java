@@ -3,8 +3,9 @@ package models;
 import extras.Util;
 import java.util.UUID;
 
+//Classe para designar os professores que se extende da classe Pessoa
 public class Professor extends Pessoa {
-	// atributos dos professores
+	// Atributos dos professores
 	private final String registro_professor;
 	private final String uc;
 	private String sala;
@@ -12,7 +13,7 @@ public class Professor extends Pessoa {
 	private String graduacao;
 	private String area;
 
-	// construtor de Professor
+	// Construtor de Professor
 	public Professor(String nome, String senha, String turno, String curso, String uc, String graduacao, String area) {
 		super(nome, senha, turno, curso);
 		this.uc = uc;
