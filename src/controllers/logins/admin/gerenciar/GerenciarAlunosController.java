@@ -44,9 +44,6 @@ public class GerenciarAlunosController {
 					return;
 				default:
 					System.out.println("\nDigite uma opção válida!\n");
-					System.out.println("Pressione enter para prosseguir...");
-					scanner.nextLine();
-					Util.limparTela();
 					break;
 			}
 		}
@@ -81,7 +78,6 @@ public class GerenciarAlunosController {
 		}
 		Aluno aluno = new Aluno(nome, senha, genero, turno, curso);
 		banco_de_dados.cadastrarAluno(aluno);
-		Util.limparTela();
 		System.out.println("Aluno cadastrado com sucesso!");
 		System.out.println("Pressione enter para prosseguir...");
 		scanner.nextLine();
@@ -97,12 +93,9 @@ public class GerenciarAlunosController {
 		if (aluno == null) {
 			System.out.println();
 			System.out.println("Aluno não encontrado!!");
-			System.out.println("Pressione enter para prosseguir...");
-			scanner.nextLine();
-			Util.limparTela();
 			return;
 		}
-		Util.limparTela();
+		System.out.println("O que deseja modificar?");
 		int opcao = Util.optionPainel(scanner, new String[] { " 1  Turno", " 2  Curso" });
 		int acumulador = 0;
 		while (acumulador < 1) {
@@ -135,13 +128,9 @@ public class GerenciarAlunosController {
 
 		System.out.println("Digite o RA do aluno que deseja excluir:\t");
 		String nome_aluno = scanner.nextLine();
-		Util.limparTela();
 		Aluno aluno = banco_de_dados.getAluno(nome_aluno);
 		if (aluno == null) {
-			System.out.println("Aluno não encontrado!!");
-			System.out.println("Pressione enter para prosseguir...");
-			scanner.nextLine();
-			Util.limparTela();
+			System.out.println("\nAluno não encontrado!!\n");
 			return;
 		}
 		System.out.println("Aluno encontrado, tem certeza que deseja excluir?");
