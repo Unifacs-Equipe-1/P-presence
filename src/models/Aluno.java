@@ -3,8 +3,9 @@ package models;
 import extras.Util;
 import java.util.UUID;
 
+// Classe para designar aluno que se extende da classe pessoa
 public class Aluno extends models.Pessoa {
-	// atributos dos alunos
+	// Atributos dos alunos
 	private final String registro_aluno;
 	private String genero;
 	private String uc;
@@ -12,6 +13,7 @@ public class Aluno extends models.Pessoa {
 	private String semestre;
 	private Boolean presente = null;
 
+	// Construtor da classe aluno
 	public Aluno(String nome, String senha, String genero, String turno, String curso, String semestre) {
 		super(nome, senha, turno, curso);
 		this.registro_aluno = Util.generateUuidNumber(UUID.randomUUID().toString(), 11);

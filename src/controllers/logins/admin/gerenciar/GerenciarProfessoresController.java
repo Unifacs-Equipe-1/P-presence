@@ -7,6 +7,7 @@ import models.Database;
 import models.Professor;
 import java.util.Collections;
 
+//Classe para gerenciar os professores a partir do admin
 public class GerenciarProfessoresController {
 
 	public static void gerenciarProfessores(Scanner scanner, Database banco_de_dados) {
@@ -97,6 +98,7 @@ public class GerenciarProfessoresController {
 				i--;
 			}
 		}
+		// Criação do objeto Professor
 		Professor professor = new Professor(nome, senha, turno, curso, uc, graduacao, area);
 		banco_de_dados.cadastrarProfessor(professor);
 		System.out.println("Professor cadastrado com sucesso!");
@@ -118,6 +120,7 @@ public class GerenciarProfessoresController {
 		while (acumulador < 1) {
 			switch (opcao) {
 				case 1:
+					// Método para atualizar o turno do professor
 					System.out.print("Digite o novo turno:\t");
 					String turno = scanner.nextLine();
 					professor.setTurno(turno);
@@ -125,6 +128,7 @@ public class GerenciarProfessoresController {
 					acumulador++;
 					break;
 				case 2:
+					// Método para atualizar o curso do professor
 					System.out.print("Digite o novo curso:\t");
 					String curso = scanner.nextLine();
 					professor.setCurso(curso);
@@ -132,6 +136,7 @@ public class GerenciarProfessoresController {
 					acumulador++;
 					break;
 				default:
+					// Método caso a opção escolhida não exista
 					System.out.println("Essa opção não existe!");
 					acumulador++;
 					break;

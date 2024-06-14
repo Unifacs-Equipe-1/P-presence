@@ -9,6 +9,7 @@ import models.Database;
 import models.Professor;
 import java.util.Collections;
 
+// Classe para controle do professor
 public class ProfessorController {
 	// Metodo de Login como professor
 	public static void loginProfessor(Scanner scanner, Database banco_de_dados) {
@@ -116,7 +117,7 @@ public class ProfessorController {
 	// repassado para os alunos
 	private static void gerarCodigo(Scanner sc, Database banco_de_dados, Professor professor) {
 		if (professor.getSala() == null) {
-			// Sea sala não for criada, não tem como gerar o código
+			// Se a sala não for criada, não tem como gerar o código
 			System.out.println("Sala não configurada, configure a sala antes de gerar o código");
 			System.out.println("Pressione enter para voltar a página anterior...");
 			sc.nextLine();

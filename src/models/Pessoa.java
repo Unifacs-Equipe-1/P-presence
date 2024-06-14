@@ -1,13 +1,14 @@
 package models;
 
+//Classe pai designando pessoa
 public abstract class Pessoa implements Comparable<Pessoa> {
-	// atributos de Pessoa
+	// Atributos de Pessoa
 	private String nome = "";
 	private String senha = "";
 	private String turno = "";
 	private String curso = "";
 
-	// constutor de Pessoa
+	// Constutor de Pessoa
 	protected Pessoa(String nome, String senha, String turno, String curso) {
 		this.nome = nome;
 		this.senha = senha;

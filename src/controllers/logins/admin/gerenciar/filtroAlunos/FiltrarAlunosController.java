@@ -7,10 +7,11 @@ import models.Aluno;
 import models.Database;
 import java.util.Collections;
 
+// Classe para filtrar os alunos por atributos específicos
 public class FiltrarAlunosController {
 
 	/*
-	 * Metodo para filtrar os alunos
+	 * Método para filtrar os alunos
 	 * 1- Filtrar Por Nome / 2- Filtrar Por Ra / 3- Filtrar Por Curso /
 	 * 4- Filtrar Por Turno / 5- Filtrar Por Genero / 6 - Voltar = Voltar /
 	 */
@@ -21,31 +22,31 @@ public class FiltrarAlunosController {
 			switch (opcao) {
 				case 1:
 					/*
-					 * Método para filtrar os alunos
+					 * Método para filtrar os alunos por nome
 					 */
 					FiltrarAlunosController.filtrarPorNome(scanner, banco_de_dados);
 					break;
 				case 2:
 					/*
-					 * Método para filtrar os alunos
+					 * Método para filtrar os alunos por RA
 					 */
 					FiltrarAlunosController.filtrarPorRA(scanner, banco_de_dados);
 					break;
 				case 3:
 					/*
-					 * Método para filtrar os alunos
+					 * Método para filtrar os alunos por curso
 					 */
 					FiltrarAlunosController.filtrarPorCurso(scanner, banco_de_dados);
 					break;
 				case 4:
 					/*
-					 * Método para filtrar os alunos
+					 * Método para filtrar os alunos por turno
 					 */
 					FiltrarAlunosController.filtrarPorTurno(scanner, banco_de_dados);
 					break;
 				case 5:
 					/*
-					 * Método para filtrar os alunos
+					 * Método para filtrar os alunos gênero
 					 */
 					FiltrarAlunosController.filtrarPorGenero(scanner, banco_de_dados);
 					break;
@@ -82,7 +83,7 @@ public class FiltrarAlunosController {
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		System.out.printf("|                                     RA " + ra + "                              |%n");
 		System.out.printf("-------------------------------------------------------------------------------%n");
-		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA", "Semestre");
+		System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", "Nome", "Genero", "Curso", "Turno", "RA");
 		System.out.printf("-------------------------------------------------------------------------------%n");
 		for (Aluno aluno : registros) {
 			System.out.printf("| %-11s | %-20s | %-25s | %-10s |%n", aluno.getNome(),
@@ -95,7 +96,7 @@ public class FiltrarAlunosController {
 	}
 
 	/*
-	 * Metodo para filtrar os alunos
+	 * Método para filtrar os alunos
 	 * Busca Por Nome
 	 */
 	private static void filtrarPorNome(Scanner scanner, Database banco_de_dados) {
@@ -123,7 +124,7 @@ public class FiltrarAlunosController {
 	}
 
 	/*
-	 * Metodo para filtrar os alunos
+	 * Método para filtrar os alunos
 	 * Busca Por Curso
 	 */
 	private static void filtrarPorCurso(Scanner scanner, Database banco_de_dados) {
@@ -150,7 +151,7 @@ public class FiltrarAlunosController {
 	}
 
 	/*
-	 * Metodo para filtrar os alunos
+	 * Método para filtrar os alunos
 	 * Busca Por Turno
 	 */
 	private static void filtrarPorTurno(Scanner scanner, Database banco_de_dados) {
@@ -177,8 +178,8 @@ public class FiltrarAlunosController {
 	}
 
 	/*
-	 * Metodo para filtrar os alunos
-	 * Busca Por Genero
+	 * Método para filtrar os alunos
+	 * Busca Por Gênero
 	 */
 	private static void filtrarPorGenero(Scanner scanner, Database banco_de_dados) {
 		System.out.println("O informe o Genero: ");
@@ -186,7 +187,7 @@ public class FiltrarAlunosController {
 		List<Aluno> registros = banco_de_dados.getAlunosGenero(genero);
 		Collections.sort(registros);
 		/*
-		 * Tabela sendo filtrada pelo Genero
+		 * Tabela sendo filtrada pelo Gênero
 		 * E mostrando os Atributos
 		 */
 		System.out.printf("-------------------------------------------------------------------------------%n");

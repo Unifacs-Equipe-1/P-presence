@@ -7,6 +7,7 @@ import models.Aluno;
 import models.Database;
 import models.Professor;
 
+// Classe programa principal
 public class Programa {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);

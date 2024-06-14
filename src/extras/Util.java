@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+// Classe para utilitários do sistema
 public class Util {
 	// Verifica se a opção escolhida é válida e retorna a opção
 	public static int optionPainel(Scanner scanner, String[] options) {
@@ -32,7 +33,7 @@ public class Util {
 		return option;
 	}
 
-	// limpa o console
+	// Método para limpar o console, usando quebras de linhas
 	public static void limparTela() {
 		for (int i = 0; i < 1000; i++) {
 			System.out.println("\n");

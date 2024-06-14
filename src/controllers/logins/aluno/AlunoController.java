@@ -7,6 +7,7 @@ import models.Aluno;
 import models.Database;
 import models.Professor;
 
+// Classe controle do aluno
 public class AlunoController {
 
 	// Login como Aluno / RA & Senha
@@ -99,7 +100,7 @@ public class AlunoController {
 
 	// Método para marcar a presença
 	private static void marcarPresenca(Scanner scanner, Database banco_de_dados, Aluno aluno) {
-		// Método para maracar a presença na sala de aula
+		// Método para marcar a presença na sala de aula
 		// Caso a sala não esteja disponivel (O professor não criou)
 		if (aluno.getSala() == null) {
 			System.out.println("Você não possui aulas para marcar presença");
@@ -130,7 +131,7 @@ public class AlunoController {
 
 	// Método para vizualizar os dados do aluno
 	private static void mostrarDadosAluno(Scanner scanner, Aluno aluno) {
-		// Método para vizualizar os dados do aluno (Nome / Genero / Curso / Turno / UC)
+		// Método para vizualizar os dados do aluno (Nome / Gênero / Curso / Turno / UC)
 		System.out.printf(
 				"--------------------------------------------------------------------------------------------------------------------%n");
 		System.out.printf(

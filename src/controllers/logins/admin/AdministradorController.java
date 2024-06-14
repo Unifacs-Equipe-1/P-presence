@@ -6,6 +6,7 @@ import extras.Util;
 import java.util.Scanner;
 import models.Database;
 
+// Classe para o administrador fazer as modificações dentro do sistema
 public class AdministradorController {
 	// Metodo de login como administrador / admin & admin
 	public static void loginAdmin(Scanner scanner, Database banco_de_dados, String administrador,
@@ -56,7 +57,7 @@ public class AdministradorController {
 					GerenciarAlunosController.gerenciarAlunos(scanner, banco_de_dados);
 					break;
 				case 2:
-					// Programa.gerenciarProfessores();
+					// Método para gerenciar professores
 					GerenciarProfessoresController.gerenciarProfessores(scanner, banco_de_dados);
 					break;
 				case 3:
