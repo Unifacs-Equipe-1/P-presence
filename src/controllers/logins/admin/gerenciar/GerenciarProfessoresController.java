@@ -83,9 +83,9 @@ public class GerenciarProfessoresController {
 		curso = scanner.nextLine();
 		System.out.print("Escolha a UC do professor: ");
 		uc = scanner.nextLine();
-		System.out.println("Digite o nivel de graduação do professor: ");
+		System.out.print("Digite o nivel de graduação do professor: ");
 		graduacao = scanner.nextLine();
-		System.out.println("Informe a área de atuação do professor: ");
+		System.out.print("Informe a área de atuação do professor: ");
 		area = scanner.nextLine();
 		for (int i = 0; i < 1; i++) {
 			System.out.print("Digite uma senha: ");

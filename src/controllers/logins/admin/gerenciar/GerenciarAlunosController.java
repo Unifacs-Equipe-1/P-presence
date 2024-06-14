@@ -74,7 +74,7 @@ public class GerenciarAlunosController {
 		turno = scanner.nextLine();
 		System.out.print("Escolha um curso para o aluno: ");
 		curso = scanner.nextLine();
-		System.out.println("Digite o semestre do aluno");
+		System.out.print("Digite o semestre do aluno: ");
 		semestre = scanner.nextLine();
 		for (int i = 0; i < 1; i++) {
 			System.out.print("Digite uma senha: ");
